@@ -8,7 +8,7 @@
           </div>
         </q-card-section>
         <q-card-section>
-          <div v-for="(details,pos) in note.details" v-bind:key="pos">
+          <div v-for="(details,index) in note.details" v-bind:key="index">
             {{ details.text }}
           </div>
         </q-card-section>

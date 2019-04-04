@@ -5,15 +5,12 @@ export default {
       title: 'Note 1',
       details: [
         {
-          pos: 0,
           text: 'Go Grocery Shopping'
         },
         {
-          pos: 1,
           text: 'Play Hollow Knight'
         },
         {
-          pos: 2,
           text: 'Learn Vue.js'
         }
       ]
@@ -23,15 +20,12 @@ export default {
       title: 'Note 2',
       details: [
         {
-          pos: 0,
           text: 'Enjoy the Sun'
         },
         {
-          pos: 1,
           text: 'Pay the Bills'
         },
         {
-          pos: 2,
           text: 'Plan your Vacation Time'
         }
       ]
@@ -41,15 +35,12 @@ export default {
       title: 'Note 3',
       details: [
         {
-          pos: 0,
           text: 'Use Vuex for Storage'
         },
         {
-          pos: 1,
           text: 'Play Switch on TV'
         },
         {
-          pos: 2,
           text: 'Write better Vue.js Code'
         }
       ]

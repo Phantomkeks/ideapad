@@ -36,8 +36,8 @@ export default {
     transformTextToArray (sTextValue) {
       let aDetailTexts = sTextValue.split(/\r\n|\r|\n/)
       let aNoteDetails = []
-      aDetailTexts.forEach(function (sText, iIndex) {
-        aNoteDetails.push({ pos: iIndex, text: sText })
+      aDetailTexts.forEach(function (sText) {
+        aNoteDetails.push({ text: sText })
       })
       return aNoteDetails
     }
