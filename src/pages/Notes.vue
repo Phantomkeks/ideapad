@@ -7,14 +7,16 @@
             {{ note.title }}
           </div>
         </q-card-section>
-        <q-card-section v-for="(details,pos) in note.details" v-bind:key="pos" >
-          {{ details.text }}
+        <q-card-section>
+          <div v-for="(details,pos) in note.details" v-bind:key="pos">
+            {{ details.text }}
+          </div>
         </q-card-section>
       </q-card>
     </q-list>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn fab push icon="add" class="add-button" @click="onAddNoteClick"/>
+      <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
     </q-page-sticky>
   </q-page>
 </template>
@@ -23,7 +25,7 @@
   @import '~quasar-variables'
   .note-card {
     width: 46%
-    margin: 2%;
+    margin: 2%
   }
   .add-button {
     headerGradient();
@@ -43,7 +45,8 @@ export default {
       this.$router.push('/notes/detail/' + sId)
     },
     onAddNoteClick () {
-      console.log('Add Note')
+      const uuidv1 = require('uuid/v1')
+      this.$router.push('/notes/detail/' + uuidv1())
     }
   }
 }

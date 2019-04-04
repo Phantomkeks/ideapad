@@ -44,7 +44,8 @@ module.exports = function (ctx) {
         'QFab',
         'QFabAction',
         'QPageSticky',
-        'QInput'
+        'QInput',
+        'QMenu'
       ],
 
       directives: [

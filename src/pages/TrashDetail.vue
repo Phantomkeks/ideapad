@@ -1,8 +1,8 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-input v-model="textAreaTitle" placeholder="Title" outlined autogrow type="textarea"/>
-      <q-input v-model="textAreaInput" placeholder="Description" outlined autogrow type="textarea"/>
+      <q-input v-model="textAreaTitle" placeholder="Title" disable outlined autogrow type="textarea"/>
+      <q-input v-model="textAreaInput" placeholder="Description" disable outlined autogrow type="textarea"/>
     </div>
   </q-page>
 </template>
@@ -12,14 +12,14 @@
 
 <script>
 export default {
-  name: 'NoteDetail',
+  name: 'TrashDetail',
   data () {
     return {
       note: {}
     }
   },
   created () {
-    this.note = this.$store.getters.getSingleNote(this.$route.params.id)
+    this.note = this.$store.getters.getSingleDeletedNote(this.$route.params.id)
   },
   methods: {
     commitChangesToStore (sNoteTitle, aNoteDetails) {
@@ -28,10 +28,10 @@ export default {
         title: sNoteTitle,
         details: aNoteDetails
       }
-      this.$store.commit({
-        type: 'updateNote',
-        oNote: this.note
-      })
+      // this.$store.commit({
+      //   type: 'updateNote',
+      //   oNote: this.note
+      // })
     },
     transformTextToArray (sTextValue) {
       let aDetailTexts = sTextValue.split(/\r\n|\r|\n/)

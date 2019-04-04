@@ -7,18 +7,8 @@
           dense
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
-          v-if="!showBackButton"
           icon="menu"
         />
-        <q-btn
-          flat
-          dense
-          round
-          @click="onBackButtonClick"
-          v-if="showBackButton"
-          icon="arrow_back"
-        />
-
         <q-toolbar-title>
           Mini-Memo
         </q-toolbar-title>
@@ -71,24 +61,11 @@ export default {
   name: 'Layout',
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
-      showBackButton: false
+      leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   methods: {
-    openURL,
-    onBackButtonClick () {
-      this.$router.go(-1)
-    }
-  },
-  watch: {
-    $route: function () {
-      if (this.$route.path.match(/notes\/detail\//)) {
-        this.showBackButton = true
-      } else {
-        this.showBackButton = false
-      }
-    }
+    openURL
   }
 }
 </script>

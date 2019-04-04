@@ -11,6 +11,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Only client with local database (no server backend)
 - Export all notes as one encrypted file
 - Synchronize export file with Dropbox, Google Drive or Onedrive
+- Vuex Store has multiple state entries of 'notes' and 'deletedNotes'
 
 Future:
 - Desktop application
