@@ -2,12 +2,16 @@
   <q-page>
     <div class="q-pa-md">
       <q-input v-model="textAreaTitle" placeholder="Title" outlined autogrow type="textarea"/>
-      <q-input v-model="textAreaInput" placeholder="Description" outlined autogrow type="textarea"/>
+      <div class="textAreaInput">
+        <q-input v-model="textAreaInput" placeholder="Description" autogrow outlined type="textarea"/>
+      </div>
     </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
+  .textAreaInput
+    margin-top: 1rem
 </style>
 
 <script>

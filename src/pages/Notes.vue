@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <q-list class="row">
-      <q-card class="note-card" v-for="(note,id) in notes" v-bind:key="id" @click="onNoteClick(note.id)">
+    <q-list class="masonry">
+      <q-card v-touch:longtap="myFunction" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id" @click="onNoteClick(note.id)">
         <q-card-section>
           <div class="text-h6">
             {{ note.title }}
@@ -18,14 +18,24 @@
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
     </q-page-sticky>
+
+    <div class="fixed-center text-center" v-if="notes.length === 0">
+      <q-icon size="5rem" name="note"/>
+    </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
   @import '~quasar-variables'
   .note-card {
-    width: 46%
-    margin: 2%
+    display: inline-block;
+    margin: 0 0 1rem;
+    width: 100%;
+  }
+  .masonry {
+    column-count: 2;
+    column-gap: 0.5rem;
+    padding: 0.5rem;
   }
   .add-button {
     headerGradient();
@@ -41,6 +51,9 @@ export default {
     }
   },
   methods: {
+    myFunction (oEvent) {
+      console.log(oEvent)
+    },
     onNoteClick (sId) {
       this.$router.push('/notes/detail/' + sId)
     },

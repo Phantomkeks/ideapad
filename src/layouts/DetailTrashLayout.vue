@@ -30,6 +30,14 @@
                   Restore
                 </q-item-section>
               </q-item>
+              <q-item clickable @click="onRestoreClick">
+                <q-item-section avatar>
+                  <q-icon name="delete"/>
+                </q-item-section>
+                <q-item-section>
+                  Permanently Delete
+                </q-item-section>
+              </q-item>
             </q-list>
           </q-menu>
         </q-btn>
@@ -51,6 +59,14 @@ export default {
     onRestoreClick () {
       this.$store.commit({
         type: 'restoreNote',
+        sNoteId: this.$route.params.id
+      })
+
+      this.$router.push('/trash')
+    },
+    onPermanentlyDelete () {
+      this.$store.commit({
+        type: 'deleteNote',
         sNoteId: this.$route.params.id
       })
 

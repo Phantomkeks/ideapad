@@ -2,12 +2,16 @@
   <q-page>
     <div class="q-pa-md">
       <q-input v-model="textAreaTitle" placeholder="Title" disable outlined autogrow type="textarea"/>
-      <q-input v-model="textAreaInput" placeholder="Description" disable outlined autogrow type="textarea"/>
+      <div class="textAreaInput">
+        <q-input v-model="textAreaInput" placeholder="Description" disable outlined autogrow type="textarea"/>
+      </div>
     </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
+  .textAreaInput
+    margin-top: 1rem
 </style>
 
 <script>
@@ -21,56 +25,25 @@ export default {
   created () {
     this.note = this.$store.getters.getSingleDeletedNote(this.$route.params.id)
   },
-  methods: {
-    commitChangesToStore (sNoteTitle, aNoteDetails) {
-      this.note = {
-        id: this.$route.params.id,
-        title: sNoteTitle,
-        details: aNoteDetails
-      }
-      // this.$store.commit({
-      //   type: 'updateNote',
-      //   oNote: this.note
-      // })
-    },
-    transformTextToArray (sTextValue) {
-      let aDetailTexts = sTextValue.split(/\r\n|\r|\n/)
-      let aNoteDetails = []
-      aDetailTexts.forEach(function (sText) {
-        aNoteDetails.push({ text: sText })
-      })
-      return aNoteDetails
-    }
-  },
   computed: {
-    textAreaTitle: {
-      get: function () {
-        return this.note ? this.note.title : ''
-      },
-      set: function (sTextAreaTitle) {
-        this.commitChangesToStore(sTextAreaTitle, this.transformTextToArray(this.textAreaInput))
-      }
+    textAreaTitle () {
+      return this.note ? this.note.title : ''
     },
-    textAreaInput: {
-      get: function () {
-        let sTextAreaText = ''
+    textAreaInput () {
+      let sTextAreaText = ''
 
-        if (this.note) {
-          let iLength = this.note.details.length
-          this.note.details.forEach(function (oDetail, iIndex) {
-            if (iIndex < iLength - 1) {
-              sTextAreaText = sTextAreaText + oDetail.text + '\r\n'
-            } else {
-              sTextAreaText = sTextAreaText + oDetail.text
-            }
-          })
-        }
-
-        return sTextAreaText
-      },
-      set: function (sTextAreaValue) {
-        this.commitChangesToStore(this.textAreaTitle, this.transformTextToArray(sTextAreaValue))
+      if (this.note) {
+        let iLength = this.note.details.length
+        this.note.details.forEach(function (oDetail, iIndex) {
+          if (iIndex < iLength - 1) {
+            sTextAreaText = sTextAreaText + oDetail.text + '\r\n'
+          } else {
+            sTextAreaText = sTextAreaText + oDetail.text
+          }
+        })
       }
+
+      return sTextAreaText
     }
   }
 }

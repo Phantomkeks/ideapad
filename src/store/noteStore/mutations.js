@@ -26,6 +26,15 @@ export const restoreNote = (state, oPayload) => {
   }
 }
 
+export const deleteNote = (state, oPayload) => {
+  const iNoteIndex = state.deletedNotes.findIndex(oNote => oNote.id === oPayload.sNoteId)
+  if (iNoteIndex < 0) {
+    throw new Error('Note not found.')
+  } else {
+    state.deletedNotes.splice(iNoteIndex, 1)
+  }
+}
+
 export const updateNote = (state, oPayLoad) => {
   const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayLoad.oNote.id)
   if (iNoteIndex < 0) {

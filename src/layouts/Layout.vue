@@ -24,7 +24,7 @@
         <q-item-label header>Navigation</q-item-label>
         <q-item clickable to="/notes">
           <q-item-section avatar>
-            <q-icon name="notes" />
+            <q-icon name="note" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Notes</q-item-label>

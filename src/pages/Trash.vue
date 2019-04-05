@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <q-list class="row">
-      <q-card class="note-card" v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
+    <q-list class="masonry">
+      <q-card class="note-card" bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
         <q-card-section>
           <div class="text-h6">
             {{ note.title }}
@@ -14,14 +14,24 @@
         </q-card-section>
       </q-card>
     </q-list>
+
+    <div class="fixed-center text-center" v-if="deletedNotes.length === 0">
+      <q-icon size="5rem" name="delete"/>
+    </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
   @import '~quasar-variables'
   .note-card {
-    width: 46%
-    margin: 2%
+    display: inline-block;
+    margin: 0 0 1rem;
+    width: 100%;
+  }
+  .masonry {
+    column-count: 2;
+    column-gap: 0.5rem;
+    padding: 0.5rem;
   }
   .add-button {
     headerGradient();
