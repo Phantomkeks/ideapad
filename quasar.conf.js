@@ -46,7 +46,13 @@ module.exports = function (ctx) {
         'QFabAction',
         'QPageSticky',
         'QInput',
-        'QMenu'
+        'QMenu',
+        'QStepper',
+        'QStep',
+        'QStepperNavigation',
+        'QField',
+        'QSpinnerGears',
+        'QInnerLoading'
       ],
 
       directives: [
@@ -55,7 +61,8 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Dialog'
       ]
 
       // iconSet: 'ionicons-v4'

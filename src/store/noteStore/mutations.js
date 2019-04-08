@@ -35,11 +35,19 @@ export const deleteNote = (state, oPayload) => {
   }
 }
 
-export const updateNote = (state, oPayLoad) => {
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayLoad.oNote.id)
+export const updateNote = (state, oPayload) => {
+  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.oNote.id)
   if (iNoteIndex < 0) {
-    state.notes.push(oPayLoad.oNote)
+    state.notes.push(oPayload.oNote)
   } else {
-    state.notes[iNoteIndex] = oPayLoad.oNote
+    state.notes[iNoteIndex] = oPayload.oNote
   }
+}
+
+export const overwriteNotes = (state, oPayload) => {
+  state.notes = oPayload.notes
+}
+
+export const emptyTrash = (state) => {
+  state.deletedNotes = []
 }

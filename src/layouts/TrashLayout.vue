@@ -10,8 +10,28 @@
           icon="menu"
         />
         <q-toolbar-title>
-          Mini-Memo
+          Trash
         </q-toolbar-title>
+
+        <q-btn
+          flat
+          dense
+          round
+          icon="more_vert"
+        >
+          <q-menu persistent auto-close>
+            <q-list style="min-width: 100px">
+              <q-item clickable @click="onEmptyTrashClick">
+                <q-item-section avatar>
+                  <q-icon name="delete"/>
+                </q-item-section>
+                <q-item-section>
+                  Empty Trash
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -21,7 +41,9 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Navigation</q-item-label>
+        <q-item-label header>
+          Navigation
+        </q-item-label>
         <q-item clickable to="/notes">
           <q-item-section avatar>
             <q-icon name="note" />
@@ -65,7 +87,10 @@ export default {
     }
   },
   methods: {
-    openURL
+    openURL,
+    onEmptyTrashClick () {
+      this.$store.commit({ type: 'emptyTrash' })
+    }
   }
 }
 </script>

@@ -2,12 +2,18 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/Layout.vue'),
+    component: () => import('layouts/DefaultLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Notes.vue') },
       { path: 'notes', component: () => import('pages/Notes.vue') },
-      { path: 'trash', component: () => import('pages/Trash.vue') },
       { path: 'settings', component: () => import('pages/Settings.vue') }
+    ]
+  },
+  {
+    path: '/',
+    component: () => import('layouts/TrashLayout.vue'),
+    children: [
+      { path: 'trash', component: () => import('pages/Trash.vue') }
     ]
   },
   {

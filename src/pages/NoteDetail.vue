@@ -19,7 +19,8 @@ export default {
   name: 'NoteDetail',
   data () {
     return {
-      note: {}
+      note: {},
+      readonly: true
     }
   },
   created () {
