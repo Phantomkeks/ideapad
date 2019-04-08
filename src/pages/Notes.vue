@@ -2,12 +2,12 @@
   <q-page>
     <q-list class="masonry">
       <q-card v-touch:longtap="myFunction" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id" @click="onNoteClick(note.id)">
-        <q-card-section>
+        <q-card-section v-if="note.title">
           <div class="text-h6">
             {{ note.title }}
           </div>
         </q-card-section>
-        <q-card-section>
+        <q-card-section v-if="note.details.length > 0">
           <div v-for="(details,index) in note.details" v-bind:key="index">
             {{ details.text }}
           </div>

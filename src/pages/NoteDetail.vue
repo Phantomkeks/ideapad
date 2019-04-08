@@ -39,11 +39,13 @@ export default {
       })
     },
     transformTextToArray (sTextValue) {
-      let aDetailTexts = sTextValue.split(/\r\n|\r|\n/)
       let aNoteDetails = []
-      aDetailTexts.forEach(function (sText) {
-        aNoteDetails.push({ text: sText })
-      })
+      if (sTextValue && sTextValue.length > 0) {
+        let aDetailTexts = sTextValue.split(/\r\n|\r|\n/)
+        aDetailTexts.forEach(function (sText) {
+          aNoteDetails.push({ text: sText })
+        })
+      }
       return aNoteDetails
     }
   },
