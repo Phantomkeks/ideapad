@@ -21,7 +21,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Better failure behavior for loading files / importing notes
 - i18n German and English
 
-Future:
+##### Future
 - Desktop application
 - More than one user per note file
 
@@ -30,3 +30,22 @@ Future:
 - Install [Vue.js](https://vuejs.org/)
 - Install [Vue CLI](https://cli.vuejs.org)
 - Open a terminal and run 'quasar dev'
+
+### Further Links
+
+##### Quasar Framework
+- https://v1.quasar-framework.org/vue-components/tabs
+- https://quasar-framework.org/guide/quasar-cli.html
+
+##### Vue.js
+- https://vuetifyjs.com/en/
+- https://laracasts.com/series/learn-vue-2-step-by-step/episodes/3
+- https://vuejs.org/v2/guide/components.html
+- https://github.com/vuejs/awesome-vue
+- https://www.npmjs.com/package/vue2-touch-events
+
+##### Icon Libraries
+- https://material.io/tools/icons/?style=baseline
+- https://ionicframework.com/docs/v3/ionicons/
+- https://materialdesignicons.com/
+- https://fontawesome.com/
