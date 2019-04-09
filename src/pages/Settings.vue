@@ -41,54 +41,57 @@
         <q-tab-panel name="cloud">
           <div class="text-h6">Cloud Storage Integration</div>
           <div class="q-pa-md">
-                  <p>Add Cloud Storage to save encrypted File:</p>
-                  <p>https://v1.quasar-framework.org/vue-components/stepper</p>
-                  <q-stepper
-                    v-model="step"
-                    vertical
-                    color="primary"
-                    animated
-                  >
-                    <q-step
-                      :name="1"
-                      title="Select campaign settings"
-                      icon="settings"
-                      :done="step > 1"
-                    >
-                      For each ad campaign that you create, you can control how much you're willing to
-                      spend on clicks and conversions, which networks and geographical locations you want
-                      your ads to show on, and more.
+            <q-stepper
+              v-model="step"
+              vertical
+              color="primary"
+              animated
+            >
+              <q-step
+                :name="1"
+                title="Select Cloud Storage Provider"
+                icon="cloud"
+                :done="step > 1"
+              >
+                Select the cloud storage provider which fits your needs the best to save your encrypted notes file.
+                <ul>
+                  <li>
+                    <a href="https://www.dropbox.com/developers/documentation/javascript#tutorial">
+                      Dropbox
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://developers.google.com/api-client-library/javascript/start/start-js">
+                      Google Drive
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://docs.microsoft.com/en-us/onedrive/developer/controls/file-pickers/js-v72/?view=odsp-graph-online">
+                      Mircosoft OneDrive
+                    </a>
+                  </li>
+                </ul>
+                <q-stepper-navigation>
+                  <q-btn @click="step = 2" color="primary" label="Continue" />
+                </q-stepper-navigation>
+              </q-step>
 
-                      <q-stepper-navigation>
-                        <q-btn @click="step = 2" color="primary" label="Continue" />
-                      </q-stepper-navigation>
-                    </q-step>
+              <q-step
+                :name="2"
+                title="Title"
+                caption="Optional"
+                icon="create_new_folder"
+                :done="step > 2"
+              >
+                Todo add description here
 
-                    <q-step
-                      :name="2"
-                      title="Create an ad group"
-                      caption="Optional"
-                      icon="create_new_folder"
-                      :done="step > 2"
-                    >
-                      An ad group contains one or more ads which target a shared set of keywords.
-
-                      <q-stepper-navigation>
-                        <q-btn @click="step = 4" color="primary" label="Continue" />
-                        <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
-                      </q-stepper-navigation>
-                    </q-step>
-
-                    <q-step
-                      :name="3"
-                      title="Ad template"
-                      icon="assignment"
-                      disable
-                    >
-                      This step won't show up because it is disabled.
-                    </q-step>
-                  </q-stepper>
-                </div>
+                <q-stepper-navigation>
+                  <q-btn @click="step = 4" color="primary" label="Continue" />
+                  <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
+                </q-stepper-navigation>
+              </q-step>
+            </q-stepper>
+          </div>
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -112,7 +115,7 @@ export default {
   data () {
     return {
       startTab: 'import',
-      step: 0,
+      step: 1,
       settings: {},
       filePath: null,
       isPwd: true,
