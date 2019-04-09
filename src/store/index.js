@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import noteStore from './noteStore'
+import settingsStore from './settingsStore'
 
 Vue.use(Vuex)
 
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      noteStore
+      noteStore,
+      settingsStore
     }
   })
 
