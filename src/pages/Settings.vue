@@ -77,6 +77,7 @@ export default {
   data () {
     return {
       filePath: null,
+      passphrase: 'Passphrase',
       showLoadingIndicator: false
     }
   },
@@ -89,10 +90,12 @@ export default {
         }
         let oFileReader = new FileReader()
         oFileReader.onload = function (oEvent) {
+          const oCryptoJS = window.CryptoJS
           let oContents = oEvent.target.result
+          let sDecrypted = oCryptoJS.AES.decrypt(oContents, this.passphrase).toString(oCryptoJS.enc.Utf8)
           this.$store.commit({
             type: 'overwriteNotes',
-            notes: JSON.parse(oContents)
+            notes: JSON.parse(sDecrypted)
           })
         }.bind(this)
         this.showLoadingIndicator = true
@@ -100,7 +103,7 @@ export default {
         let oPromise = new Promise(function (resolve, reject) {
           setTimeout(function () {
             resolve(oFileReader.readAsText(oFile))
-          }, 800)
+          }, 700)
         })
 
         oPromise.then(function () {
@@ -110,8 +113,14 @@ export default {
       }
     },
     onExportNotesClick () {
-      const notes = this.$store.getters.getAllNotes
-      let encodedUri = encodeURI('data:application/json;charset=utf-8,' + JSON.stringify(notes))
+      const aNotes = this.$store.getters.getAllNotes
+      const oCryptoJS = window.CryptoJS
+
+      console.log(aNotes)
+      let sEncrypted = oCryptoJS.AES.encrypt(JSON.stringify(aNotes), this.passphrase).toString()
+      console.log(sEncrypted)
+
+      let encodedUri = encodeURI('data:application/json;charset=utf-8,' + sEncrypted)
 
       let link = document.createElement('a')
       link.setAttribute('href', encodedUri)

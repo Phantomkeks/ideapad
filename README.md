@@ -19,6 +19,8 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Refactor code and designs (avoid duplicate code)
 - Add text editor? (https://v1.quasar-framework.org/vue-components/editor)
 - Caching problem after note import (Home screen)
+- Better solution for using CryptoJS?
+- Better failure behavior for loading files / importing notes
 
 Future:
 - Desktop application
