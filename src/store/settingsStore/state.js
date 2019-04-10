@@ -1,5 +1,6 @@
 export default {
   settings: {
-    exportPassphrase: 'Passphrase'
+    importPassphrase: 'ImportPassphrase',
+    exportPassphrase: 'ExportPassphrase'
   }
 }

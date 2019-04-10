@@ -21,16 +21,25 @@
       <q-tab-panels v-model="startTab" animated>
         <q-tab-panel name="import">
           <div class="text-h6">Import Notes</div>
+          <q-input outlined v-model="importPassphrase" :type="isPasswordImport ? 'password' : 'text'" label="Passphrase for Decryption">
+            <template v-slot:append>
+              <q-icon
+                :name="isPasswordImport ? 'visibility_off' : 'visibility'"
+                @click="isPasswordImport = !isPasswordImport"
+              />
+            </template>
+          </q-input>
+
           <q-input outlined color="black" label="Select Source File" stack-label v-model="filePath" placeholder="Export" type="file" @change="onImportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="export">
           <div class="text-h6">Export Notes</div>
-          <q-input outlined v-model="passphrase" :type="isPwd ? 'password' : 'text'" label="Passphrase for Encryption">
+          <q-input outlined v-model="exportPassphrase" :type="isPasswordExport ? 'password' : 'text'" label="Passphrase for Encryption">
             <template v-slot:append>
               <q-icon
-                :name="isPwd ? 'visibility_off' : 'visibility'"
-                @click="isPwd = !isPwd"
+                :name="isPasswordExport ? 'visibility_off' : 'visibility'"
+                @click="isPasswordExport = !isPasswordExport"
               />
             </template>
           </q-input>
@@ -118,7 +127,8 @@ export default {
       step: 1,
       settings: {},
       filePath: null,
-      isPwd: true,
+      isPasswordImport: true,
+      isPasswordExport: true,
       showLoadingIndicator: false
     }
   },
@@ -136,7 +146,7 @@ export default {
         oFileReader.onload = function (oEvent) {
           const oCryptoJS = window.CryptoJS
           let oContents = oEvent.target.result
-          let sDecrypted = oCryptoJS.AES.decrypt(oContents, this.passphrase).toString(oCryptoJS.enc.Utf8)
+          let sDecrypted = oCryptoJS.AES.decrypt(oContents, this.importPassphrase).toString(oCryptoJS.enc.Utf8)
           this.$store.commit({
             type: 'overwriteNotes',
             notes: JSON.parse(sDecrypted)
@@ -160,7 +170,7 @@ export default {
       const aNotes = this.$store.getters.getAllNotes
       const oCryptoJS = window.CryptoJS
 
-      let sEncrypted = oCryptoJS.AES.encrypt(JSON.stringify(aNotes), this.passphrase).toString()
+      let sEncrypted = oCryptoJS.AES.encrypt(JSON.stringify(aNotes), this.exportPassphrase).toString()
       let sEncodedUri = encodeURI('data:application/json;charset=utf-8,' + sEncrypted)
 
       let oLink = document.createElement('a')
@@ -178,20 +188,31 @@ export default {
       }).onCancel(() => {
       }).onDismiss(() => {
       })
+    },
+    updateSettings () {
+      this.$store.commit({
+        type: 'updateSettings',
+        oSettings: this.settings
+      })
     }
   },
   computed: {
-    passphrase: {
+    importPassphrase: {
+      get: function () {
+        return this.settings ? this.settings.importPassphrase : ''
+      },
+      set: function (sPassphrase) {
+        this.settings.importPassphrase = sPassphrase
+        this.updateSettings()
+      }
+    },
+    exportPassphrase: {
       get: function () {
         return this.settings ? this.settings.exportPassphrase : ''
       },
       set: function (sPassphrase) {
         this.settings.exportPassphrase = sPassphrase
-
-        this.$store.commit({
-          type: 'updateSettings',
-          oSettings: this.settings
-        })
+        this.updateSettings()
       }
     }
   }
