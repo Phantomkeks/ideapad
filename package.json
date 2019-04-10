@@ -12,6 +12,11 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.18.0",
+    "dropbox": "^4.0.17",
+    "es6-promise": "^4.2.6",
+    "file-saver": "^2.0.1",
+    "isomorphic-fetch": "^2.2.1",
     "quasar": "^1.0.0-beta.0",
     "uuid": "^3.3.2",
     "vue2-touch-events": "^2.0.0"

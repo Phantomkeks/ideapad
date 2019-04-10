@@ -29,6 +29,13 @@ const routes = [
     children: [
       { path: 'deletedNotes/detail/:id?', component: () => import('pages/TrashDetail.vue') }
     ]
+  },
+  {
+    path: '/access_token*',
+    component: () => import('layouts/DefaultLayout.vue'),
+    children: [
+      { path: '/:access', component: () => import('pages/Auth.vue') }
+    ]
   }
 ]
 

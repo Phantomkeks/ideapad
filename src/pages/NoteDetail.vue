@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-input outlined autogrow class="bg-white" v-model="textAreaTitle" placeholder="Title" type="textarea"/>
+      <q-input outlined autogrow class="bg-white"  v-model="textAreaTitle" placeholder="Title" type="textarea"/>
       <div class="textAreaInput">
         <q-input autogrow outlined class="bg-white" v-model="textAreaInput" placeholder="Description" type="textarea"/>
       </div>

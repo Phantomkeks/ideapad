@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-list class="masonry">
-      <q-card class="note-card" bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
+      <q-card disabled class="note-card" bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
         <q-card-section v-if="note.title">
           <div class="text-h6">
             {{ note.title }}

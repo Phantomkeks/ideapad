@@ -1,6 +1,5 @@
 <template>
   <q-page padding>
-
     <q-card>
       <q-tabs
         v-model="startTab"
@@ -105,6 +104,9 @@
       </q-tab-panels>
     </q-card>
 
+    <Dropbox>
+    </Dropbox>
+
     <q-inner-loading :showing="showLoadingIndicator">
       <q-spinner-gears size="4rem" color="primary" />
     </q-inner-loading>
@@ -119,14 +121,17 @@
 </style>
 
 <script>
+import Dropbox from '../components/Dropbox'
 export default {
   name: 'Settings',
+  components: { Dropbox },
   data () {
     return {
       startTab: 'import',
       step: 1,
       settings: {},
       filePath: null,
+      filePath2: '',
       isPasswordImport: true,
       isPasswordExport: true,
       showLoadingIndicator: false
@@ -188,12 +193,6 @@ export default {
       }).onCancel(() => {
       }).onDismiss(() => {
       })
-    },
-    updateSettings () {
-      this.$store.commit({
-        type: 'updateSettings',
-        oSettings: this.settings
-      })
     }
   },
   computed: {
@@ -203,7 +202,10 @@ export default {
       },
       set: function (sPassphrase) {
         this.settings.importPassphrase = sPassphrase
-        this.updateSettings()
+        this.$store.commit({
+          type: 'updateImportPassphrase',
+          importPassphrase: sPassphrase
+        })
       }
     },
     exportPassphrase: {
@@ -212,7 +214,10 @@ export default {
       },
       set: function (sPassphrase) {
         this.settings.exportPassphrase = sPassphrase
-        this.updateSettings()
+        this.$store.commit({
+          type: 'updateExportPassphrase',
+          exportPassphrase: sPassphrase
+        })
       }
     }
   }
