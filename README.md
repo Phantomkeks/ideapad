@@ -20,6 +20,10 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Better solution for using CryptoJS?
 - Better failure behavior for loading files / importing notes
 - i18n German and English
+- Enable Dropbox flow
+- Add native SDK methods and axios
+- Salt the passphrase
+- Indicate local methods with _methodName()
 
 ##### Future
 - Desktop application
