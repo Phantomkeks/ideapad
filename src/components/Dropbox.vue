@@ -9,8 +9,8 @@
       </template>
     </q-input>
 
-    <q-btn @click="uploadFileToDropbox" icon="cloud_upload" color="primary" class="q-my-sm" label="Up"/>
-    <q-btn @click="downloadFileFromDropbox" icon="cloud_download" color="primary" class="q-my-sm q-ml-sm" label="Down"/>
+    <q-btn @click="uploadFileToDropbox" color="primary" icon="cloud_upload" label="Upload" class="full-width q-my-sm"/>
+    <q-btn @click="downloadFileFromDropbox" color="primary" icon="cloud_download" label="Download" class="full-width"/>
 
     <q-inner-loading :showing="showLoadingIndicator">
       <q-spinner-gears size="4rem" color="primary" />

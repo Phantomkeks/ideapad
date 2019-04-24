@@ -20,7 +20,7 @@
       <q-tab-panels v-model="startTab" animated>
         <q-tab-panel name="import">
           <div class="text-h6">Import Notes</div>
-          <q-input outlined v-model="importPassphrase" :type="isPasswordImport ? 'password' : 'text'" label="Passphrase for Decryption">
+          <q-input outlined v-model="importPassphrase" :type="isPasswordImport ? 'password' : 'text'" label="Passphrase for Decryption" class="q-my-sm">
             <template v-slot:append>
               <q-icon
                 :name="isPasswordImport ? 'visibility_off' : 'visibility'"
@@ -34,7 +34,7 @@
 
         <q-tab-panel name="export">
           <div class="text-h6">Export Notes</div>
-          <q-input outlined v-model="exportPassphrase" :type="isPasswordExport ? 'password' : 'text'" label="Passphrase for Encryption">
+          <q-input outlined v-model="exportPassphrase" :type="isPasswordExport ? 'password' : 'text'" label="Passphrase for Encryption" class="q-my-sm">
             <template v-slot:append>
               <q-icon
                 :name="isPasswordExport ? 'visibility_off' : 'visibility'"
@@ -103,7 +103,7 @@
                 icon="cloud"
                 :done="cloudIntegrationStep > 2"
               >
-                Authenticate with Dropbox and allow Mini-Memo to store your notes in the cloud storage.
+                <p>Authenticate with Dropbox and allow Mini-Memo to store your notes in the cloud storage.</p>
 
                 <a href="https://www.dropbox.com/oauth2/authorize?response_type=token&client_id=zrsea953xfn7ytt&redirect_uri=http://localhost:8080">
                   Authenticate with Dropbox
@@ -121,7 +121,7 @@
                 icon="create_new_folder"
                 :done="cloudIntegrationStep > 3"
               >
-                Synchronise your current notes with Dropbox.
+                <p>Synchronise your current notes with Dropbox.</p>
 
                 <Dropbox />
 
@@ -142,13 +142,6 @@
 </template>
 
 <style lang="stylus" scoped>
-  /*
-  Fix Padding for design
-  */
-  /*div*/
-  /*  padding: 0.5rem 0.25rem*/
-  /*  > .q-btn*/
-  /*    margin: 0.25rem*/
 </style>
 
 <script>
