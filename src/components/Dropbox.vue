@@ -31,14 +31,13 @@ export default {
       filePath: '',
       fileName: 'mini-memo.txt',
       dropboxToken: undefined,
-      dropboxAppId: 'zrsea953xfn7ytt',
       showLoadingIndicator: false,
       isPassword: true
     }
   },
   created () {
-    this.dropboxToken = this.settings = this.$store.getters.getSettings.dropboxToken
     this.settings = this.$store.getters.getSettings
+    this.dropboxToken = this.$store.getters.getSettings.dropboxToken
   },
   computed: {
     cloudPassphrase: {

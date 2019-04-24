@@ -4,6 +4,7 @@ export default {
     exportPassphrase: 'ExportPassphrase',
     cloudPassphrase: 'CloudPassphrase',
     dropboxToken: '',
+    dropboxAppId: 'zrsea953xfn7ytt',
     googleDriveToken: '',
     microsoftOneDriveToken: '',
     cloudIntegrationStep: 1

@@ -105,7 +105,7 @@
               >
                 <p>Authenticate with Dropbox and allow Mini-Memo to store your notes in the cloud storage.</p>
 
-                <a href="https://www.dropbox.com/oauth2/authorize?response_type=token&client_id=zrsea953xfn7ytt&redirect_uri=http://localhost:8080">
+                <a v-bind:href="dropboxAppId">
                   Authenticate with Dropbox
                 </a>
 
@@ -269,6 +269,9 @@ export default {
           cloudIntegrationStep: iCloudIntegrationStep
         })
       }
+    },
+    dropboxAppId () {
+      return this.settings ? 'https://www.dropbox.com/oauth2/authorize?response_type=token&client_id=' + this.settings.dropboxAppId + '&redirect_uri=http://localhost:8080' : ''
     }
   }
 }
