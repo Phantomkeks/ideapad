@@ -53,3 +53,9 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - https://ionicframework.com/docs/v3/ionicons/
 - https://materialdesignicons.com/
 - https://fontawesome.com/
+
+##### Cloud Integration
+- https://www.dropbox.com/developers/documentation/javascript#tutorial
+- https://dropbox.github.io/dropbox-sdk-js/Dropbox.html#filesDownload__anchor
+- https://docs.microsoft.com/en-us/onedrive/developer/controls/file-pickers/js-v72/?view=odsp-graph-online
+- https://developers.google.com/api-client-library/javascript/start/start-js

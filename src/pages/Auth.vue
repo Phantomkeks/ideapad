@@ -25,7 +25,7 @@ export default {
           dropboxToken: oAccessObject.accessToken
         })
 
-        vm.$router.push('settings')
+        vm.$router.push('settings/cloud')
       })
     } else {
       next(vm => {

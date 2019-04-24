@@ -2,8 +2,10 @@ export default {
   settings: {
     importPassphrase: 'ImportPassphrase',
     exportPassphrase: 'ExportPassphrase',
+    cloudPassphrase: 'CloudPassphrase',
     dropboxToken: '',
     googleDriveToken: '',
-    microsoftOneDriveToken: ''
+    microsoftOneDriveToken: '',
+    cloudIntegrationStep: 1
   }
 }

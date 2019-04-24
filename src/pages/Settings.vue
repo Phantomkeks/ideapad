@@ -50,52 +50,83 @@
           <div class="text-h6">Cloud Storage Integration</div>
           <div class="q-pa-md">
             <q-stepper
-              v-model="step"
+              v-model="cloudIntegrationStep"
               vertical
               color="primary"
               animated
             >
               <q-step
                 :name="1"
-                title="Select Cloud Storage Provider"
+                title="Select"
                 icon="cloud"
-                :done="step > 1"
+                :done="cloudIntegrationStep > 1"
               >
                 Select the cloud storage provider which fits your needs the best to save your encrypted notes file.
-                <ul>
-                  <li>
-                    <a href="https://www.dropbox.com/developers/documentation/javascript#tutorial">
-                      Dropbox
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://developers.google.com/api-client-library/javascript/start/start-js">
-                      Google Drive
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://docs.microsoft.com/en-us/onedrive/developer/controls/file-pickers/js-v72/?view=odsp-graph-online">
-                      Mircosoft OneDrive
-                    </a>
-                  </li>
-                </ul>
+
+                <q-list dense>
+                  <q-item tag="label">
+                    <q-item-section avatar>
+                      <q-radio v-model="cloudProvider" val="dropbox" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>Dropbox</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  <q-item tag="label" disabled>
+                    <q-item-section avatar>
+                      <q-radio v-model="cloudProvider" val="onedrive" disable/>
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>OneDrive</q-item-label>
+                    </q-item-section>
+                  </q-item>
+
+                  <q-item tag="label" disable>
+                    <q-item-section avatar>
+                      <q-radio v-model="cloudProvider" val="drive" disable/>
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>Google Drive</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+
                 <q-stepper-navigation>
-                  <q-btn @click="step = 2" color="primary" label="Continue" />
+                  <q-btn @click="cloudIntegrationStep = 2" color="primary" label="Continue" />
                 </q-stepper-navigation>
               </q-step>
 
               <q-step
                 :name="2"
-                title="Title"
-                caption="Optional"
-                icon="create_new_folder"
-                :done="step > 2"
+                title="Authenticate"
+                icon="cloud"
+                :done="cloudIntegrationStep > 2"
               >
-                Todo add description here
+                Authenticate with Dropbox and allow Mini-Memo to store your notes in the cloud storage.
+
+                <a href="https://www.dropbox.com/oauth2/authorize?response_type=token&client_id=zrsea953xfn7ytt&redirect_uri=http://localhost:8080">
+                  Authenticate with Dropbox
+                </a>
 
                 <q-stepper-navigation>
-                  <q-btn @click="step = 4" color="primary" label="Continue" />
-                  <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
+                  <q-btn @click="cloudIntegrationStep = 3" color="primary" label="Continue" />
+                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" label="Back" class="q-ml-sm" />
+                </q-stepper-navigation>
+              </q-step>
+
+              <q-step
+                :name="3"
+                title="Synchronise"
+                icon="create_new_folder"
+                :done="cloudIntegrationStep > 3"
+              >
+                Synchronise your current notes with Dropbox.
+
+                <Dropbox />
+
+                <q-stepper-navigation>
+                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" icon="cloud" label="Back To Select"/>
                 </q-stepper-navigation>
               </q-step>
             </q-stepper>
@@ -104,9 +135,6 @@
       </q-tab-panels>
     </q-card>
 
-    <Dropbox>
-    </Dropbox>
-
     <q-inner-loading :showing="showLoadingIndicator">
       <q-spinner-gears size="4rem" color="primary" />
     </q-inner-loading>
@@ -114,10 +142,13 @@
 </template>
 
 <style lang="stylus" scoped>
-  div
-    padding: 0.5rem 0.25rem
-    > .q-btn
-      margin: 0.25rem
+  /*
+  Fix Padding for design
+  */
+  /*div*/
+  /*  padding: 0.5rem 0.25rem*/
+  /*  > .q-btn*/
+  /*    margin: 0.25rem*/
 </style>
 
 <script>
@@ -128,7 +159,8 @@ export default {
   data () {
     return {
       startTab: 'import',
-      step: 1,
+      fileName: 'mini-memo.txt',
+      cloudProvider: 'dropbox',
       settings: {},
       filePath: null,
       filePath2: '',
@@ -139,6 +171,19 @@ export default {
   },
   created () {
     this.settings = this.$store.getters.getSettings
+  },
+  watch: {
+    '$route.params.tab': {
+      handler: function (sTab) {
+        if (sTab) {
+          this.startTab = sTab
+        } else {
+          this.startTab = 'import'
+        }
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
     onImportNotesClick (oEvent) {
@@ -180,7 +225,7 @@ export default {
 
       let oLink = document.createElement('a')
       oLink.setAttribute('href', sEncodedUri)
-      oLink.setAttribute('download', 'notes.txt')
+      oLink.setAttribute('download', this.fileName)
       document.body.appendChild(oLink)
       oLink.click()
       document.body.removeChild(oLink)
@@ -217,6 +262,18 @@ export default {
         this.$store.commit({
           type: 'updateExportPassphrase',
           exportPassphrase: sPassphrase
+        })
+      }
+    },
+    cloudIntegrationStep: {
+      get: function () {
+        return this.settings ? this.settings.cloudIntegrationStep : 1
+      },
+      set: function (iCloudIntegrationStep) {
+        this.settings.cloudIntegrationStep = iCloudIntegrationStep
+        this.$store.commit({
+          type: 'updateCloudIntegrationStep',
+          cloudIntegrationStep: iCloudIntegrationStep
         })
       }
     }

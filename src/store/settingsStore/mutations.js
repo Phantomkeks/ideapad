@@ -6,6 +6,10 @@ export const updateExportPassphrase = (state, oPayload) => {
   state.settings.exportPassphrase = oPayload.exportPassphrase
 }
 
+export const updateCloudPassphrase = (state, oPayload) => {
+  state.settings.cloudPassphrase = oPayload.cloudPassphrase
+}
+
 export const updateDropboxToken = (state, oPayload) => {
   state.settings.dropboxToken = oPayload.dropboxToken
 }
@@ -16,4 +20,8 @@ export const updateGoogleDriveToken = (state, oPayload) => {
 
 export const updateMicrosoftOneDriveToken = (state, oPayload) => {
   state.settings.microsoftOneDrive = oPayload.microsoftOneDrive
+}
+
+export const updateCloudIntegrationStep = (state, oPayload) => {
+  state.settings.cloudIntegrationStep = oPayload.cloudIntegrationStep
 }

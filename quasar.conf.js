@@ -57,7 +57,8 @@ module.exports = function (ctx) {
         'QTabPanels',
         'QSeparator',
         'QSpinnerGears',
-        'QInnerLoading'
+        'QInnerLoading',
+        'QRadio'
       ],
 
       directives: [
