@@ -43,7 +43,7 @@
             </template>
           </q-input>
 
-          <q-btn outline label="Export" @click="onExportNotesClick"/>
+          <q-btn outline color="primary" label="Export" @click="onExportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="cloud">
@@ -93,7 +93,7 @@
                 </q-list>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 2" color="primary" label="Continue" />
+                  <q-btn @click="cloudIntegrationStep = 2" color="primary" label="Continue" outline/>
                 </q-stepper-navigation>
               </q-step>
 
@@ -110,8 +110,8 @@
                 </a>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 3" color="primary" label="Continue" />
-                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" label="Back" class="q-ml-sm" />
+                  <q-btn @click="cloudIntegrationStep = 3" color="primary" label="Continue" outline/>
+                  <q-btn @click="cloudIntegrationStep = 1" color="primary" label="Back" class="q-ml-sm" flat/>
                 </q-stepper-navigation>
               </q-step>
 
