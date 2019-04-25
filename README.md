@@ -1,4 +1,4 @@
-![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Mini-Memo Logo")
+![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Mini-Memo Logo")  
 # Mini-Memo
 
 Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
@@ -9,9 +9,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Cloud Storage Provider possible, but not needed
 
 ### To Do 
-- Simple to do app
 - Hybrid application for iOS and Android
-- Synchronize export file with Dropbox, Google Drive or Onedrive
 - Vuex Store has multiple state entries of 'notes' and 'deletedNotes'
 - Tab/hold on notes to delete and restore
 - Lists with caskets
@@ -20,10 +18,12 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Better solution for using CryptoJS?
 - Better failure behavior for loading files / importing notes
 - i18n German and English
-- Add axios
+- Make use of axios (https://github.com/axios/axios)
 - Indicate local methods with _methodName()
 - Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
-- Delete Dropbox Token when stepper step is set to first step
+- Delete Dropbox token and other settings button
+- Add Google Drive as Cloud Storage Provider
+- Add Microsoft OneDrive as Cloud Storage Provider
 
 ##### Future
 - Desktop application
