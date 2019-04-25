@@ -2,28 +2,30 @@
 
 Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 
+### Features
+- Simple to do app
+- Only client app without need of a backend
+- Cloud Storage Provider possible, but not needed
+
 ### To Do 
 - Simple to do app
-- All basic features working
 - Hybrid application for iOS and Android
 - Change Quasar icons and images
 - Nicer CSS layout and design
-- Only client with local database (no server backend)
 - Synchronize export file with Dropbox, Google Drive or Onedrive
 - Vuex Store has multiple state entries of 'notes' and 'deletedNotes'
-- 'Settings' navigation -> add export path and cloud storage path here
 - Tab/hold on notes to delete and restore
 - Lists with caskets
 - Refactor code and designs (avoid duplicate code)
-- Add text editor? (https://v1.quasar-framework.org/vue-components/editor)
 - Caching problem after note import (Home screen)
 - Better solution for using CryptoJS?
 - Better failure behavior for loading files / importing notes
 - i18n German and English
-- Enable Dropbox flow
 - Add native SDK methods and axios
 - Salt the passphrase
 - Indicate local methods with _methodName()
+- Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
+- Delete Dropbox Token when stepper step is set to first step
 
 ##### Future
 - Desktop application
