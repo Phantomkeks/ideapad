@@ -16,7 +16,7 @@
     </q-list>
 
     <div class="fixed-center text-center" v-if="deletedNotes.length === 0">
-      <q-icon size="5rem" name="delete"/>
+      <q-icon color="primary" size="5rem" name="delete"/>
     </div>
   </q-page>
 </template>
