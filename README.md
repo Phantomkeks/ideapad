@@ -34,6 +34,8 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Add documentation for functions
 - Add additional images, icons and logos
 - New features / have a look at other to do apps
+- Add animations (e.g. delete of note)
+- Popups/message toast for deleting or similar
 
 ##### Future
 - Desktop application
