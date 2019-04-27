@@ -10,7 +10,6 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 
 ### To Do 
 - Hybrid application for iOS and Android
-- Vuex Store has multiple state entries of 'notes' and 'deletedNotes'
 - Tab/hold on notes to delete and restore
 - Lists with caskets
 - Refactor code and designs (avoid duplicate code)
@@ -23,9 +22,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Delete Dropbox token and other settings button
 - Add Google Drive as Cloud Storage Provider
 - Add Microsoft OneDrive as Cloud Storage Provider
-- Order of notes not right in every case
 - Allow to change order of notes with swipe or touch events
-- CSS masonry is not right with two elements or similar
 - Add important flag to order notes with priority at the top
 - Add images or similar as note content?
 - Test functionality
