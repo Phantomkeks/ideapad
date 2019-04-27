@@ -14,7 +14,6 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Tab/hold on notes to delete and restore
 - Lists with caskets
 - Refactor code and designs (avoid duplicate code)
-- Caching problem after note import (Home screen)
 - Better solution for using CryptoJS?
 - Better failure behavior for loading files / importing notes
 - i18n German and English
@@ -24,7 +23,6 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Delete Dropbox token and other settings button
 - Add Google Drive as Cloud Storage Provider
 - Add Microsoft OneDrive as Cloud Storage Provider
-- Caching issues when importing, restore, etc.
 - Order of notes not right in every case
 - Allow to change order of notes with swipe or touch events
 - CSS masonry is not right with two elements or similar
