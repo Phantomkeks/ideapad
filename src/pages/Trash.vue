@@ -2,16 +2,24 @@
   <q-page>
     <q-list class="masonry">
       <q-card disabled class="note-card" bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
-        <q-card-section v-if="note.title">
-          <div class="text-h6">
-            {{ note.title }}
-          </div>
-        </q-card-section>
-        <q-card-section v-if="note.details.length > 0">
-          <div v-for="(details,index) in note.details" v-bind:key="index">
-            {{ details.text }}
-          </div>
-        </q-card-section>
+        <q-slide-item @action="onSwipe(note.id)" @left="onLeft" @right="onRight" left-color="primary" right-color="primary">
+          <template v-slot:left>
+            <q-icon name="restore" />
+          </template>
+          <template v-slot:right>
+            <q-icon name="restore" />
+          </template>
+          <q-card-section v-if="note.title">
+            <div class="text-h6">
+              {{ note.title }}
+            </div>
+          </q-card-section>
+          <q-card-section v-if="note.details.length > 0">
+            <div v-for="(details,index) in note.details" v-bind:key="index">
+              {{ details.text }}
+            </div>
+          </q-card-section>
+        </q-slide-item>
       </q-card>
     </q-list>
 
@@ -49,6 +57,19 @@ export default {
   methods: {
     onNoteClick (sId) {
       this.$router.push('/deletedNotes/detail/' + sId)
+    },
+    onSwipe (sNoteId) {
+      this.$store.commit({
+        type: 'restoreNote',
+        sNoteId: sNoteId
+      })
+    },
+    onLeft ({ reset }) {
+      reset()
+    },
+
+    onRight ({ reset }) {
+      reset()
     }
   }
 }

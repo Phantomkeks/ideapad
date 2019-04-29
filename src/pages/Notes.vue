@@ -2,17 +2,25 @@
   <q-page>
     <q-list class="masonry">
       <q-card v-touch:longtap="myFunction" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id" @click="onNoteClick(note.id)">
-        <q-card-section v-if="note.title">
-          <div class="text-h6">
-            {{ note.title }}
-          </div>
-        </q-card-section>
-        <q-card-section v-if="note.details.length > 0">
-          <div v-for="(details,index) in note.details" v-bind:key="index">
-            {{ details.text }}
-          </div>
-        </q-card-section>
-      </q-card>
+          <q-slide-item @action="onSwipe(note.id)" @left="onLeft" @right="onRight" left-color="primary" right-color="primary">
+            <template v-slot:left>
+              <q-icon name="delete" />
+            </template>
+            <template v-slot:right>
+              <q-icon name="delete" />
+            </template>
+            <q-card-section v-if="note.title">
+            <div class="text-h6">
+              {{ note.title }}
+            </div>
+            </q-card-section>
+            <q-card-section v-if="note.details.length > 0">
+            <div v-for="(details,index) in note.details" v-bind:key="index">
+              {{ details.text }}
+            </div>
+            </q-card-section>
+          </q-slide-item>
+        </q-card>
     </q-list>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
@@ -60,7 +68,23 @@ export default {
     onAddNoteClick () {
       const uuidv1 = require('uuid/v1')
       this.$router.push('/notes/detail/' + uuidv1())
+    },
+    onSwipe (sNoteId) {
+      this.$store.commit({
+        type: 'removeNote',
+        sNoteId: sNoteId
+      })
+    },
+    onLeft ({ reset }) {
+      reset()
+    },
+
+    onRight ({ reset }) {
+      reset()
     }
+  },
+  beforeDestroy () {
+    clearTimeout(this.timer)
   }
 }
 </script>

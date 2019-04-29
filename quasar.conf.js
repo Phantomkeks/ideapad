@@ -60,7 +60,8 @@ module.exports = function (ctx) {
         'QSpinnerGears',
         'QInnerLoading',
         'QRadio',
-        'QImg'
+        'QImg',
+        'QSlideItem'
       ],
 
       directives: [

@@ -26,7 +26,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Add important flag to order notes with priority at the top
 - Add images or similar as note content?
 - Test functionality
-- Add documentation for functions
+- Better solution for swiping right and left to delete or restore
 - Add additional images, icons and logos
 - New features / have a look at other to do apps
 - Add animations (e.g. delete of note)
