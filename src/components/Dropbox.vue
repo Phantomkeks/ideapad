@@ -56,7 +56,7 @@ export default {
   methods: {
     uploadFileToDropbox () {
       if (!this.dropboxToken) {
-        this._openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
+        this.openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
         return
       }
 
@@ -72,30 +72,30 @@ export default {
         return
       }
 
-      this._loadingIndicator()
+      this.loadingIndicator()
       let dbx = new Dropbox.Dropbox({ fetch: Fetch, accessToken: this.dropboxToken })
 
       dbx.filesUpload({ path: '/' + oFile.name, contents: oFile, mode: 'overwrite' })
         .then(function (oResponse) {
-          this._openAlertDialog('Cloud Upload Sync', 'Cloud synchronisation was successfully.')
+          this.openAlertDialog('Cloud Upload Sync', 'Cloud synchronisation was successfully.')
         }.bind(this))
         .catch(function (oError) {
-          this._openAlertDialog('Cloud Upload Sync Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
+          this.openAlertDialog('Cloud Upload Sync Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
           console.log(oError)
         }.bind(this))
         .then(function () {
           // always executed
-          this._loadingIndicator()
+          this.loadingIndicator()
           this.filePath = ''
         }.bind(this))
     },
     downloadFileFromDropbox: function () {
       if (!this.dropboxToken) {
-        this._openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
+        this.openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
         return
       }
 
-      this._loadingIndicator()
+      this.loadingIndicator()
       let dbx = new Dropbox.Dropbox({ fetch: Fetch, accessToken: this.dropboxToken })
 
       dbx.filesDownload({ path: '/' + this.fileName })
@@ -115,21 +115,21 @@ export default {
 
           oFileReader.readAsText(oBlob)
 
-          this._openAlertDialog('Cloud Download Sync', 'Cloud synchronisation was successfully.')
+          this.openAlertDialog('Cloud Download Sync', 'Cloud synchronisation was successfully.')
         }.bind(this))
         .catch(function (oError) {
-          this._openAlertDialog('Cloud Sync Download Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
+          this.openAlertDialog('Cloud Sync Download Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
           console.log(oError)
         }.bind(this))
         .then(function () {
           // always executed
-          this._loadingIndicator()
+          this.loadingIndicator()
         }.bind(this))
     },
-    _loadingIndicator () {
+    loadingIndicator () {
       this.showLoadingIndicator = !this.showLoadingIndicator
     },
-    _openAlertDialog (sTitle, sMessage) {
+    openAlertDialog (sTitle, sMessage) {
       this.$q.dialog({
         title: sTitle,
         message: sMessage

@@ -30,6 +30,7 @@ export default {
     commitChangesToStore (sNoteTitle, aNoteDetails) {
       this.note = {
         id: this.$route.params.id,
+        highlighted: false,
         title: sNoteTitle,
         details: aNoteDetails
       }

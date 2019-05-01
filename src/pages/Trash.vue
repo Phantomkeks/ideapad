@@ -1,14 +1,10 @@
 <template>
   <q-page>
     <q-list class="masonry">
-      <q-card disabled class="note-card" bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id" @click="onNoteClick(note.id)">
-        <q-slide-item @action="onSwipe(note.id)" @left="onLeft" @right="onRight" left-color="primary" right-color="primary">
-          <template v-slot:left>
-            <q-icon name="restore" />
-          </template>
-          <template v-slot:right>
-            <q-icon name="restore" />
-          </template>
+        <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
+                @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
+                @click="onNoteClick(note)"
+                :class="{highlight:note.highlighted}" class="note-card" disabled bordered flat v-for="(note,id) in deletedNotes" v-bind:key="id">
           <q-card-section v-if="note.title">
             <div class="text-h6">
               {{ note.title }}
@@ -19,7 +15,6 @@
               {{ details.text }}
             </div>
           </q-card-section>
-        </q-slide-item>
       </q-card>
     </q-list>
 
@@ -35,6 +30,7 @@
     break-inside avoid-column
     margin: 0 0 1rem;
     width: 100%;
+    transition: border 0.2s ease-in-out;
   }
   .masonry {
     column-count: 2;
@@ -44,32 +40,50 @@
   .add-button {
     headerGradient();
   }
+  .highlight {
+    border: 2px solid $primary;
+  }
 </style>
 
 <script>
 export default {
   name: 'Trash',
+  data () {
+    return {
+      touchDuration: 300,
+      timer: undefined,
+      afterHighlightedTimer: undefined,
+      afterHighlighted: false
+    }
+  },
   computed: {
     deletedNotes () {
       return this.$store.getters.getAllDeletedNotes
     }
   },
   methods: {
-    onNoteClick (sId) {
-      this.$router.push('/deletedNotes/detail/' + sId)
+    onNoteClick (oNote) {
+      if (!oNote.highlighted && !this.afterHighlighted) {
+        this.$router.push('/deletedNotes/detail/' + oNote.id)
+      }
     },
-    onSwipe (sNoteId) {
-      this.$store.commit({
-        type: 'restoreNote',
-        sNoteId: sNoteId
-      })
+    startTouchEvent (oNote) {
+      this.timer = setTimeout(this.onLongTouch.bind(this, oNote), this.touchDuration)
     },
-    onLeft ({ reset }) {
-      reset()
+    stopTouchEvent () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
     },
-
-    onRight ({ reset }) {
-      reset()
+    onLongTouch (oNote) {
+      if (oNote.highlighted) {
+        this.revertAfterHighlighted()
+        this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.touchDuration)
+      }
+      oNote.highlighted = !oNote.highlighted
+    },
+    revertAfterHighlighted () {
+      this.afterHighlighted = !this.afterHighlighted
     }
   }
 }

@@ -1,26 +1,23 @@
 <template>
   <q-page>
     <q-list class="masonry">
-      <q-card v-touch:longtap="myFunction" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id" @click="onNoteClick(note.id)">
-          <q-slide-item @action="onSwipe(note.id)" @left="onLeft" @right="onRight" left-color="primary" right-color="primary">
-            <template v-slot:left>
-              <q-icon name="delete" />
-            </template>
-            <template v-slot:right>
-              <q-icon name="delete" />
-            </template>
-            <q-card-section v-if="note.title">
-            <div class="text-h6">
-              {{ note.title }}
-            </div>
-            </q-card-section>
-            <q-card-section v-if="note.details.length > 0">
-            <div v-for="(details,index) in note.details" v-bind:key="index">
-              {{ details.text }}
-            </div>
-            </q-card-section>
-          </q-slide-item>
+      <draggable v-model="notes" group="people" @start="dragged=true" @end="dragged=false">
+        <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
+                @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
+                @click="onNoteClick(note)"
+                :class="{highlight:note.highlighted}" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id">
+          <q-card-section v-if="note.title">
+          <div class="text-h6">
+            {{ note.title }}
+          </div>
+          </q-card-section>
+          <q-card-section v-if="note.details.length > 0">
+          <div v-for="(details,index) in note.details" v-bind:key="index">
+            {{ details.text }}
+          </div>
+          </q-card-section>
         </q-card>
+      </draggable>
     </q-list>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
@@ -39,6 +36,7 @@
     break-inside avoid-column
     margin: 0 0 1rem;
     width: 100%;
+    transition: border 0.2s ease-in-out;
   }
   .masonry {
     column-count: 2;
@@ -48,43 +46,70 @@
   .add-button {
     headerGradient();
   }
+  .highlight {
+    border: 2px solid $primary;
+  }
 </style>
 
 <script>
+import draggable from 'vuedraggable'
 export default {
   name: 'Notes',
+  components: {
+    draggable
+  },
+  data () {
+    return {
+      touchDuration: 300,
+      timer: undefined,
+      afterHighlightedTimer: undefined,
+      afterHighlighted: false,
+      dragged: false
+    }
+  },
   computed: {
-    notes () {
-      return this.$store.getters.getAllNotes
+    notes: {
+      get: function () {
+        return this.$store.getters.getAllNotes
+      },
+      set: function (aNotes) {
+        this.$store.commit({
+          type: 'overwriteNotes',
+          notes: aNotes
+        })
+      }
     }
   },
   methods: {
-    myFunction (oEvent) {
-      console.log(oEvent)
+    startTouchEvent (oNote) {
+      this.timer = setTimeout(this.onLongTouch.bind(this, oNote), this.touchDuration)
     },
-    onNoteClick (sId) {
-      this.$router.push('/notes/detail/' + sId)
+    stopTouchEvent () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+    },
+    onLongTouch (oNote) {
+      if (!this.dragged) {
+        if (oNote.highlighted) {
+          this.revertAfterHighlighted()
+          this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.touchDuration)
+        }
+        oNote.highlighted = !oNote.highlighted
+      }
+    },
+    revertAfterHighlighted () {
+      this.afterHighlighted = !this.afterHighlighted
+    },
+    onNoteClick (oNote) {
+      if (!this.dragged && !oNote.highlighted && !this.afterHighlighted) {
+        this.$router.push('/notes/detail/' + oNote.id)
+      }
     },
     onAddNoteClick () {
       const uuidv1 = require('uuid/v1')
       this.$router.push('/notes/detail/' + uuidv1())
-    },
-    onSwipe (sNoteId) {
-      this.$store.commit({
-        type: 'removeNote',
-        sNoteId: sNoteId
-      })
-    },
-    onLeft ({ reset }) {
-      reset()
-    },
-
-    onRight ({ reset }) {
-      reset()
     }
-  },
-  beforeDestroy () {
-    clearTimeout(this.timer)
   }
 }
 </script>

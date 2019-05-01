@@ -4,9 +4,15 @@ const routes = [
     path: '/',
     component: () => import('layouts/DefaultLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Notes.vue') },
-      { path: 'notes', component: () => import('pages/Notes.vue') },
       { path: 'settings/:tab?', component: () => import('pages/Settings.vue') }
+    ]
+  },
+  {
+    path: '/',
+    component: () => import('layouts/NotesLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Notes.vue') },
+      { path: 'notes', component: () => import('pages/Notes.vue') }
     ]
   },
   {

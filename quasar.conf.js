@@ -61,7 +61,7 @@ module.exports = function (ctx) {
         'QInnerLoading',
         'QRadio',
         'QImg',
-        'QSlideItem'
+        'QBadge'
       ],
 
       directives: [

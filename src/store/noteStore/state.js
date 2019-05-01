@@ -3,6 +3,7 @@ export default {
     {
       id: 'uuid-1',
       title: 'Note 1',
+      highlighted: false,
       details: [
         {
           text: 'Go Grocery Shopping'
@@ -18,6 +19,7 @@ export default {
     {
       id: 'uuid-2',
       title: 'Note 2',
+      highlighted: false,
       details: [
         {
           text: 'Enjoy the Sun'
@@ -33,6 +35,7 @@ export default {
     {
       id: 'uuid-3',
       title: 'Note 3',
+      highlighted: false,
       details: [
         {
           text: 'Use Vuex for Storage'

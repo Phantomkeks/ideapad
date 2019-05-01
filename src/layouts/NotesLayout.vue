@@ -10,29 +10,8 @@
           icon="menu"
         />
         <q-toolbar-title>
-          Trash
+          Mini-Memo
         </q-toolbar-title>
-
-        <q-btn
-          flat
-          dense
-          round
-          icon="more_vert"
-          v-if="selectedNoteIds.length < 0"
-        >
-          <q-menu persistent auto-close>
-            <q-list style="min-width: 100px">
-              <q-item clickable @click="onEmptyTrashClick">
-                <q-item-section avatar>
-                  <q-icon name="delete"/>
-                </q-item-section>
-                <q-item-section>
-                  Empty Trash
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
 
         <q-btn
           flat
@@ -47,20 +26,12 @@
 
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">
-              <q-item clickable @click="onRestoreSelectedClick">
-                <q-item-section avatar>
-                  <q-icon name="restore"/>
-                </q-item-section>
-                <q-item-section>
-                  Restore Selected
-                </q-item-section>
-              </q-item>
               <q-item clickable @click="onDeleteSelectedClick">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  Permanently Delete Selected
+                  Delete Selected
                 </q-item-section>
               </q-item>
             </q-list>
@@ -118,23 +89,14 @@ export default {
   data () {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
-      deletedNotes: this.$store.getters.getAllDeletedNotes
+      notes: this.$store.getters.getAllNotes
     }
   },
   methods: {
     openURL,
-    onEmptyTrashClick () {
-      this.$store.commit({ type: 'emptyTrash' })
-    },
-    onRestoreSelectedClick () {
-      this.$store.commit({
-        type: 'restoreNotes',
-        aNoteIds: this.selectedNoteIds
-      })
-    },
     onDeleteSelectedClick () {
       this.$store.commit({
-        type: 'deleteNotes',
+        type: 'removeNotes',
         aNoteIds: this.selectedNoteIds
       })
     }
@@ -143,7 +105,7 @@ export default {
     selectedNoteIds: function () {
       let aSelectedNoteIds = []
 
-      this.deletedNotes.forEach(function (oNote) {
+      this.notes.forEach(function (oNote) {
         if (oNote.highlighted) {
           aSelectedNoteIds.push(oNote.id)
         }

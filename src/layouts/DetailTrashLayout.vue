@@ -30,7 +30,7 @@
                   Restore
                 </q-item-section>
               </q-item>
-              <q-item clickable @click="onRestoreClick">
+              <q-item clickable @click="onPermanentlyDelete">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
                 </q-item-section>
