@@ -1,9 +1,9 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-input disable outlined autogrow class="bg-white" v-model="textAreaTitle" placeholder="Title" type="textarea"/>
+      <q-input disable outlined autogrow class="bg-white" v-model="textAreaTitle" :placeholder="$t('placeholder.title')" type="textarea"/>
       <div class="textAreaInput">
-        <q-input disable outlined autogrow class="bg-white" v-model="textAreaInput" placeholder="Description" type="textarea"/>
+        <q-input disable outlined autogrow class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')" type="textarea"/>
       </div>
     </div>
   </q-page>

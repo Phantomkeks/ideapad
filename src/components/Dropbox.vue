@@ -9,8 +9,8 @@
       </template>
     </q-input>
 
-    <q-btn @click="uploadFileToDropbox" color="primary" icon="cloud_upload" label="Upload" class="full-width q-my-sm" outline/>
-    <q-btn @click="downloadFileFromDropbox" color="primary" icon="cloud_download" label="Download" class="full-width" outline/>
+    <q-btn @click="uploadFileToDropbox" color="primary" icon="cloud_upload" :label="$t('button.upload')" class="full-width q-my-sm" outline/>
+    <q-btn @click="downloadFileFromDropbox" color="primary" icon="cloud_download" :label="$t('button.download')" class="full-width" outline/>
 
     <q-inner-loading :showing="showLoadingIndicator">
       <q-spinner-gears size="4rem" color="primary" />
@@ -56,7 +56,7 @@ export default {
   methods: {
     uploadFileToDropbox () {
       if (!this.dropboxToken) {
-        this.openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
+        this.openAlertDialog(this.$t('alertDialog.missingDropboxTokenTitle'), this.$t('alertDialog.missingDropboxTokenMessage'))
         return
       }
 
@@ -77,10 +77,10 @@ export default {
 
       dbx.filesUpload({ path: '/' + oFile.name, contents: oFile, mode: 'overwrite' })
         .then(function (oResponse) {
-          this.openAlertDialog('Cloud Upload Sync', 'Cloud synchronisation was successfully.')
+          this.openAlertDialog(this.$t('alertDialog.cloudUploadSyncSuccessfulTitle'), this.$t('alertDialog.cloudUploadSyncSuccessfulMessage'))
         }.bind(this))
         .catch(function (oError) {
-          this.openAlertDialog('Cloud Upload Sync Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
+          this.openAlertDialog(this.$t('alertDialog.cloudUploadSyncFailedTitle'), this.$t('alertDialog.cloudUploadSyncFailedMessage'))
           console.log(oError)
         }.bind(this))
         .then(function () {
@@ -91,7 +91,7 @@ export default {
     },
     downloadFileFromDropbox: function () {
       if (!this.dropboxToken) {
-        this.openAlertDialog('Missing Dropbox Token', 'You need to authenticate with Dropbox first.')
+        this.openAlertDialog(this.$t('alertDialog.missingDropboxTokenTitle'), this.$t('alertDialog.missingDropboxTokenMessage'))
         return
       }
 
@@ -115,10 +115,10 @@ export default {
 
           oFileReader.readAsText(oBlob)
 
-          this.openAlertDialog('Cloud Download Sync', 'Cloud synchronisation was successfully.')
+          this.openAlertDialog(this.$t('alertDialog.cloudDownloadSyncSuccessfulTitle'), this.$t('alertDialog.cloudDownloadSyncSuccessfulMessage'))
         }.bind(this))
         .catch(function (oError) {
-          this.openAlertDialog('Cloud Sync Download Failed', 'Unable to synchronise or find a notes file. Please try it again or contact your system administrator.')
+          this.openAlertDialog(this.$t('alertDialog.cloudDownloadSyncFailedTitle'), this.$t('alertDialog.cloudDownloadSyncFailedMessage'))
           console.log(oError)
         }.bind(this))
         .then(function () {

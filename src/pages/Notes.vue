@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-list class="masonry">
-      <draggable v-model="notes" group="people" @start="dragged=true" @end="dragged=false">
+      <draggable v-model="notes" @start="dragged=true" @end="dragged=false">
         <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
                 @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
                 @click="onNoteClick(note)"

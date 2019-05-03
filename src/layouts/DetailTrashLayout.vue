@@ -11,7 +11,7 @@
         />
 
         <q-toolbar-title>
-          Mini-Memo
+          {{ $t('appTitle') }}
         </q-toolbar-title>
 
         <q-btn
@@ -27,7 +27,7 @@
                   <q-icon name="restore"/>
                 </q-item-section>
                 <q-item-section>
-                  Restore
+                  {{ $t('menuItem.restore') }}
                 </q-item-section>
               </q-item>
               <q-item clickable @click="onPermanentlyDelete">
@@ -35,7 +35,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  Permanently Delete
+                  {{ $t('menuItem.permDelete') }}
                 </q-item-section>
               </q-item>
             </q-list>

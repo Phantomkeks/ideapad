@@ -37,6 +37,10 @@ const routes = [
     ]
   },
   {
+    path: '/error',
+    component: () => import('pages/Error404.vue')
+  },
+  {
     path: '/access_token*',
     component: () => import('layouts/DefaultLayout.vue'),
     children: [
@@ -44,13 +48,5 @@ const routes = [
     ]
   }
 ]
-
-// Always leave this as last one
-if (process.env.MODE !== 'ssr') {
-  routes.push({
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  })
-}
 
 export default routes

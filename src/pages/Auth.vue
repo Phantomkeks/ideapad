@@ -12,6 +12,14 @@ export default {
   beforeRouteEnter (to, from, next) {
     if (to.params.access && !/error/.test(to.params.access)) {
       let aAccessArray = to.params.access.split('&')
+
+      if (aAccessArray.length <= 1) {
+        next(vm => {
+          vm.$router.push('error')
+        })
+        return
+      }
+
       let oAccessObject = {
         accessToken: aAccessArray[0].split('access_token=')[1],
         token_type: aAccessArray[1].split('token_type=')[1],

@@ -10,17 +10,35 @@
         align="justify"
         narrow-indicator
       >
-        <q-tab name="import" label="Import" />
-        <q-tab name="export" label="Export" />
-        <q-tab name="cloud" label="Cloud" />
+        <q-tab name="general" :label="$t('tab.general')" />
+        <q-tab name="import" :label="$t('tab.import')" />
+        <q-tab name="export" :label="$t('tab.export')" />
+        <q-tab name="cloud" :label="$t('tab.cloud')" />
       </q-tabs>
 
       <q-separator />
 
-      <q-tab-panels v-model="startTab" animated>
+      <q-tab-panels v-model="startTab" animated infinite>
+        <q-tab-panel name="general">
+          <div class="text-h6">{{ $t('setting.title.general') }}</div>
+
+          <q-select
+            :label="$t('select.language')"
+            :options="languageOptions"
+            v-model="locale"
+          />
+
+          <div class="q-my-sm">
+            <q-btn :label="$t('button.deleteCSP')"></q-btn>
+            <q-btn :label="$t('button.deleteAllSettings')"></q-btn>
+            <q-btn :label="$t('button.resetApp')"></q-btn>
+          </div>
+
+        </q-tab-panel>
+
         <q-tab-panel name="import">
-          <div class="text-h6">Import Notes</div>
-          <q-input outlined v-model="importPassphrase" :type="isPasswordImport ? 'password' : 'text'" label="Passphrase for Decryption" class="q-my-sm">
+          <div class="text-h6">{{ $t('setting.title.importNotes') }}</div>
+          <q-input outlined v-model="importPassphrase" :type="isPasswordImport ? 'password' : 'text'" :label="$t('input.importPassphrase')" class="q-my-sm">
             <template v-slot:append>
               <q-icon
                 :name="isPasswordImport ? 'visibility_off' : 'visibility'"
@@ -29,12 +47,12 @@
             </template>
           </q-input>
 
-          <q-input outlined color="black" label="Select Source File" stack-label v-model="filePath" placeholder="Export" type="file" @change="onImportNotesClick"/>
+          <q-input outlined color="black" :label="$t('input.selectSourceFile')" stack-label v-model="filePath" type="file" @change="onImportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="export">
-          <div class="text-h6">Export Notes</div>
-          <q-input outlined v-model="exportPassphrase" :type="isPasswordExport ? 'password' : 'text'" label="Passphrase for Encryption" class="q-my-sm">
+          <div class="text-h6">{{ $t('setting.title.exportNotes') }}</div>
+          <q-input outlined v-model="exportPassphrase" :type="isPasswordExport ? 'password' : 'text'" :label="$t('input.exportPassphrase')" class="q-my-sm">
             <template v-slot:append>
               <q-icon
                 :name="isPasswordExport ? 'visibility_off' : 'visibility'"
@@ -43,11 +61,11 @@
             </template>
           </q-input>
 
-          <q-btn outline color="primary" label="Export" @click="onExportNotesClick"/>
+          <q-btn outline color="primary" :label="$t('button.export')" @click="onExportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="cloud">
-          <div class="text-h6">Cloud Storage Integration</div>
+          <div class="text-h6">{{ $t('setting.title.cloudStorageIntegration') }}</div>
           <div class="q-pa-md">
             <q-stepper
               v-model="cloudIntegrationStep"
@@ -57,11 +75,11 @@
             >
               <q-step
                 :name="1"
-                title="Select"
+                :title="$t('step.select.title')"
                 icon="cloud"
                 :done="cloudIntegrationStep > 1"
               >
-                Select the cloud storage provider which fits your needs the best to save your encrypted notes file.
+                <p>{{ $t('step.select.description') }}</p>
 
                 <q-list dense>
                   <q-item tag="label">
@@ -69,7 +87,7 @@
                       <q-radio v-model="cloudProvider" val="dropbox" />
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label>Dropbox</q-item-label>
+                      <q-item-label>{{ $t('name.dropbox') }}</q-item-label>
                     </q-item-section>
                   </q-item>
 
@@ -78,7 +96,7 @@
                       <q-radio v-model="cloudProvider" val="onedrive" disable/>
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label>OneDrive</q-item-label>
+                      <q-item-label>{{ $t('name.oneDrive') }}</q-item-label>
                     </q-item-section>
                   </q-item>
 
@@ -87,46 +105,46 @@
                       <q-radio v-model="cloudProvider" val="drive" disable/>
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label>Google Drive</q-item-label>
+                      <q-item-label>{{ $t('name.googleDrive') }}</q-item-label>
                     </q-item-section>
                   </q-item>
                 </q-list>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 2" color="primary" label="Continue" outline/>
+                  <q-btn @click="cloudIntegrationStep = 2" color="primary" :label="$t('button.continue')" outline/>
                 </q-stepper-navigation>
               </q-step>
 
               <q-step
                 :name="2"
-                title="Authenticate"
+                :title="$t('step.authenticate.title')"
                 icon="cloud"
                 :done="cloudIntegrationStep > 2"
               >
-                <p>Authenticate with Dropbox and allow Mini-Memo to store your notes in the cloud storage.</p>
+                <p>{{ $t('step.authenticate.description') }}</p>
 
                 <a v-bind:href="dropboxAppId">
-                  Authenticate with Dropbox
+                  {{ $t('link.dropboxAuth') }}
                 </a>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 3" color="primary" label="Continue" outline/>
-                  <q-btn @click="cloudIntegrationStep = 1" color="primary" label="Back" class="q-ml-sm" flat/>
+                  <q-btn @click="cloudIntegrationStep = 3" color="primary" :label="$t('button.continue')" outline/>
+                  <q-btn @click="cloudIntegrationStep = 1" color="primary" :label="$t('button.back')" class="q-ml-sm" flat/>
                 </q-stepper-navigation>
               </q-step>
 
               <q-step
                 :name="3"
-                title="Synchronise"
+                :title="$t('step.synchronise.title')"
                 icon="create_new_folder"
                 :done="cloudIntegrationStep > 3"
               >
-                <p>Synchronise your current notes with Dropbox.</p>
+                <p>{{ $t('step.synchronise.description') }}</p>
 
                 <Dropbox />
 
                 <q-stepper-navigation>
-                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" icon="cloud" label="Back To Select"/>
+                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" icon="cloud" :label="$t('button.backToSelect')"/>
                 </q-stepper-navigation>
               </q-step>
             </q-stepper>
@@ -151,7 +169,7 @@ export default {
   components: { Dropbox },
   data () {
     return {
-      startTab: 'import',
+      startTab: undefined,
       fileName: 'mini-memo.txt',
       cloudProvider: 'dropbox',
       settings: {},
@@ -159,7 +177,11 @@ export default {
       filePath2: '',
       isPasswordImport: true,
       isPasswordExport: true,
-      showLoadingIndicator: false
+      showLoadingIndicator: false,
+      languageOptions: [
+        { label: this.$t('languageLabel.enUs'), value: 'en-us' },
+        { label: this.$t('languageLabel.de'), value: 'de' }
+      ]
     }
   },
   created () {
@@ -171,7 +193,7 @@ export default {
         if (sTab) {
           this.startTab = sTab
         } else {
-          this.startTab = 'import'
+          this.startTab = 'general'
         }
       },
       deep: true,
@@ -225,8 +247,8 @@ export default {
     },
     openAlertDialog () {
       this.$q.dialog({
-        title: 'Note Import',
-        message: 'The note import was successful.'
+        title: this.$t('alertDialog.noteImportSuccessfulTitle'),
+        message: this.$t('alertDialog.noteImportSuccessfulMessage')
       }).onOk(() => {
       }).onCancel(() => {
       }).onDismiss(() => {
@@ -234,6 +256,22 @@ export default {
     }
   },
   computed: {
+    locale: {
+      get: function () {
+        return this.languageOptions.find(function (oLanguageOption) {
+          return oLanguageOption.value === this.$q.lang.isoName
+        }.bind(this))
+      },
+      set: function (oLocale) {
+        import(`quasar/lang/${oLocale.value}`).then(({ default: messages }) => {
+          this.$q.lang.set(messages)
+        })
+        import(`src/i18n/${oLocale.value}`).then(({ default: messages }) => {
+          this.$i18n.locale = oLocale.value
+          this.$i18n.setLocaleMessage(oLocale.value, messages)
+        })
+      }
+    },
     importPassphrase: {
       get: function () {
         return this.settings ? this.settings.importPassphrase : ''

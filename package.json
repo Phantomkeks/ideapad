@@ -19,6 +19,7 @@
     "isomorphic-fetch": "^2.2.1",
     "quasar": "^1.0.0-beta.0",
     "uuid": "^3.3.2",
+    "vue-i18n": "^8.11.2",
     "vuedraggable": "^2.20.0"
   },
   "devDependencies": {

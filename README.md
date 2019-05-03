@@ -20,13 +20,16 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Delete Dropbox token and other settings button
 - Add Google Drive as Cloud Storage Provider
 - Add Microsoft OneDrive as Cloud Storage Provider
-- Add important flag to order notes with priority at the top
-- Add images or similar as note content?
-- Test functionality
 - Add additional images, icons and logos
 - New features / have a look at other to do apps
-- Add animations (e.g. delete of note)
 - Popups/message toast for deleting or similar
+- Speech to text
+- Add controls like bar, banner, parallax etc.
+- Fix Routing and remove this splitting / read more routing docu / http://localhost:8080/#/ not working
+- Test all screens and functions
+- Fix draggable when third element skips to the right side
+- Fix three dots (they appear then a new note is created -> throws error)
+- FGix general settings
 
 ##### Future
 - Desktop application

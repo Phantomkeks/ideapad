@@ -11,7 +11,7 @@
         />
 
         <q-toolbar-title>
-          Mini-Memo
+          {{ $t('appTitle') }}
         </q-toolbar-title>
 
         <q-btn
@@ -27,7 +27,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  Delete
+                  {{ $t('menuItem.delete') }}
                 </q-item-section>
               </q-item>
             </q-list>

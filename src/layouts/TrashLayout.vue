@@ -10,7 +10,7 @@
           icon="menu"
         />
         <q-toolbar-title>
-          Trash
+          {{ $t('navigation.trash') }}
         </q-toolbar-title>
 
         <q-btn
@@ -27,7 +27,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  Empty Trash
+                  {{ $t('menuItem.emptyTrash') }}
                 </q-item-section>
               </q-item>
             </q-list>
@@ -52,7 +52,7 @@
                   <q-icon name="restore"/>
                 </q-item-section>
                 <q-item-section>
-                  Restore Selected
+                  {{ $t('menuItem.selectRestore') }}
                 </q-item-section>
               </q-item>
               <q-item clickable @click="onDeleteSelectedClick">
@@ -60,7 +60,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  Permanently Delete Selected
+                  {{ $t('menuItem.permSelectDelete') }}
                 </q-item-section>
               </q-item>
             </q-list>
@@ -76,14 +76,14 @@
     >
       <q-list>
         <q-item-label header>
-          Navigation
+          {{ $t('navigation.title') }}
         </q-item-label>
         <q-item clickable to="/notes">
           <q-item-section avatar>
             <q-icon name="note" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Notes</q-item-label>
+            <q-item-label>{{ $t('navigation.notes') }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable to="/trash">
@@ -91,7 +91,7 @@
             <q-icon name="delete" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Trash</q-item-label>
+            <q-item-label>{{ $t('navigation.trash') }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable to="/settings">
@@ -99,7 +99,7 @@
             <q-icon name="settings" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Settings</q-item-label>
+            <q-item-label>{{ $t('navigation.settings') }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>

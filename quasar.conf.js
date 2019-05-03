@@ -2,10 +2,10 @@
 
 module.exports = function (ctx) {
   return {
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
+    // app boot file (/src/boot) --> boot files are part of "main.js"
     boot: [
-      'index.js'
+      'axios.js',
+      'i18n.js'
     ],
 
     css: [
@@ -22,8 +22,6 @@ module.exports = function (ctx) {
     ],
 
     framework: {
-      // all: true, // --- includes everything; for dev only!
-
       components: [
         'QLayout',
         'QHeader',
@@ -61,7 +59,8 @@ module.exports = function (ctx) {
         'QInnerLoading',
         'QRadio',
         'QImg',
-        'QBadge'
+        'QBadge',
+        'QSelect'
       ],
 
       directives: [
@@ -73,9 +72,6 @@ module.exports = function (ctx) {
         'Notify',
         'Dialog'
       ]
-
-      // iconSet: 'ionicons-v4'
-      // lang: 'de' // Quasar language
     },
 
     supportIE: false,
