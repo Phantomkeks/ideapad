@@ -29,7 +29,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Test all screens and functions
 - Fix draggable when third element skips to the right side
 - Fix three dots (they appear then a new note is created -> throws error)
-- FGix general settings
+- Fix general settings
 
 ##### Future
 - Desktop application
