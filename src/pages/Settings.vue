@@ -47,7 +47,7 @@
             </template>
           </q-input>
 
-          <q-input outlined color="black" :label="$t('input.selectSourceFile')" stack-label v-model="filePath" type="file" @change="onImportNotesClick"/>
+          <q-input outlined color="primary" :label="$t('input.selectSourceFile')" stack-label v-model="filePath" type="file" @change="onImportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="export">
