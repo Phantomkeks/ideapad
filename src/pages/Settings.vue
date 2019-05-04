@@ -48,6 +48,11 @@
           </q-input>
 
           <q-input outlined color="primary" :label="$t('input.selectSourceFile')" stack-label v-model="filePath" type="file" @change="onImportNotesClick"/>
+
+          <div>
+            <label for="files" class="btn">Select Image</label>
+            <input id="files" style="visibility: hidden; display: none;" type="file" @change="onImportNotesClick"/>
+          </div>
         </q-tab-panel>
 
         <q-tab-panel name="export">

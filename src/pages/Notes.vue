@@ -1,33 +1,35 @@
 <template>
-  <q-page>
-    <q-list class="masonry">
-      <draggable v-model="notes" @start="dragged=true" @end="dragged=false">
-        <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
-                @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
-                @click="onNoteClick(note)"
-                :class="{highlight:note.highlighted}" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id">
-          <q-card-section v-if="note.title">
-          <div class="text-h6">
-            {{ note.title }}
-          </div>
-          </q-card-section>
-          <q-card-section v-if="note.details.length > 0">
-          <div v-for="(details,index) in note.details" v-bind:key="index">
-            {{ details.text }}
-          </div>
-          </q-card-section>
-        </q-card>
-      </draggable>
-    </q-list>
+  <q-pull-to-refresh :disable="dragged" icon="img:assets/three_post_its_752x752.png" @refresh="refresh">
+    <q-page>
+      <q-list class="masonry">
+        <draggable v-model="notes" @start="dragged=true" @end="dragged=false">
+          <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
+                  @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
+                  @click="onNoteClick(note)"
+                  :class="{highlight:note.highlighted}" class="note-card" bordered flat v-for="(note,id) in notes" v-bind:key="id">
+            <q-card-section v-if="note.title">
+            <div class="text-h6">
+              {{ note.title }}
+            </div>
+            </q-card-section>
+            <q-card-section v-if="note.details.length > 0">
+            <div v-for="(details,index) in note.details" v-bind:key="index">
+              {{ details.text }}
+            </div>
+            </q-card-section>
+          </q-card>
+        </draggable>
+      </q-list>
 
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
-    </q-page-sticky>
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+        <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
+      </q-page-sticky>
 
-    <div class="fixed-center text-center" v-if="notes.length === 0" style="width: 10rem">
-      <q-img src="assets/three_post_its_752x752.png" style="height: 10rem"/>
-    </div>
-  </q-page>
+      <div class="fixed-center text-center" v-if="notes.length === 0" style="width: 10rem">
+        <q-img src="assets/three_post_its_752x752.png" style="height: 10rem"/>
+      </div>
+    </q-page>
+  </q-pull-to-refresh>
 </template>
 
 <style lang="stylus" scoped>
@@ -109,6 +111,13 @@ export default {
     onAddNoteClick () {
       const uuidv1 = require('uuid/v1')
       this.$router.push('/notes/detail/' + uuidv1())
+    },
+    refresh (done) {
+      setTimeout(() => {
+        console.log('Refresh')
+        // TODO: send state commit and trigger cloud storage upload
+        done()
+      }, 1000)
     }
   }
 }

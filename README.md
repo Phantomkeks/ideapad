@@ -9,7 +9,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Cloud Storage Provider possible, but not needed
 
 ### To Do 
-- Hybrid application for iOS and Android
+- Hybrid application for iOS and Android (also Desktop/Electron)
 - Lists with caskets
 - Refactor code and designs (avoid duplicate code)
 - Better solution for using CryptoJS?
@@ -29,11 +29,12 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Test all screens and functions
 - Fix draggable when third element skips to the right side
 - Fix three dots (they appear then a new note is created -> throws error)
-- Fix general settings
-
-##### Future
-- Desktop application
-- More than one user per note file
+- Fix general settings screen
+- Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
+- Quasar component Uploader
+- Add file input to cloud storage setting -> so the user can say where to put or where get the note file
+- More than one user per note file (possible to edit one note with two users?)
+- Copy selected notes functionality
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

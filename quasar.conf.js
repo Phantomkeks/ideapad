@@ -60,7 +60,8 @@ module.exports = function (ctx) {
         'QRadio',
         'QImg',
         'QBadge',
-        'QSelect'
+        'QSelect',
+        'QPullToRefresh'
       ],
 
       directives: [
