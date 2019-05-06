@@ -95,6 +95,8 @@ export default {
     selectDelete: 'Delete Selected',
     permSelectDelete: 'Permanently Delete Selected',
     restore: 'Restore',
+    copy: 'Copy',
+    selectCopy: 'Copy Selected',
     selectRestore: 'Restore Selected',
     emptyTrash: 'Empty Trash'
   },

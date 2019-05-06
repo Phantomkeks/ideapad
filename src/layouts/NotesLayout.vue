@@ -26,6 +26,14 @@
 
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">
+              <q-item clickable @click="onCopySelectedClick">
+                <q-item-section avatar>
+                  <q-icon name="file_copy"/>
+                </q-item-section>
+                <q-item-section>
+                  {{ $t('menuItem.selectCopy') }}
+                </q-item-section>
+              </q-item>
               <q-item clickable @click="onDeleteSelectedClick">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
@@ -94,6 +102,12 @@ export default {
   },
   methods: {
     openURL,
+    onCopySelectedClick () {
+      this.$store.commit({
+        type: 'copyNotes',
+        aNoteIds: this.selectedNoteIds
+      })
+    },
     onDeleteSelectedClick () {
       this.$store.commit({
         type: 'removeNotes',

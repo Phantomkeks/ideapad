@@ -75,6 +75,37 @@ export const deleteNotes = (state, oPayload) => {
   })
 }
 
+function _copyNote (state, sNoteId) {
+  const uuidv1 = require('uuid/v1')
+  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === sNoteId)
+  if (iNoteIndex < 0) {
+    throw new Error('Note not found.')
+  } else {
+    let oOldNote = state.notes[iNoteIndex]
+    oOldNote.highlighted = false
+
+    let oNewNote = {
+      id: uuidv1(),
+      title: oOldNote.title,
+      highlighted: false,
+      details: oOldNote.details
+    }
+    state.notes.push(oNewNote)
+  }
+}
+
+export const copyNote = (state, oPayload) => {
+  _copyNote(state, oPayload.sNoteId)
+}
+
+export const copyNotes = (state, oPayload) => {
+  const aNoteIds = oPayload.aNoteIds
+
+  aNoteIds.forEach(function (sNoteId) {
+    _copyNote(state, sNoteId)
+  })
+}
+
 export const updateNote = (state, oPayload) => {
   const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.oNote.id)
   if (iNoteIndex < 0) {

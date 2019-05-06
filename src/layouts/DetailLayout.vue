@@ -23,6 +23,14 @@
         >
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">
+              <q-item clickable @click="onCopyNoteCLick">
+                <q-item-section avatar>
+                  <q-icon name="file_copy"/>
+                </q-item-section>
+                <q-item-section>
+                  {{ $t('menuItem.copy') }}
+                </q-item-section>
+              </q-item>
               <q-item clickable @click="onDeleteNoteCLick">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
@@ -53,15 +61,7 @@ export default {
   watch: {
     '$route.params.id': {
       handler: function (sId) {
-        const bNoteAvailable = this.$store.getters.getSingleNote(sId)
-
-        if (bNoteAvailable) {
-          this.bShowMoreButtons = true
-        } else {
-          this.bShowMoreButtons = false
-        }
-
-        console.log(this.bShowMoreButtons)
+        this.$store.getters.getSingleNote(sId) ? this.bShowMoreButtons = true : this.bShowMoreButtons = false
       },
       deep: true,
       immediate: true
@@ -70,6 +70,14 @@ export default {
   methods: {
     onBackButtonClick () {
       this.$router.go(-1)
+    },
+    onCopyNoteCLick () {
+      this.$store.commit({
+        type: 'copyNote',
+        sNoteId: this.$route.params.id
+      })
+
+      this.$router.push('/notes')
     },
     onDeleteNoteCLick () {
       this.$store.commit({

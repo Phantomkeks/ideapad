@@ -95,6 +95,8 @@ export default {
     selectDelete: 'Selektierte Löschen',
     permSelectDelete: 'Selektierte Permanent Löschen',
     restore: 'Wiederherstellen',
+    copy: 'Kopieren',
+    selectCopy: 'Selektierte Kopieren',
     selectRestore: 'Selektierte Wiederherstellen',
     emptyTrash: 'Papierkorb Leeren'
   },
