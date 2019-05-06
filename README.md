@@ -1,5 +1,5 @@
-![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Mini-Memo Logo")  
 # Mini-Memo
+![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Mini-Memo Logo")  
 
 Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 
