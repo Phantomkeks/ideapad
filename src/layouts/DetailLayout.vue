@@ -19,6 +19,7 @@
           dense
           round
           icon="more_vert"
+          v-if="bShowMoreButtons"
         >
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">
@@ -44,6 +45,28 @@
 <script>
 export default {
   name: 'DetailLayout',
+  data () {
+    return {
+      bShowMoreButtons: false
+    }
+  },
+  watch: {
+    '$route.params.id': {
+      handler: function (sId) {
+        const bNoteAvailable = this.$store.getters.getSingleNote(sId)
+
+        if (bNoteAvailable) {
+          this.bShowMoreButtons = true
+        } else {
+          this.bShowMoreButtons = false
+        }
+
+        console.log(this.bShowMoreButtons)
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
     onBackButtonClick () {
       this.$router.go(-1)

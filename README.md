@@ -9,32 +9,21 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Cloud Storage Provider possible, but not needed
 
 ### To Do 
-- Hybrid application for iOS and Android (also Desktop/Electron)
+- Hybrid application for iOS and Android
 - Lists with caskets
 - Refactor code and designs (avoid duplicate code)
-- Better solution for using CryptoJS?
 - Better failure behavior for loading files / importing notes
-- i18n German and English
-- Make use of axios (https://github.com/axios/axios)
 - Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
 - Delete Dropbox token and other settings button
 - Add Google Drive as Cloud Storage Provider
 - Add Microsoft OneDrive as Cloud Storage Provider
-- Add additional images, icons and logos
-- New features / have a look at other to do apps
 - Popups/message toast for deleting or similar
-- Speech to text
-- Add controls like bar, banner, parallax etc.
 - Fix Routing and remove this splitting / read more routing docu / http://localhost:8080/#/ not working
 - Test all screens and functions
-- Fix draggable when third element skips to the right side
-- Fix three dots (they appear then a new note is created -> throws error)
-- Fix general settings screen
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
-- Quasar component Uploader
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
-- More than one user per note file (possible to edit one note with two users?)
 - Copy selected notes functionality
+- Use watch + intermediate (e.g. settings screen) to avoid too many layouts
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -53,6 +42,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - https://laracasts.com/series/learn-vue-2-step-by-step/episodes/3
 - https://vuejs.org/v2/guide/components.html
 - https://github.com/vuejs/awesome-vue
+- https://github.com/axios/axios
 
 ##### Icon Libraries
 - https://material.io/tools/icons/?style=baseline
