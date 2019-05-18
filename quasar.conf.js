@@ -5,7 +5,8 @@ module.exports = function (ctx) {
     // app boot file (/src/boot) --> boot files are part of "main.js"
     boot: [
       'axios.js',
-      'i18n.js'
+      'i18n.js',
+      'constants.js'
     ],
 
     css: [
@@ -61,7 +62,8 @@ module.exports = function (ctx) {
         'QImg',
         'QBadge',
         'QSelect',
-        'QPullToRefresh'
+        'QPullToRefresh',
+        'QCheckbox'
       ],
 
       directives: [

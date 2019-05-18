@@ -21,6 +21,7 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
 - Fix masonry when second note is huge and the first one small (third one will be beyond second one)
+- Check import of duplicate ids
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

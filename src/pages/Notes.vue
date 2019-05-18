@@ -12,10 +12,17 @@
               {{ note.title }}
             </div>
             </q-card-section>
-            <q-card-section v-if="note.details.length > 0">
+
+            <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Default">
             <div v-for="(details,index) in note.details" v-bind:key="index">
               {{ details.text }}
             </div>
+            </q-card-section>
+
+            <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Checkbox">
+              <div v-for="(details,index) in note.details" v-bind:key="index">
+                <q-checkbox disable color="primary" v-model="details.ticked" :label="details.text" :class="{lineThrough:details.ticked}"/>
+              </div>
             </q-card-section>
           </q-card>
         </draggable>
@@ -51,6 +58,10 @@
   .highlight {
     border: 2px solid $primary;
   }
+  .lineThrough {
+    text-decoration: line-through;
+    text-decoration-color: $primary;
+  }
 </style>
 
 <script>
@@ -66,7 +77,8 @@ export default {
       timer: undefined,
       afterHighlightedTimer: undefined,
       afterHighlighted: false,
-      dragged: false
+      dragged: false,
+      noteTypes: this.$noteTypes
     }
   },
   computed: {

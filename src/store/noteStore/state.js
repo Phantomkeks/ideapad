@@ -1,50 +1,84 @@
+import NoteTypes from '../../constants/NoteTypes'
+
 export default {
   notes: [
     {
-      id: 'uuid-1',
+      id: '5d7c0602-79b4-11e9-8f9e-2a86e4085a59',
       title: 'Note 1',
       highlighted: false,
+      type: NoteTypes.Default,
       details: [
         {
-          text: 'Go Grocery Shopping'
+          text: 'Go Grocery Shopping',
+          ticked: false
         },
         {
-          text: 'Play Hollow Knight'
+          text: 'Play Hollow Knight',
+          ticked: false
         },
         {
-          text: 'Learn Vue.js'
+          text: 'Learn Vue.js',
+          ticked: false
         }
       ]
     },
     {
-      id: 'uuid-2',
+      id: '5d7c0896-79b4-11e9-8f9e-2a86e4085a59',
       title: 'Note 2',
       highlighted: false,
+      type: NoteTypes.Default,
       details: [
         {
-          text: 'Enjoy the Sun'
+          text: 'Enjoy the Sun',
+          ticked: false
         },
         {
-          text: 'Pay the Bills'
+          text: 'Pay the Bills',
+          ticked: false
         },
         {
-          text: 'Plan your Vacation Time'
+          text: 'Plan your Vacation Time',
+          ticked: false
         }
       ]
     },
     {
-      id: 'uuid-3',
+      id: '5d7c09ea-79b4-11e9-8f9e-2a86e4085a59',
       title: 'Note 3',
       highlighted: false,
+      type: NoteTypes.Default,
       details: [
         {
-          text: 'Use Vuex for Storage'
+          text: 'Use Vuex for Storage',
+          ticked: false
         },
         {
-          text: 'Play Switch on TV'
+          text: 'Play Switch on TV',
+          ticked: false
         },
         {
-          text: 'Write better Vue.js Code'
+          text: 'Write better Vue.js Code',
+          ticked: false
+        }
+      ]
+    },
+    {
+      id: '5d7c0b20-79b4-11e9-8f9e-2a86e4085a59',
+      title: 'Note 4',
+      highlighted: false,
+      type: NoteTypes.Checkbox,
+      details: [
+        {
+          text: 'Drink Coffee while Coding',
+          ticked: true
+        },
+        {
+          text: 'Eat Pizza',
+          ticked: false
+        },
+        {
+          text: 'Test Functionality before Pushing',
+          ticked: true
         }
       ]
     }

@@ -30,7 +30,8 @@ export default {
 
   placeholder: {
     title: 'Titel',
-    description: 'Beschreibung'
+    description: 'Beschreibung',
+    listEntry: 'Listeneintrag'
   },
 
   input: {
