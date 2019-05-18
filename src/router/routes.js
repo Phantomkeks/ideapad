@@ -4,8 +4,7 @@ const routes = [
     component: () => import('layouts/NotesLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Notes.vue') },
-      { path: 'notes', component: () => import('pages/Notes.vue') },
-      { path: 'settings/:tab?', component: () => import('pages/Settings.vue') }
+      { path: 'notes', component: () => import('pages/Notes.vue') }
     ]
   },
   {
@@ -13,6 +12,13 @@ const routes = [
     component: () => import('layouts/TrashLayout.vue'),
     children: [
       { path: 'trash', component: () => import('pages/Trash.vue') }
+    ]
+  },
+  {
+    path: '/',
+    component: () => import('layouts/DefaultLayout.vue'),
+    children: [
+      { path: 'settings/:tab?', component: () => import('pages/Settings.vue') }
     ]
   },
   {
@@ -25,11 +31,14 @@ const routes = [
   },
   {
     path: '/error',
-    component: () => import('pages/Error404.vue')
+    component: () => import('layouts/DefaultLayout.vue'),
+    children: [
+      { path: '/:access', component: () => import('pages/Error404.vue') }
+    ]
   },
   {
     path: '/',
-    component: () => import('layouts/NotesLayout.vue'),
+    component: () => import('layouts/DefaultLayout.vue'),
     children: [
       { path: '/:access', component: () => import('pages/Auth.vue') }
     ]

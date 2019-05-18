@@ -2,17 +2,29 @@
   <div class="fixed-center text-center">
     <p class="text-faded">{{ $t('error.404') }}</p>
     <q-btn
-      color="secondary"
-      style="width:200px;"
-      @click="$router.push('/')"
+      class="back-button"
+      @click="onBackButtonClick"
     >
       {{ $t('button.back') }}
     </q-btn>
   </div>
 </template>
 
+<style lang="stylus">
+  @import '~quasar-variables'
+
+  .back-button {
+    headerGradient();
+  }
+</style>
+
 <script>
 export default {
-  name: 'Error404'
+  name: 'Error404',
+  methods: {
+    onBackButtonClick () {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
