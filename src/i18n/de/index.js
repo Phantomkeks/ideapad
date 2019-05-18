@@ -91,14 +91,10 @@ export default {
 
   menuItem: {
     delete: 'Löschen',
-    permDelete: 'Permanent Löschen',
-    selectDelete: 'Selektierte Löschen',
-    permSelectDelete: 'Selektierte Permanent Löschen',
+    permDelete: 'Permanent löschen',
     restore: 'Wiederherstellen',
     copy: 'Kopieren',
-    selectCopy: 'Selektierte Kopieren',
-    selectRestore: 'Selektierte Wiederherstellen',
-    emptyTrash: 'Papierkorb Leeren'
+    emptyTrash: 'Papierkorb leeren'
   },
 
   alertDialog: {

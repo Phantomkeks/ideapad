@@ -91,13 +91,9 @@ export default {
 
   menuItem: {
     delete: 'Delete',
-    permDelete: 'Permanently Delete',
-    selectDelete: 'Delete Selected',
-    permSelectDelete: 'Permanently Delete Selected',
+    permDelete: 'Permanently delete',
     restore: 'Restore',
     copy: 'Copy',
-    selectCopy: 'Copy Selected',
-    selectRestore: 'Restore Selected',
     emptyTrash: 'Empty Trash'
   },
 

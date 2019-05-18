@@ -31,7 +31,7 @@
                   <q-icon name="file_copy"/>
                 </q-item-section>
                 <q-item-section>
-                  {{ $t('menuItem.selectCopy') }}
+                  {{ $t('menuItem.copy') }}
                 </q-item-section>
               </q-item>
               <q-item clickable @click="onDeleteSelectedClick">
@@ -39,7 +39,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  {{ $t('menuItem.selectDelete') }}
+                  {{ $t('menuItem.delete') }}
                 </q-item-section>
               </q-item>
             </q-list>

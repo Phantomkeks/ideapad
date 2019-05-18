@@ -52,7 +52,7 @@
                   <q-icon name="restore"/>
                 </q-item-section>
                 <q-item-section>
-                  {{ $t('menuItem.selectRestore') }}
+                  {{ $t('menuItem.restore') }}
                 </q-item-section>
               </q-item>
               <q-item clickable @click="openDeleteSelectedConfirmDialog">
@@ -60,7 +60,7 @@
                   <q-icon name="delete"/>
                 </q-item-section>
                 <q-item-section>
-                  {{ $t('menuItem.permSelectDelete') }}
+                  {{ $t('menuItem.permDelete') }}
                 </q-item-section>
               </q-item>
             </q-list>
