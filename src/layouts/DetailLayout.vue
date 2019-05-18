@@ -19,10 +19,10 @@
           dense
           round
           icon="more_vert"
-          v-if="bShowMoreButtons"
+          v-if="bOverviewMoreButtons || bTrashMoreButtons"
         >
           <q-menu persistent auto-close>
-            <q-list style="min-width: 100px">
+            <q-list style="min-width: 100px" v-if="bOverviewMoreButtons">
               <q-item clickable @click="onCopyNoteCLick">
                 <q-item-section avatar>
                   <q-icon name="file_copy"/>
@@ -37,6 +37,25 @@
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.delete') }}
+                </q-item-section>
+              </q-item>
+            </q-list>
+
+            <q-list style="min-width: 100px" v-if="bTrashMoreButtons">
+              <q-item clickable @click="onRestoreClick">
+                <q-item-section avatar>
+                  <q-icon name="restore"/>
+                </q-item-section>
+                <q-item-section>
+                  {{ $t('menuItem.restore') }}
+                </q-item-section>
+              </q-item>
+              <q-item clickable @click="onPermanentlyDelete">
+                <q-item-section avatar>
+                  <q-icon name="delete"/>
+                </q-item-section>
+                <q-item-section>
+                  {{ $t('menuItem.permDelete') }}
                 </q-item-section>
               </q-item>
             </q-list>
@@ -55,13 +74,20 @@ export default {
   name: 'DetailLayout',
   data () {
     return {
-      bShowMoreButtons: false
+      bOverviewMoreButtons: false,
+      bTrashMoreButtons: false
     }
   },
   watch: {
-    '$route.params.id': {
-      handler: function (sId) {
-        this.$store.getters.getSingleNote(sId) ? this.bShowMoreButtons = true : this.bShowMoreButtons = false
+    '$route': {
+      handler: function (oRoute) {
+        const sId = oRoute.params.id
+
+        if (oRoute.fullPath.indexOf('/notes/') !== -1) {
+          this.$store.getters.getSingleNote(sId) ? this.bOverviewMoreButtons = true : this.bOverviewMoreButtons = false
+        } else if (oRoute.fullPath.indexOf('/deletedNotes/') !== -1) {
+          this.$store.getters.getSingleDeletedNote(sId) ? this.bTrashMoreButtons = true : this.bTrashMoreButtons = false
+        }
       },
       deep: true,
       immediate: true
@@ -86,6 +112,22 @@ export default {
       })
 
       this.$router.push('/notes')
+    },
+    onRestoreClick () {
+      this.$store.commit({
+        type: 'restoreNote',
+        sNoteId: this.$route.params.id
+      })
+
+      this.$router.push('/trash')
+    },
+    onPermanentlyDelete () {
+      this.$store.commit({
+        type: 'deleteNote',
+        sNoteId: this.$route.params.id
+      })
+
+      this.$router.push('/trash')
     }
   }
 }

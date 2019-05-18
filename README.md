@@ -18,7 +18,6 @@ Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
 - Add Google Drive as Cloud Storage Provider
 - Add Microsoft OneDrive as Cloud Storage Provider
 - Popups/message toast for deleting or similar
-- Fix Routing and remove this splitting / read more routing docu / http://localhost:8080/#/ not working
 - Test all screens and functions
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
