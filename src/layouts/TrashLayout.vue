@@ -18,11 +18,11 @@
           dense
           round
           icon="more_vert"
-          v-if="selectedNoteIds.length < 0"
+          v-if="selectedNoteIds.length === 0"
         >
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">
-              <q-item clickable @click="onEmptyTrashClick">
+              <q-item clickable @click="openEmptyTrashConfirmDialog">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
                 </q-item-section>
@@ -55,7 +55,7 @@
                   {{ $t('menuItem.selectRestore') }}
                 </q-item-section>
               </q-item>
-              <q-item clickable @click="onDeleteSelectedClick">
+              <q-item clickable @click="openDeleteSelectedConfirmDialog">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
                 </q-item-section>
@@ -136,6 +136,30 @@ export default {
       this.$store.commit({
         type: 'deleteNotes',
         aNoteIds: this.selectedNoteIds
+      })
+    },
+    openDeleteSelectedConfirmDialog () {
+      this.$q.dialog({
+        title: this.$t('alertDialog.permanentDeleteSelectedTitle'),
+        message: this.$t('alertDialog.permanentDeleteSelectedMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.onDeleteSelectedClick()
+      }).onCancel(() => {
+      }).onDismiss(() => {
+      })
+    },
+    openEmptyTrashConfirmDialog () {
+      this.$q.dialog({
+        title: this.$t('alertDialog.emptyTrashTitle'),
+        message: this.$t('alertDialog.emptyTrashMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.onEmptyTrashClick()
+      }).onCancel(() => {
+      }).onDismiss(() => {
       })
     }
   },

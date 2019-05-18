@@ -50,7 +50,7 @@
                   {{ $t('menuItem.restore') }}
                 </q-item-section>
               </q-item>
-              <q-item clickable @click="onPermanentlyDelete">
+              <q-item clickable @click="openConfirmDialog">
                 <q-item-section avatar>
                   <q-icon name="delete"/>
                 </q-item-section>
@@ -128,6 +128,18 @@ export default {
       })
 
       this.$router.push('/trash')
+    },
+    openConfirmDialog () {
+      this.$q.dialog({
+        title: this.$t('alertDialog.permanentDeleteTitle'),
+        message: this.$t('alertDialog.permanentDeleteMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.onPermanentlyDelete()
+      }).onCancel(() => {
+      }).onDismiss(() => {
+      })
     }
   }
 }

@@ -102,6 +102,12 @@ export default {
   },
 
   alertDialog: {
+    permanentDeleteTitle: 'Bestätigen',
+    permanentDeleteMessage: 'Diese Notiz dauerhaft löschen?',
+    permanentDeleteSelectedTitle: 'Bestätigen',
+    permanentDeleteSelectedMessage: 'Die ausgewählten Notizen dauerhaft löschen?',
+    emptyTrashTitle: 'Papierkorb Leeren',
+    emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
     noteImportSuccessfulTitle: 'Notiz Import',
     noteImportSuccessfulMessage: 'Der Notiz-Import was erfolgreich.',
     missingDropboxTokenTitle: 'Fehlender Dropbox Token',

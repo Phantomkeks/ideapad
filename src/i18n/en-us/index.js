@@ -102,6 +102,12 @@ export default {
   },
 
   alertDialog: {
+    permanentDeleteTitle: 'Confirm',
+    permanentDeleteMessage: 'Do you want to delete this note permanently?',
+    permanentDeleteSelectedTitle: 'Confirm',
+    permanentDeleteSelectedMessage: 'Do you want to delete the selected notes permanently?',
+    emptyTrashTitle: 'Empty Trash',
+    emptyTrashMessage: 'All notes in trash will be deleted permanently.',
     noteImportSuccessfulTitle: 'Note Import',
     noteImportSuccessfulMessage: 'The note import was successful.',
     missingDropboxTokenTitle: 'Missing Dropbox Token',
