@@ -9,8 +9,8 @@
       </template>
     </q-input>
 
-    <q-btn @click="uploadFileToDropbox" color="primary" icon="cloud_upload" :label="$t('button.upload')" class="full-width q-my-sm" outline/>
-    <q-btn @click="downloadFileFromDropbox" color="primary" icon="cloud_download" :label="$t('button.download')" class="full-width" outline/>
+    <q-btn @click="uploadFileToDropbox" color="primary" icon="cloud_upload" :label="$t('button.upload')" class="full-width q-my-sm" outline no-caps/>
+    <q-btn @click="downloadFileFromDropbox" color="primary" icon="cloud_download" :label="$t('button.download')" class="full-width" outline no-caps/>
 
     <q-inner-loading :showing="showLoadingIndicator">
       <q-spinner-gears size="4rem" color="primary" />

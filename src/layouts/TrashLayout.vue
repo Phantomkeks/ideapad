@@ -18,7 +18,7 @@
           dense
           round
           icon="more_vert"
-          v-if="selectedNoteIds.length === 0"
+          v-if="selectedNoteIds.length === 0 && deletedNotes.length > 0"
         >
           <q-menu persistent auto-close>
             <q-list style="min-width: 100px">

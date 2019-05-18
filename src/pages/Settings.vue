@@ -29,9 +29,9 @@
           />
 
           <div class="q-my-sm">
-            <q-btn :label="$t('button.deleteCSP')"></q-btn>
-            <q-btn :label="$t('button.deleteAllSettings')"></q-btn>
-            <q-btn :label="$t('button.resetApp')"></q-btn>
+            <q-btn no-caps :label="$t('button.deleteCSP')"></q-btn>
+            <q-btn no-caps :label="$t('button.deleteAllSettings')"></q-btn>
+            <q-btn no-caps :label="$t('button.resetApp')"></q-btn>
           </div>
 
         </q-tab-panel>
@@ -66,7 +66,7 @@
             </template>
           </q-input>
 
-          <q-btn outline color="primary" :label="$t('button.export')" @click="onExportNotesClick"/>
+          <q-btn outline no-caps color="primary" :label="$t('button.export')" @click="onExportNotesClick"/>
         </q-tab-panel>
 
         <q-tab-panel name="cloud">
@@ -116,7 +116,7 @@
                 </q-list>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 2" color="primary" :label="$t('button.continue')" outline/>
+                  <q-btn @click="cloudIntegrationStep = 2" color="primary" :label="$t('button.continue')" outline no-caps/>
                 </q-stepper-navigation>
               </q-step>
 
@@ -133,8 +133,8 @@
                 </a>
 
                 <q-stepper-navigation>
-                  <q-btn @click="cloudIntegrationStep = 3" color="primary" :label="$t('button.continue')" outline/>
-                  <q-btn @click="cloudIntegrationStep = 1" color="primary" :label="$t('button.back')" class="q-ml-sm" flat/>
+                  <q-btn @click="cloudIntegrationStep = 3" color="primary" :label="$t('button.continue')" outline no-caps/>
+                  <q-btn @click="cloudIntegrationStep = 1" color="primary" :label="$t('button.back')" class="q-ml-sm" flat no-caps/>
                 </q-stepper-navigation>
               </q-step>
 
@@ -149,7 +149,7 @@
                 <Dropbox />
 
                 <q-stepper-navigation>
-                  <q-btn flat @click="cloudIntegrationStep = 1" color="primary" icon="cloud" :label="$t('button.backToSelect')"/>
+                  <q-btn flat no-caps @click="cloudIntegrationStep = 1" color="primary" icon="cloud" :label="$t('button.backToSelect')"/>
                 </q-stepper-navigation>
               </q-step>
             </q-stepper>

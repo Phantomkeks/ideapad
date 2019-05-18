@@ -2,6 +2,7 @@
   <div class="fixed-center text-center">
     <p class="text-faded">{{ $t('error.404') }}</p>
     <q-btn
+      no-caps
       class="back-button"
       @click="onBackButtonClick"
     >
