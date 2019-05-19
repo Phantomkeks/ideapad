@@ -7,27 +7,49 @@
         <q-input autogrow outlined class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')" type="textarea"/>
       </div>
 
-      <q-list class="listInput" v-if="note.type === noteTypes.Checkbox">
-          <q-checkbox color="primary" v-model="details.ticked" v-for="(details,index) in note.details" v-bind:key="index">
-            <q-input borderless :value="details.text" :placeholder="$t('placeholder.listEntry')" :class="{lineThrough:details.ticked}"/>
-          </q-checkbox>
+      <q-list class="list" v-if="note.type === noteTypes.Checkbox">
+        <q-slide-item @action="onSwipe($event, note.id, index)" right-color="red" v-for="(detail,index) in note.details" v-bind:key="index" v-ripple>
+          <template v-slot:right>
+            <q-icon name="delete" />
+          </template>
+
+          <div class="row items-baseline divPadding" >
+            <q-checkbox color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+
+            <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
+                     :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
+          </div>
+
+        </q-slide-item>
+
+        <div class="row justify-center">
+          <q-btn round text-color="white" icon="add" class="add-button" @click="addNewListEntry"/>
+        </div>
       </q-list>
     </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
+  @import '~quasar-variables'
   .textAreaInput
     margin-top: 1rem;
-  .listInput
+  .list
     margin-top: 1rem;
     background-color: white;
     border: 1px solid rgba(0,0,0,0.24);
     border-radius: 4px;
-  .lineThrough {
+  .listInput
+    padding: 0;
+    padding-top: 5px;
+  .lineThrough
     text-decoration: line-through;
     text-decoration-color: $primary;
-  }
+  .divPadding
+    padding: 0 5px 0 5px;
+  .add-button
+    headerGradient();
+    margin: 5px 0 5px 0;
 </style>
 
 <script>
@@ -44,11 +66,11 @@ export default {
     this.note = this.$store.getters.getSingleNote(this.$route.params.id)
   },
   methods: {
-    commitChangesToStore (sNoteTitle, aNoteDetails) {
+    commitChangesToStore (sNoteTitle, aNoteDetails, sType) {
       this.note = {
         id: this.$route.params.id,
         highlighted: false,
-        type: this.$noteTypes.Default,
+        type: sType,
         title: sNoteTitle,
         details: aNoteDetails
       }
@@ -66,6 +88,36 @@ export default {
         })
       }
       return aNoteDetails
+    },
+    updateListEntryTicked: function (bTicked, iIndex) {
+      let aDetails = this.note.details
+      aDetails[iIndex].ticked = bTicked
+      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type)
+    },
+    updateListEntryText: function (sListTextValue, iIndex) {
+      let aDetails = this.note.details
+      aDetails[iIndex].text = sListTextValue
+      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type)
+    },
+    addNewListEntry: function () {
+      this.note.details.push({ text: '', ticked: false })
+    },
+    onSwipe (oDetails, sNoteId, iListEntryIndex) {
+      this.$q.dialog({
+        title: this.$t('alertDialog.deleteListEntryTitle'),
+        message: this.$t('alertDialog.deleteListEntryMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.$store.commit({
+          type: 'deleteNoteEntry',
+          sNoteId: sNoteId,
+          iListEntryIndex: iListEntryIndex
+        })
+      }).onCancel(() => {
+      }).onDismiss(() => {
+        oDetails.reset()
+      })
     }
   },
   computed: {
@@ -74,7 +126,7 @@ export default {
         return this.note ? this.note.title : ''
       },
       set: function (sTextAreaTitle) {
-        this.commitChangesToStore(sTextAreaTitle, this.transformTextToArray(this.textAreaInput))
+        this.commitChangesToStore(sTextAreaTitle, this.transformTextToArray(this.textAreaInput), this.note.type)
       }
     },
     textAreaInput: {
@@ -95,7 +147,7 @@ export default {
         return sTextAreaText
       },
       set: function (sTextAreaValue) {
-        this.commitChangesToStore(this.textAreaTitle, this.transformTextToArray(sTextAreaValue))
+        this.commitChangesToStore(this.textAreaTitle, this.transformTextToArray(sTextAreaValue), this.note.type)
       }
     }
   }

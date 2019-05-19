@@ -18,6 +18,15 @@
           flat
           dense
           round
+          :icon="noteType === noteTypes.Default ? 'format_list_bulleted' : 'notes'"
+          @click="changeNoteType(noteType === noteTypes.Default ? noteTypes.Checkbox : noteTypes.Default)"
+          v-if="bOverviewMoreButtons"
+        />
+
+        <q-btn
+          flat
+          dense
+          round
           icon="more_vert"
           v-if="bOverviewMoreButtons || bTrashMoreButtons"
         >
@@ -75,7 +84,8 @@ export default {
   data () {
     return {
       bOverviewMoreButtons: false,
-      bTrashMoreButtons: false
+      bTrashMoreButtons: false,
+      noteTypes: this.$noteTypes
     }
   },
   watch: {
@@ -140,6 +150,18 @@ export default {
       }).onCancel(() => {
       }).onDismiss(() => {
       })
+    },
+    changeNoteType (sNoteType) {
+      this.$store.commit({
+        type: 'changeNoteType',
+        sNoteId: this.$route.params.id,
+        sNoteType: sNoteType
+      })
+    }
+  },
+  computed: {
+    noteType: function () {
+      return this.bOverviewMoreButtons ? this.$store.getters.getSingleNote(this.$route.params.id).type : undefined
     }
   }
 }

@@ -105,6 +105,8 @@ export default {
     permanentDeleteSelectedMessage: 'Do you want to delete the selected notes permanently?',
     emptyTrashTitle: 'Empty Trash',
     emptyTrashMessage: 'All notes in trash will be deleted permanently.',
+    deleteListEntryTitle: 'Confirm',
+    deleteListEntryMessage: 'Do you want to delete this list entry permanently?',
     noteImportSuccessfulTitle: 'Note Import',
     noteImportSuccessfulMessage: 'The note import was successful.',
     missingDropboxTokenTitle: 'Missing Dropbox Token',

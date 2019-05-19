@@ -115,6 +115,26 @@ export const updateNote = (state, oPayload) => {
   }
 }
 
+export const deleteNoteEntry = (state, oPayload) => {
+  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.sNoteId)
+
+  if (iNoteIndex < 0) {
+    throw new Error('Note not found.')
+  } else {
+    state.notes[iNoteIndex].details.splice(oPayload.iListEntryIndex, 1)
+  }
+}
+
+export const changeNoteType = (state, oPayload) => {
+  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.sNoteId)
+
+  if (iNoteIndex < 0) {
+    throw new Error('Note not found.')
+  } else {
+    state.notes[iNoteIndex].type = oPayload.sNoteType
+  }
+}
+
 export const overwriteNotes = (state, oPayload) => {
   state.notes = oPayload.notes
 }

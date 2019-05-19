@@ -105,6 +105,8 @@ export default {
     permanentDeleteSelectedMessage: 'Die ausgewählten Notizen dauerhaft löschen?',
     emptyTrashTitle: 'Papierkorb Leeren',
     emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
+    deleteListEntryTitle: 'Bestätigen',
+    deleteListEntryMessage: 'Den ausgewählten Listeneintrag dauerhaft löschen?',
     noteImportSuccessfulTitle: 'Notiz Import',
     noteImportSuccessfulMessage: 'Der Notiz-Import was erfolgreich.',
     missingDropboxTokenTitle: 'Fehlender Dropbox Token',

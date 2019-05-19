@@ -63,7 +63,8 @@ module.exports = function (ctx) {
         'QBadge',
         'QSelect',
         'QPullToRefresh',
-        'QCheckbox'
+        'QCheckbox',
+        'QSlideItem'
       ],
 
       directives: [

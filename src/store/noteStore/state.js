@@ -73,7 +73,10 @@ export default {
           ticked: true
         },
         {
-          text: 'Eat Pizza',
+          text: 'Eat Pizza Test Functionality before Pushing ' +
+            'Eat Pizza Test Functionality before Pushing ' +
+            'Eat Pizza Test Functionality before Pushing ' +
+            'Eat Pizza Pizza Test Functionality before Pushing',
           ticked: false
         },
         {
