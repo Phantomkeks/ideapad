@@ -63,7 +63,19 @@ export default {
     }
   },
   created () {
-    this.note = this.$store.getters.getSingleNote(this.$route.params.id)
+    let oNote = this.$store.getters.getSingleNote(this.$route.params.id)
+
+    if (oNote) {
+      this.note = oNote
+    } else {
+      this.note = {
+        id: this.$route.params.id,
+        highlighted: false,
+        type: this.noteTypes.Default,
+        title: '',
+        details: []
+      }
+    }
   },
   methods: {
     commitChangesToStore (sNoteTitle, aNoteDetails, sType) {

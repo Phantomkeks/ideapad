@@ -28,6 +28,13 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Install [Vue CLI](https://cli.vuejs.org)
 - Open a terminal and run 'quasar dev'
 
+### Build APK
+- sudo quasar build -m cordova -T android
+- sudo cordova build
+
+### Git Undo Commits
+- git reset --soft HEAD~
+
 ### Further Links
 
 ##### Quasar Framework
