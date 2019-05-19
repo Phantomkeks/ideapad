@@ -4,7 +4,6 @@
 Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 
 ### Features
-- Simple to do app
 - Only client app without need of a backend
 - Cloud Storage Provider possible, but not needed
 
