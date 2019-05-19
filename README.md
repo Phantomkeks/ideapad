@@ -21,6 +21,8 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Fix masonry when second note is huge and the first one small (third one will be beyond second one)
 - Check import of duplicate ids
 - Fix caskets padding in detail view
+- Test app
+- Add splash screen icons
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -32,8 +34,17 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - sudo quasar build -m cordova -T android
 - sudo cordova build
 
-### Git Undo Commits
-- git reset --soft HEAD~
+### Git
+Undo Commits:
+- git reset --soft HEAD~2
+
+Local:
+- git config user.name <NAME>
+- git config user.email <EMAIL> 
+
+Global:
+- git config --global user.name <NAME>
+- git config --global user.email <EMAIL> 
 
 ### Further Links
 
