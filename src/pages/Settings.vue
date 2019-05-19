@@ -175,7 +175,7 @@ export default {
   data () {
     return {
       startTab: undefined,
-      fileName: 'mini-memo.txt',
+      fileName: 'ideapad.txt',
       cloudProvider: 'dropbox',
       settings: {},
       filePath: null,

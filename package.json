@@ -1,9 +1,9 @@
 {
-  "name": "mini-memo",
+  "name": "ideapad",
   "version": "0.0.1",
-  "description": "App for Notes and Memos",
-  "productName": "Mini-Memo",
-  "cordovaId": "app.mini-memo.id",
+  "description": "App for Ideas and Notes",
+  "productName": "Ideapad",
+  "cordovaId": "app.ideapad.id",
   "author": "Phantomkeks",
   "private": true,
   "scripts": {

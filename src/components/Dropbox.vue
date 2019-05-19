@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       filePath: '',
-      fileName: 'mini-memo.txt',
+      fileName: 'ideapad.txt',
       dropboxToken: undefined,
       showLoadingIndicator: false,
       isPassword: true

@@ -3,7 +3,7 @@
 // this.$t('alertDialog.missingDropboxTokenTitle')
 // {{ $t('appTitle') }}
 export default {
-  appTitle: 'Mini-Memo',
+  appTitle: 'Ideapad',
 
   name: {
     dropbox: 'Dropbox',

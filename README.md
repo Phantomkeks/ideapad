@@ -1,7 +1,7 @@
-# Mini-Memo
-![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Mini-Memo Logo")  
+# Ideapad
+![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Ideapad Logo")  
 
-Mini-Memo is a small to do and note app with Vue.js and Quasar as a basis.
+Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 
 ### Features
 - Simple to do app
