@@ -23,6 +23,12 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Fix caskets padding in detail view
 - Test app
 - Add splash screen icons
+- On trash screen the caskets are not displayed
+- App icons missing in app version
+- Select does take too long on mobile
+- App icon has a grey background color -> fix it
+- Export does not work on mobile
+- Dropbox redirects to browser
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
