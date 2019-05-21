@@ -15,20 +15,18 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
 - Delete Dropbox token and other settings button
 - Add Google Drive as Cloud Storage Provider
-- Add Microsoft OneDrive as Cloud Storage Provider
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
 - Fix masonry when second note is huge and the first one small (third one will be beyond second one)
 - Check import of duplicate ids
 - Fix caskets padding in detail view
-- Test app
 - Add splash screen icons
 - On trash screen the caskets are not displayed
-- App icons missing in app version
-- Select does take too long on mobile
-- App icon has a grey background color -> fix it
 - Export does not work on mobile
 - Dropbox redirects to browser
+- Delete entries in trash after 30 days
+- Test mobile app and write down bugs
+- Retest draggable, select and scrolling
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -39,6 +37,10 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 ### Build APK
 - sudo quasar build -m cordova -T android
 - sudo cordova build
+
+- sudo cordova platform remove android;
+- sudo cordova platform add android;
+- sudo cordova build android;
 
 ### Git
 Undo Commits:
@@ -74,7 +76,6 @@ Global:
 ##### Cloud Integration
 - https://www.dropbox.com/developers/documentation/javascript#tutorial
 - https://dropbox.github.io/dropbox-sdk-js/Dropbox.html#filesDownload__anchor
-- https://docs.microsoft.com/en-us/onedrive/developer/controls/file-pickers/js-v72/?view=odsp-graph-online
 - https://developers.google.com/api-client-library/javascript/start/start-js
 
 ##### Play Store

@@ -7,7 +7,6 @@ export default {
 
   name: {
     dropbox: 'Dropbox',
-    oneDrive: 'OneDrive',
     googleDrive: 'Google Drive'
   },
 

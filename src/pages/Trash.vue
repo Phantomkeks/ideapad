@@ -50,7 +50,8 @@ export default {
   name: 'Trash',
   data () {
     return {
-      touchDuration: 300,
+      touchDuration: 100,
+      longTouchDuration: 300,
       timer: undefined,
       afterHighlightedTimer: undefined,
       afterHighlighted: false
@@ -78,7 +79,7 @@ export default {
     onLongTouch (oNote) {
       if (oNote.highlighted) {
         this.revertAfterHighlighted()
-        this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.touchDuration)
+        this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.longTouchDuration)
       }
       oNote.highlighted = !oNote.highlighted
     },

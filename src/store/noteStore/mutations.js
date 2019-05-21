@@ -1,3 +1,5 @@
+import NoteHelper from '../../helper/NoteHelper'
+
 export function initialiseStore (state) {
   if (localStorage.getItem('store')) {
     this.replaceState(
@@ -84,12 +86,13 @@ function _copyNote (state, sNoteId) {
     let oOldNote = state.notes[iNoteIndex]
     oOldNote.highlighted = false
 
-    let oNewNote = {
-      id: uuidv1(),
-      title: oOldNote.title,
-      highlighted: false,
-      details: oOldNote.details
-    }
+    let oNewNote = NoteHelper.noteConstructor(
+      uuidv1(),
+      false,
+      oOldNote.type,
+      oOldNote.title,
+      oOldNote.details
+    )
     state.notes.push(oNewNote)
   }
 }

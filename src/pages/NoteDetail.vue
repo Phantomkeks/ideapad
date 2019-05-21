@@ -1,29 +1,30 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <q-input outlined autogrow class="bg-white"  v-model="textAreaTitle" :placeholder="$t('placeholder.title')" type="textarea"/>
+      <q-input outlined autogrow class="bg-white" v-model="textAreaTitle" :placeholder="$t('placeholder.title')"
+               type="textarea"/>
 
       <div class="textAreaInput" v-if="note.type === noteTypes.Default">
-        <q-input autogrow outlined class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')" type="textarea"/>
+        <q-input autogrow outlined class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
+                 type="textarea"/>
       </div>
 
       <q-list class="list" v-if="note.type === noteTypes.Checkbox">
-        <q-slide-item @action="onSwipe($event, note.id, index)" right-color="red" v-for="(detail,index) in note.details" v-bind:key="index" v-ripple>
+        <q-slide-item @action="onSwipe($event, note.id, index)" right-color="red" v-for="(detail,index) in note.details"
+                      v-bind:key="index" v-ripple>
           <template v-slot:right>
-            <q-icon name="delete" />
+            <q-icon name="delete"/>
           </template>
 
-          <div class="row items-baseline divPadding" >
+          <div class="row items-baseline divPadding">
             <q-checkbox color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
-
             <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
                      :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
           </div>
-
         </q-slide-item>
 
         <div class="row justify-center">
-          <q-btn round text-color="white" icon="add" class="add-button" @click="addNewListEntry"/>
+          <q-btn fab icon="add" text-color="white" class="add-button" @click="addNewListEntry"/>
         </div>
       </q-list>
     </div>
@@ -34,19 +35,24 @@
   @import '~quasar-variables'
   .textAreaInput
     margin-top: 1rem;
+
   .list
     margin-top: 1rem;
     background-color: white;
-    border: 1px solid rgba(0,0,0,0.24);
+    border: 1px solid rgba(0, 0, 0, 0.24);
     border-radius: 4px;
+
   .listInput
     padding: 0;
     padding-top: 5px;
+
   .lineThrough
     text-decoration: line-through;
     text-decoration-color: $primary;
+
   .divPadding
     padding: 0 5px 0 5px;
+
   .add-button
     headerGradient();
     margin: 5px 0 5px 0;
@@ -68,24 +74,25 @@ export default {
     if (oNote) {
       this.note = oNote
     } else {
-      this.note = {
-        id: this.$route.params.id,
-        highlighted: false,
-        type: this.noteTypes.Default,
-        title: '',
-        details: []
-      }
+      this.note = this.$noteHelper.noteConstructor(
+        this.$route.params.id,
+        false,
+        this.noteTypes.Default,
+        '',
+        []
+      )
     }
   },
   methods: {
     commitChangesToStore (sNoteTitle, aNoteDetails, sType) {
-      this.note = {
-        id: this.$route.params.id,
-        highlighted: false,
-        type: sType,
-        title: sNoteTitle,
-        details: aNoteDetails
-      }
+      this.note = this.$noteHelper.noteConstructor(
+        this.$route.params.id,
+        false,
+        sType,
+        sNoteTitle,
+        aNoteDetails
+      )
+
       this.$store.commit({
         type: 'updateNote',
         oNote: this.note

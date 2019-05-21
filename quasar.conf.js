@@ -2,11 +2,11 @@
 
 module.exports = function (ctx) {
   return {
-    // app boot file (/src/boot) --> boot files are part of "main.js"
     boot: [
       'axios.js',
       'i18n.js',
-      'constants.js'
+      'constants.js',
+      'helper.js'
     ],
 
     css: [
@@ -15,11 +15,7 @@ module.exports = function (ctx) {
 
     extras: [
       'roboto-font',
-      'material-icons' // optional, you are not bound to it
-      // 'ionicons-v4',
-      // 'mdi-v3',
-      // 'fontawesome-v5',
-      // 'eva-icons'
+      'material-icons'
     ],
 
     framework: {
@@ -99,8 +95,8 @@ module.exports = function (ctx) {
 
     devServer: {
       // https: true,
-      // port: 8080,
-      open: true // opens browser window automatically
+      port: 8080,
+      open: false // opens browser window automatically
     },
 
     // animations: 'all' --- includes all animations

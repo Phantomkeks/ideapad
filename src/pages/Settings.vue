@@ -96,15 +96,6 @@
                     </q-item-section>
                   </q-item>
 
-                  <q-item tag="label" disabled>
-                    <q-item-section avatar>
-                      <q-radio v-model="cloudProvider" val="onedrive" disable/>
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ $t('name.oneDrive') }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-
                   <q-item tag="label" disable>
                     <q-item-section avatar>
                       <q-radio v-model="cloudProvider" val="drive" disable/>

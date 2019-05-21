@@ -6,7 +6,6 @@ export default {
     dropboxToken: '',
     dropboxAppId: 'dhok9s70o02egga',
     googleDriveToken: '',
-    microsoftOneDriveToken: '',
     cloudIntegrationStep: 1
   }
 }

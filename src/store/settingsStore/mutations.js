@@ -18,10 +18,6 @@ export const updateGoogleDriveToken = (state, oPayload) => {
   state.settings.googleDriveToken = oPayload.googleDriveToken
 }
 
-export const updateMicrosoftOneDriveToken = (state, oPayload) => {
-  state.settings.microsoftOneDrive = oPayload.microsoftOneDrive
-}
-
 export const updateCloudIntegrationStep = (state, oPayload) => {
   state.settings.cloudIntegrationStep = oPayload.cloudIntegrationStep
 }
