@@ -2,16 +2,48 @@
   <q-page>
     <div class="q-pa-md">
       <q-input disable outlined autogrow class="bg-white" v-model="textAreaTitle" :placeholder="$t('placeholder.title')" type="textarea"/>
-      <div class="textAreaInput">
-        <q-input disable outlined autogrow class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')" type="textarea"/>
+
+      <div class="textAreaInput" v-if="note.type === noteTypes.Default">
+        <q-input disable autogrow outlined class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
+                 type="textarea"/>
       </div>
+
+      <q-list class="list" v-if="note.type === noteTypes.Checkbox">
+          <div class="row divPadding" v-for="(detail,index) in note.details" v-bind:key="index">
+            <q-checkbox disable color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+            <q-input disable class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
+                     :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
+          </div>
+      </q-list>
     </div>
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
+  @import '~quasar-variables'
   .textAreaInput
-    margin-top: 1rem
+    margin-top: 1rem;
+
+  .list
+    margin-top: 1rem;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 4px;
+
+  .listInput
+    padding: 0;
+    padding-top: 5px;
+
+  .lineThrough
+    text-decoration: line-through;
+    text-decoration-color: $primary;
+
+  .divPadding
+    padding: 0 5px 0 5px;
+
+  .add-button
+    headerGradient();
+    margin: 5px 0 5px 0;
 </style>
 
 <script>
@@ -19,7 +51,8 @@ export default {
   name: 'TrashDetail',
   data () {
     return {
-      note: {}
+      note: {},
+      noteTypes: this.$noteTypes
     }
   },
   created () {

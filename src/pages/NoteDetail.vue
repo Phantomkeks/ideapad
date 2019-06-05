@@ -64,7 +64,6 @@ export default {
   data () {
     return {
       note: {},
-      readonly: true,
       noteTypes: this.$noteTypes
     }
   },

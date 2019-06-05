@@ -19,9 +19,8 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
 - Fix masonry when second note is huge and the first one small (third one will be beyond second one)
 - Check import of duplicate ids
-- Fix caskets padding in detail view
+- Fix caskets padding in detail view (notes and trash)
 - Add splash screen icons
-- On trash screen the caskets are not displayed
 - Export does not work on mobile
 - Dropbox redirects to browser
 - Test mobile app and write down bugs

@@ -10,9 +10,19 @@
               {{ note.title }}
             </div>
           </q-card-section>
-          <q-card-section v-if="note.details.length > 0">
+
+          <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Default">
             <div v-for="(details,index) in note.details" v-bind:key="index">
               {{ details.text }}
+            </div>
+          </q-card-section>
+
+          <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Checkbox">
+            <div class="row items-start" v-for="(detail,index) in note.details" v-bind:key="index">
+              <q-checkbox disable color="primary" v-model="detail.ticked"/>
+              <q-item-label class="col label" :class="{lineThrough:detail.ticked}" :lines="5">
+                {{ detail.text }}
+              </q-item-label>
             </div>
           </q-card-section>
       </q-card>
@@ -43,6 +53,13 @@
   .highlight {
     border: 2px solid $primary;
   }
+  .lineThrough {
+    text-decoration: line-through;
+    text-decoration-color: $primary;
+  }
+  .label {
+    padding-top: 10px;
+  }
 </style>
 
 <script>
@@ -54,7 +71,8 @@ export default {
       longTouchDuration: 300,
       timer: undefined,
       afterHighlightedTimer: undefined,
-      afterHighlighted: false
+      afterHighlighted: false,
+      noteTypes: this.$noteTypes
     }
   },
   created () {
