@@ -57,6 +57,27 @@ export default {
       afterHighlighted: false
     }
   },
+  created () {
+    let iOneMonth = 1000 * 60 * 60 * 24 * 30
+    let dNow = Date.now()
+    let dOneMonthAgo = new Date(dNow - iOneMonth)
+    let aOverdueNoteIds = []
+
+    this.deletedNotes.forEach(function (oDeletedNote) {
+      let dTempDate = new Date(oDeletedNote.lastModified)
+
+      if (dTempDate < dOneMonthAgo) {
+        aOverdueNoteIds.push(oDeletedNote.id)
+      }
+    })
+
+    if (aOverdueNoteIds.length > 0) {
+      this.$store.commit({
+        type: 'deleteNotes',
+        aNoteIds: aOverdueNoteIds
+      })
+    }
+  },
   computed: {
     deletedNotes () {
       return this.$store.getters.getAllDeletedNotes

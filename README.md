@@ -24,7 +24,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - On trash screen the caskets are not displayed
 - Export does not work on mobile
 - Dropbox redirects to browser
-- Delete entries in trash after 30 days
 - Test mobile app and write down bugs
 - Retest draggable, select and scrolling
 

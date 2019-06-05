@@ -13,8 +13,10 @@ function _removeNote (state, sNoteId) {
   if (iNoteIndex < 0) {
     throw new Error('Note not found.')
   } else {
+    let currentDate = new Date(Date.now())
     let oNote = state.notes[iNoteIndex]
     oNote.highlighted = false
+    oNote.lastModified = currentDate.toJSON()
     state.deletedNotes.push(oNote)
     state.notes.splice(iNoteIndex, 1)
   }
@@ -37,8 +39,10 @@ function _restoreNote (state, sNoteId) {
   if (iNoteIndex < 0) {
     throw new Error('Note not found.')
   } else {
+    let currentDate = new Date(Date.now())
     let oNote = state.deletedNotes[iNoteIndex]
     oNote.highlighted = false
+    oNote.lastModified = currentDate.toJSON()
     state.notes.push(oNote)
     state.deletedNotes.splice(iNoteIndex, 1)
   }
@@ -90,6 +94,8 @@ function _copyNote (state, sNoteId) {
       uuidv1(),
       false,
       oOldNote.type,
+      null,
+      null,
       oOldNote.title,
       oOldNote.details
     )
@@ -124,7 +130,10 @@ export const deleteNoteEntry = (state, oPayload) => {
   if (iNoteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    state.notes[iNoteIndex].details.splice(oPayload.iListEntryIndex, 1)
+    let currentDate = new Date(Date.now())
+    let oNote = state.notes[iNoteIndex]
+    oNote.lastModified = currentDate.toJSON()
+    oNote.details.splice(oPayload.iListEntryIndex, 1)
   }
 }
 
@@ -134,7 +143,10 @@ export const changeNoteType = (state, oPayload) => {
   if (iNoteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    state.notes[iNoteIndex].type = oPayload.sNoteType
+    let currentDate = new Date(Date.now())
+    let oNote = state.notes[iNoteIndex]
+    oNote.lastModified = currentDate.toJSON()
+    oNote.type = oPayload.sNoteType
   }
 }
 

@@ -7,6 +7,8 @@ export default {
       title: 'Note 1',
       highlighted: false,
       type: NoteTypes.Default,
+      createdAt: '2019-05-05T17:28:59.187Z',
+      lastModified: '2019-06-05T17:28:59.187Z',
       details: [
         {
           text: 'Go Grocery Shopping',
@@ -27,6 +29,8 @@ export default {
       title: 'Note 2',
       highlighted: false,
       type: NoteTypes.Default,
+      createdAt: '2019-05-05T17:28:59.187Z',
+      lastModified: '2019-06-05T17:28:59.187Z',
       details: [
         {
           text: 'Enjoy the Sun',
@@ -47,6 +51,8 @@ export default {
       title: 'Note 3',
       highlighted: false,
       type: NoteTypes.Default,
+      createdAt: '2019-05-05T17:28:59.187Z',
+      lastModified: '2019-06-05T17:28:59.187Z',
       details: [
         {
           text: 'Use Vuex for Storage',
@@ -67,6 +73,8 @@ export default {
       title: 'Note 4',
       highlighted: false,
       type: NoteTypes.Checkbox,
+      createdAt: '2019-05-05T17:28:59.187Z',
+      lastModified: '2019-06-05T17:28:59.187Z',
       details: [
         {
           text: 'Drink Coffee while Coding',

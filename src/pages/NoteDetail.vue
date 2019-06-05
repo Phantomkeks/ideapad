@@ -78,17 +78,21 @@ export default {
         this.$route.params.id,
         false,
         this.noteTypes.Default,
+        null,
+        null,
         '',
         []
       )
     }
   },
   methods: {
-    commitChangesToStore (sNoteTitle, aNoteDetails, sType) {
+    commitChangesToStore (sNoteTitle, aNoteDetails, sType, dCreatedAt) {
       this.note = this.$noteHelper.noteConstructor(
         this.$route.params.id,
         false,
         sType,
+        dCreatedAt,
+        null,
         sNoteTitle,
         aNoteDetails
       )
@@ -111,12 +115,12 @@ export default {
     updateListEntryTicked: function (bTicked, iIndex) {
       let aDetails = this.note.details
       aDetails[iIndex].ticked = bTicked
-      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type)
+      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type, this.note.createdAt)
     },
     updateListEntryText: function (sListTextValue, iIndex) {
       let aDetails = this.note.details
       aDetails[iIndex].text = sListTextValue
-      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type)
+      this.commitChangesToStore(this.textAreaTitle, aDetails, this.note.type, this.note.createdAt)
     },
     addNewListEntry: function () {
       this.note.details.push({ text: '', ticked: false })
@@ -145,7 +149,7 @@ export default {
         return this.note ? this.note.title : ''
       },
       set: function (sTextAreaTitle) {
-        this.commitChangesToStore(sTextAreaTitle, this.transformTextToArray(this.textAreaInput), this.note.type)
+        this.commitChangesToStore(sTextAreaTitle, this.transformTextToArray(this.textAreaInput), this.note.type, this.note.createdAt)
       }
     },
     textAreaInput: {
@@ -166,7 +170,7 @@ export default {
         return sTextAreaText
       },
       set: function (sTextAreaValue) {
-        this.commitChangesToStore(this.textAreaTitle, this.transformTextToArray(sTextAreaValue), this.note.type)
+        this.commitChangesToStore(this.textAreaTitle, this.transformTextToArray(sTextAreaValue), this.note.type, this.note.createdAt)
       }
     }
   }
