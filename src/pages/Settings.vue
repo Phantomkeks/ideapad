@@ -47,12 +47,15 @@
             </template>
           </q-input>
 
-          <q-input outlined color="primary" :label="$t('input.selectSourceFile')" stack-label v-model="filePath" type="file" @change="onImportNotesClick"/>
-
-          <div>
-            <label for="files" class="btn">Select Image</label>
-            <input id="files" style="visibility: hidden; display: none;" type="file" @change="onImportNotesClick"/>
-          </div>
+          <q-field outlined :label="$t('input.selectSourceFile')" stack-label>
+            <template v-slot:control>
+              <div class="self-center full-width no-outline" tabindex="0">
+                <label for="files" class="btn">{{ $t('input.chooseSourceFile') }}</label>
+                <input id="files" style="visibility: hidden; display: none;" type="file" @change="onImportNotesClick"/>
+                <label class="q-ml-md">{{ filePath != null ? filePath : $t('placeholder.noFileChosen') }}</label>
+              </div>
+            </template>
+          </q-field>
         </q-tab-panel>
 
         <q-tab-panel name="export">
@@ -170,7 +173,6 @@ export default {
       cloudProvider: 'dropbox',
       settings: {},
       filePath: null,
-      filePath2: '',
       isPasswordImport: true,
       isPasswordExport: true,
       showLoadingIndicator: false,
@@ -200,6 +202,7 @@ export default {
     onImportNotesClick (oEvent) {
       if (oEvent) {
         let oFile = oEvent.target.files[0]
+        this.filePath = oEvent.target.files[0].name
         if (!oFile) {
           return
         }

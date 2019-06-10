@@ -31,13 +31,15 @@ export default {
     title: 'Titel',
     description: 'Beschreibung',
     listEntry: 'Listeneintrag',
-    dots: '...'
+    dots: '...',
+    noFileChosen: 'Keine Datei ausgewählt'
   },
 
   input: {
     importPassphrase: 'Passphrase für Entschlüsselung',
     exportPassphrase: 'Passphrase für Verschlüsselung',
-    selectSourceFile: 'Quelldatei auswählen'
+    selectSourceFile: 'Quelldatei auswählen',
+    chooseSourceFile: 'Datei auswählen'
   },
 
   button: {

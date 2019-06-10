@@ -31,13 +31,15 @@ export default {
     title: 'Title',
     description: 'Description',
     listEntry: 'List Entry',
-    dots: '...'
+    dots: '...',
+    noFileChosen: 'No file chosen'
   },
 
   input: {
     importPassphrase: 'Passphrase for Decryption',
     exportPassphrase: 'Passphrase for Encryption',
-    selectSourceFile: 'Select Source File'
+    selectSourceFile: 'Select Source File',
+    chooseSourceFile: 'Choose File'
   },
 
   button: {

@@ -60,7 +60,8 @@ module.exports = function (ctx) {
         'QSelect',
         'QPullToRefresh',
         'QCheckbox',
-        'QSlideItem'
+        'QSlideItem',
+        'QField'
       ],
 
       directives: [

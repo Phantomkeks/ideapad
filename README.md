@@ -8,7 +8,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Cloud Storage Provider possible, but not needed
 
 ### To Do 
-- Test all screens and functions
+- Test all screens and functions on mobile (e.g. draggable, select and scrolling)
 - Hybrid application for iOS and Android
 - Refactor code and designs (avoid duplicate code)
 - Better failure behavior for loading files / importing notes
@@ -21,9 +21,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Add splash screen icons
 - Export does not work on mobile
 - Dropbox redirects to browser
-- Test mobile app and write down bugs
-- Retest draggable, select and scrolling
-- Layout button in create new note
+- Layout button in create new note view
 - QA over i18n texts
 
 ### Local Setup
