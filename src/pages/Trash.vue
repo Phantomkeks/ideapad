@@ -12,17 +12,29 @@
           </q-card-section>
 
           <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Default">
-            <div v-for="(details,index) in note.details" v-bind:key="index">
-              {{ details.text }}
+            <div v-for="(detail,index) in note.details" v-bind:key="index">
+              <div v-if="index < 7">
+                {{ detail.text }}
+              </div>
+
+              <div v-if="index == 7">
+                <p>{{ $t('placeholder.dots') }}</p>
+              </div>
             </div>
           </q-card-section>
 
           <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Checkbox">
             <div class="row items-start" v-for="(detail,index) in note.details" v-bind:key="index">
-              <q-checkbox disable color="primary" v-model="detail.ticked"/>
-              <q-item-label class="col label" :class="{lineThrough:detail.ticked}" :lines="5">
-                {{ detail.text }}
-              </q-item-label>
+              <div class="row items-start" v-if="index < 3">
+                <q-checkbox disable color="primary" v-model="detail.ticked"/>
+                <q-item-label class="col label" :class="{lineThrough:detail.ticked}" :lines="5">
+                  {{ detail.text }}
+                </q-item-label>
+              </div>
+
+              <div class="dots" v-if="index == 3">
+                <p>{{ $t('placeholder.dots') }}</p>
+              </div>
             </div>
           </q-card-section>
       </q-card>
