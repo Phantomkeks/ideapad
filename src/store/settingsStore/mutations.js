@@ -22,6 +22,10 @@ export const updateCloudIntegrationStep = (state, oPayload) => {
   state.settings.cloudIntegrationStep = oPayload.cloudIntegrationStep
 }
 
+export const updateSelectedLanguage = (state, oPayload) => {
+  state.settings.selectedLanguage = oPayload.selectedLanguage
+}
+
 export const resetCloudSettings = (state, oPayload) => {
   state.settings.dropboxToken = ''
   state.settings.googleDriveToken = ''
@@ -36,7 +40,8 @@ export const resetSettings = (state, oPayload) => {
     dropboxToken: '',
     dropboxAppId: 'dhok9s70o02egga',
     googleDriveToken: '',
-    cloudIntegrationStep: 1
+    cloudIntegrationStep: 1,
+    selectedLanguage: 'en-us'
   }
   state.settings = oSettings
 }

@@ -9,6 +9,7 @@ export default {
   name: 'App',
   beforeCreate () {
     this.$store.commit('initialiseStore')
+    this.$i18n.locale = this.$store.getters.getLanguageSetting
   }
 }
 </script>

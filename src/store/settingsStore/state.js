@@ -6,6 +6,7 @@ export default {
     dropboxToken: '',
     dropboxAppId: 'dhok9s70o02egga',
     googleDriveToken: '',
-    cloudIntegrationStep: 1
+    cloudIntegrationStep: 1,
+    selectedLanguage: 'en-us'
   }
 }

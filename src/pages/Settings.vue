@@ -308,7 +308,7 @@ export default {
     locale: {
       get: function () {
         return this.languageOptions.find(function (oLanguageOption) {
-          return oLanguageOption.value === this.$q.lang.isoName
+          return oLanguageOption.value === this.settings.selectedLanguage
         }.bind(this))
       },
       set: function (oLocale) {
@@ -318,6 +318,11 @@ export default {
         import(`src/i18n/${oLocale.value}`).then(({ default: messages }) => {
           this.$i18n.locale = oLocale.value
           this.$i18n.setLocaleMessage(oLocale.value, messages)
+        })
+
+        this.$store.commit({
+          type: 'updateSelectedLanguage',
+          selectedLanguage: oLocale.value
         })
       }
     },
