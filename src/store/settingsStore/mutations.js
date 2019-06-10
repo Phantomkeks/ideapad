@@ -21,3 +21,22 @@ export const updateGoogleDriveToken = (state, oPayload) => {
 export const updateCloudIntegrationStep = (state, oPayload) => {
   state.settings.cloudIntegrationStep = oPayload.cloudIntegrationStep
 }
+
+export const resetCloudSettings = (state, oPayload) => {
+  state.settings.dropboxToken = ''
+  state.settings.googleDriveToken = ''
+  state.settings.cloudIntegrationStep = 1
+}
+
+export const resetSettings = (state, oPayload) => {
+  let oSettings = {
+    importPassphrase: 'ImportPassphrase',
+    exportPassphrase: 'ExportPassphrase',
+    cloudPassphrase: 'CloudPassphrase',
+    dropboxToken: '',
+    dropboxAppId: 'dhok9s70o02egga',
+    googleDriveToken: '',
+    cloudIntegrationStep: 1
+  }
+  state.settings = oSettings
+}

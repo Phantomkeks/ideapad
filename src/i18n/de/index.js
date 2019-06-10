@@ -99,14 +99,6 @@ export default {
   },
 
   alertDialog: {
-    permanentDeleteTitle: 'Bestätigen',
-    permanentDeleteMessage: 'Diese Notiz dauerhaft löschen?',
-    permanentDeleteSelectedTitle: 'Bestätigen',
-    permanentDeleteSelectedMessage: 'Die ausgewählten Notizen dauerhaft löschen?',
-    emptyTrashTitle: 'Papierkorb Leeren',
-    emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
-    deleteListEntryTitle: 'Bestätigen',
-    deleteListEntryMessage: 'Den ausgewählten Listeneintrag dauerhaft löschen?',
     noteImportSuccessfulTitle: 'Notiz Import',
     noteImportSuccessfulMessage: 'Der Notiz-Import was erfolgreich.',
     missingDropboxTokenTitle: 'Fehlender Dropbox Token',
@@ -119,5 +111,22 @@ export default {
     cloudDownloadSyncSuccessfulMessage: 'Der Cloud-Download war erfolgreich.',
     cloudDownloadSyncFailedTitle: 'Cloud-Download Gescheitert',
     cloudDownloadSyncFailedMessage: 'Es ist nicht möglich, eine Notizdatei herunterzuladen oder zu finden. Bitte versuche es erneut.'
+  },
+
+  confirmDialog: {
+    permanentDeleteTitle: 'Bestätigen',
+    permanentDeleteMessage: 'Diese Notiz dauerhaft löschen?',
+    permanentDeleteSelectedTitle: 'Bestätigen',
+    permanentDeleteSelectedMessage: 'Die ausgewählten Notizen dauerhaft löschen?',
+    emptyTrashTitle: 'Papierkorb Leeren',
+    emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
+    deleteListEntryTitle: 'Bestätigen',
+    deleteListEntryMessage: 'Den ausgewählten Listeneintrag dauerhaft löschen?',
+    deleteCloudStorageProviderTitle: 'Bestätigen',
+    deleteCloudStorageProviderMessage: 'Die Cloudspeicher-Verbindung löschen?',
+    deleteAllSettingsTitle: 'Bestätigen',
+    deleteAllSettingsMessage: 'Alle Einstellungen löschen?',
+    resetApplicationTitle: 'Bestätigen',
+    resetApplicationMessage: 'Die Anwendung zurücksetzen?'
   }
 }

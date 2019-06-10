@@ -99,14 +99,6 @@ export default {
   },
 
   alertDialog: {
-    permanentDeleteTitle: 'Confirm',
-    permanentDeleteMessage: 'Do you want to delete this note permanently?',
-    permanentDeleteSelectedTitle: 'Confirm',
-    permanentDeleteSelectedMessage: 'Do you want to delete the selected notes permanently?',
-    emptyTrashTitle: 'Empty Trash',
-    emptyTrashMessage: 'All notes in trash will be deleted permanently.',
-    deleteListEntryTitle: 'Confirm',
-    deleteListEntryMessage: 'Do you want to delete this list entry permanently?',
     noteImportSuccessfulTitle: 'Note Import',
     noteImportSuccessfulMessage: 'The note import was successful.',
     missingDropboxTokenTitle: 'Missing Dropbox Token',
@@ -119,5 +111,22 @@ export default {
     cloudDownloadSyncSuccessfulMessage: 'The cloud download was successfully.',
     cloudDownloadSyncFailedTitle: 'Cloud Download Failed',
     cloudDownloadSyncFailedMessage: 'Unable to download or find a note file. Please try it again.'
+  },
+
+  confirmDialog: {
+    permanentDeleteTitle: 'Confirm',
+    permanentDeleteMessage: 'Do you want to delete this note permanently?',
+    permanentDeleteSelectedTitle: 'Confirm',
+    permanentDeleteSelectedMessage: 'Do you want to delete the selected notes permanently?',
+    emptyTrashTitle: 'Empty Trash',
+    emptyTrashMessage: 'All notes in trash will be deleted permanently.',
+    deleteListEntryTitle: 'Confirm',
+    deleteListEntryMessage: 'Do you want to delete this list entry permanently?',
+    deleteCloudStorageProviderTitle: 'Confirm',
+    deleteCloudStorageProviderMessage: 'Do you want to delete the cloud storage connection?',
+    deleteAllSettingsTitle: 'Confirm',
+    deleteAllSettingsMessage: 'Do you want to delete all settings?',
+    resetApplicationTitle: 'Confirm',
+    resetApplicationMessage: 'Do you want to reset the application?'
   }
 }

@@ -28,10 +28,10 @@
             v-model="locale"
           />
 
-          <div class="q-my-sm">
-            <q-btn no-caps :label="$t('button.deleteCSP')"></q-btn>
-            <q-btn no-caps :label="$t('button.deleteAllSettings')"></q-btn>
-            <q-btn no-caps :label="$t('button.resetApp')"></q-btn>
+          <div class="q-my-sm column justify-between">
+            <q-btn no-caps :label="$t('button.deleteCSP')" class="q-my-sm" @click="deleteCloudStorageProvider"/>
+            <q-btn no-caps :label="$t('button.deleteAllSettings')" class="q-my-sm" @click="deleteAllSettings"/>
+            <q-btn no-caps :label="$t('button.resetApp')" class="q-mt-sm" @click="resetApplication"/>
           </div>
 
         </q-tab-panel>
@@ -66,7 +66,7 @@
             </template>
           </q-input>
 
-          <q-btn outline no-caps color="primary" :label="$t('button.export')" @click="onExportNotesClick"/>
+          <q-btn outline no-caps color="primary" :label="$t('button.export')" @click="onExportNotesClick" class="buttonSize"/>
         </q-tab-panel>
 
         <q-tab-panel name="cloud">
@@ -246,6 +246,56 @@ export default {
         title: this.$t('alertDialog.noteImportSuccessfulTitle'),
         message: this.$t('alertDialog.noteImportSuccessfulMessage')
       }).onOk(() => {
+      }).onCancel(() => {
+      }).onDismiss(() => {
+      })
+    },
+    deleteCloudStorageProvider () {
+      this.$q.dialog({
+        title: this.$t('confirmDialog.deleteCloudStorageProviderTitle'),
+        message: this.$t('confirmDialog.deleteCloudStorageProviderMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.$store.commit({
+          type: 'resetCloudSettings'
+        })
+      }).onCancel(() => {
+      }).onDismiss(() => {
+      })
+    },
+    deleteAllSettings () {
+      this.$q.dialog({
+        title: this.$t('confirmDialog.deleteAllSettingsTitle'),
+        message: this.$t('confirmDialog.deleteAllSettingsMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.$store.commit({
+          type: 'resetSettings'
+        })
+
+        this.locale = { value: 'en-us' }
+      }).onCancel(() => {
+      }).onDismiss(() => {
+      })
+    },
+    resetApplication () {
+      this.$q.dialog({
+        title: this.$t('confirmDialog.resetApplicationTitle'),
+        message: this.$t('confirmDialog.resetApplicationMessage'),
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.$store.commit({
+          type: 'resetSettings'
+        })
+
+        this.$store.commit({
+          type: 'clearNoteState'
+        })
+
+        this.locale = { value: 'en-us' }
       }).onCancel(() => {
       }).onDismiss(() => {
       })

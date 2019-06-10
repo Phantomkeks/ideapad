@@ -141,8 +141,8 @@ export default {
     },
     openConfirmDialog () {
       this.$q.dialog({
-        title: this.$t('alertDialog.permanentDeleteTitle'),
-        message: this.$t('alertDialog.permanentDeleteMessage'),
+        title: this.$t('confirmDialog.permanentDeleteTitle'),
+        message: this.$t('confirmDialog.permanentDeleteMessage'),
         cancel: true,
         persistent: true
       }).onOk(() => {

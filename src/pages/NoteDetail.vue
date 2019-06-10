@@ -125,8 +125,8 @@ export default {
     },
     onSwipe (oDetails, sNoteId, iListEntryIndex) {
       this.$q.dialog({
-        title: this.$t('alertDialog.deleteListEntryTitle'),
-        message: this.$t('alertDialog.deleteListEntryMessage'),
+        title: this.$t('confirmDialog.deleteListEntryTitle'),
+        message: this.$t('confirmDialog.deleteListEntryMessage'),
         cancel: true,
         persistent: true
       }).onOk(() => {

@@ -140,8 +140,8 @@ export default {
     },
     openDeleteSelectedConfirmDialog () {
       this.$q.dialog({
-        title: this.$t('alertDialog.permanentDeleteSelectedTitle'),
-        message: this.$t('alertDialog.permanentDeleteSelectedMessage'),
+        title: this.$t('confirmDialog.permanentDeleteSelectedTitle'),
+        message: this.$t('confirmDialog.permanentDeleteSelectedMessage'),
         cancel: true,
         persistent: true
       }).onOk(() => {
@@ -152,8 +152,8 @@ export default {
     },
     openEmptyTrashConfirmDialog () {
       this.$q.dialog({
-        title: this.$t('alertDialog.emptyTrashTitle'),
-        message: this.$t('alertDialog.emptyTrashMessage'),
+        title: this.$t('confirmDialog.emptyTrashTitle'),
+        message: this.$t('confirmDialog.emptyTrashMessage'),
         cancel: true,
         persistent: true
       }).onOk(() => {

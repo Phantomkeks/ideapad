@@ -157,3 +157,8 @@ export const overwriteNotes = (state, oPayload) => {
 export const emptyTrash = (state) => {
   state.deletedNotes = []
 }
+
+export const clearNoteState = (state) => {
+  state.notes = []
+  state.deletedNotes = []
+}
