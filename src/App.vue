@@ -14,7 +14,6 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import '~quasar-variables'
   body
     background-color: $grey-2
 </style>

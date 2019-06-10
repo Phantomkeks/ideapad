@@ -32,7 +32,6 @@
 </template>
 
 <style lang="stylus" scoped>
-  @import '~quasar-variables'
   .textAreaInput
     margin-top: 1rem;
 

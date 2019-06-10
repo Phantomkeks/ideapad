@@ -179,8 +179,10 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@import '~quasar-variables'
-.gradient
-  headerGradient()
+<style lang="stylus" scoped>
+  // $
+
+  .gradient {
+    headerGradient();
+  }
 </style>

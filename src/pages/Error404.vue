@@ -11,9 +11,7 @@
   </div>
 </template>
 
-<style lang="stylus">
-  @import '~quasar-variables'
-
+<style lang="stylus" scoped>
   .back-button {
     headerGradient();
   }

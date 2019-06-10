@@ -35,7 +35,6 @@
 </template>
 
 <style lang="stylus" scoped>
-  @import '~quasar-variables'
   .note-card {
     break-inside avoid-column
     margin: 0 0 1rem;
