@@ -23,6 +23,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Dropbox redirects to browser
 - Layout button in create new note view
 - QA over i18n texts
+- Add images to notes
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
