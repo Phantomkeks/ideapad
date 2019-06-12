@@ -7,24 +7,27 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Only client app without need of a backend
 - Cloud Storage Provider possible, but not needed
 
-### To Do 
-- Test all screens and functions on mobile (e.g. draggable, select and scrolling)
+### To Do
+##### Nice To Have
 - Hybrid application for iOS and Android
 - Refactor code and designs (avoid duplicate code)
+- Fix caskets padding in detail view (notes and trash)
+- Dropbox redirects to browser
+- Layout button in create new note view
+- Add images to notes
+
+##### Important Till Play Store Release
+- Test all screens and functions on mobile (e.g. draggable, select and scrolling)
 - Better failure behavior for loading files / importing notes
 - Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
 - Add Google Drive as Cloud Storage Provider
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
 - Add file input to cloud storage setting -> so the user can say where to put or where get the note file
 - Check import of duplicate ids
-- Fix caskets padding in detail view (notes and trash)
 - Add splash screen icons
 - Fix app icon
 - Export does not work on mobile
-- Dropbox redirects to browser
-- Layout button in create new note view
 - QA over i18n texts
-- Add images to notes
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -33,14 +36,9 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Open a terminal and run 'quasar dev'
 
 ### Build APK
-- sudo quasar build -m cordova -T android
-- sudo cordova build
+- run "bash build_cordova_apk.sh" in src-cordova
 
-- sudo cordova platform remove android;
-- sudo cordova platform add android;
-- sudo cordova build android;
-
-### Git
+### Git Commands
 Undo Commits:
 - git reset --soft HEAD~2
 
