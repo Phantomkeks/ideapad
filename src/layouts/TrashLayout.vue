@@ -20,7 +20,7 @@
           icon="more_vert"
           v-if="selectedNoteIds.length === 0 && deletedNotes.length > 0"
         >
-          <q-menu persistent auto-close>
+          <q-menu auto-close>
             <q-list style="min-width: 100px">
               <q-item clickable @click="openEmptyTrashConfirmDialog">
                 <q-item-section avatar>
@@ -45,7 +45,7 @@
             {{ selectedNoteIds.length }}
           </q-badge>
 
-          <q-menu persistent auto-close>
+          <q-menu auto-close>
             <q-list style="min-width: 100px">
               <q-item clickable @click="onRestoreSelectedClick">
                 <q-item-section avatar>

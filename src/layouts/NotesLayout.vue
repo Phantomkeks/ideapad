@@ -24,7 +24,7 @@
             {{ selectedNoteIds.length }}
           </q-badge>
 
-          <q-menu persistent auto-close>
+          <q-menu auto-close>
             <q-list style="min-width: 100px">
               <q-item clickable @click="onCopySelectedClick">
                 <q-item-section avatar>

@@ -30,7 +30,7 @@
           icon="more_vert"
           v-if="bOverviewMoreButtons || bTrashMoreButtons"
         >
-          <q-menu persistent auto-close>
+          <q-menu auto-close>
             <q-list style="min-width: 100px" v-if="bOverviewMoreButtons">
               <q-item clickable @click="onCopyNoteCLick">
                 <q-item-section avatar>
