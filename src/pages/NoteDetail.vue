@@ -16,8 +16,8 @@
             <q-icon name="delete"/>
           </template>
 
-          <div class="row items-baseline divPadding">
-            <q-checkbox color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+          <div class="row items-start divPadding">
+            <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
             <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
                      :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
           </div>
@@ -51,6 +51,9 @@
 
   .divPadding
     padding: 0 5px 0 5px;
+
+  .checkBoxMargin
+    margin-top: 10px;
 
   .add-button
     headerGradient();

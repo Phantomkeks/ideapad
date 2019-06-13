@@ -11,7 +11,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 ##### Nice To Have
 - Hybrid application for iOS and Android
 - Refactor code and designs (avoid duplicate code)
-- Fix caskets padding in detail view (notes and trash)
 - Dropbox redirects to browser
 - Layout button in create new note view
 - Add images to notes
@@ -22,12 +21,13 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Automatically Synchronise notes when Cloud Storage Provider is maintained (interval / program start sync)
 - Add Google Drive as Cloud Storage Provider
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
-- Add file input to cloud storage setting -> so the user can say where to put or where get the note file
+- Add file input to cloud storage setting -> so the user can say where to put or where get the note file from the cloud storage
 - Check import of duplicate ids
 - Add splash screen icons
 - Fix app icon
 - Export does not work on mobile
 - QA over i18n texts
+- Test drag and select / navigation into detail view which is not working every time
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

@@ -9,8 +9,8 @@
       </div>
 
       <q-list class="list" v-if="note.type === noteTypes.Checkbox">
-          <div class="row divPadding" v-for="(detail,index) in note.details" v-bind:key="index">
-            <q-checkbox disable color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+          <div class="row items-start divPadding" v-for="(detail,index) in note.details" v-bind:key="index">
+            <q-checkbox disable class="checkBoxMargin" color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
             <q-input disable class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
                      :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
           </div>
@@ -39,6 +39,9 @@
 
   .divPadding
     padding: 0 5px 0 5px;
+
+  .checkBoxMargin
+    margin-top: 10px;
 
   .add-button
     headerGradient();

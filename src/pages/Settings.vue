@@ -28,9 +28,9 @@
             v-model="locale"
           />
 
-            <q-btn no-caps outline color="primary" class="q-mb-sm q-mt-md  full-width" :label="$t('button.deleteCSP')" @click="deleteCloudStorageProvider"/>
-            <q-btn no-caps outline color="primary" class="q-my-sm full-width" :label="$t('button.deleteAllSettings')" @click="deleteAllSettings"/>
-            <q-btn no-caps outline color="primary" class="q-mt-sm full-width" :label="$t('button.resetApp')" @click="resetApplication"/>
+          <q-btn no-caps outline color="primary" class="q-mt-md full-width" :label="$t('button.deleteCSP')" @click="deleteCloudStorageProvider"/>
+          <q-btn no-caps outline color="primary" class="q-mt-sm full-width" :label="$t('button.deleteAllSettings')" @click="deleteAllSettings"/>
+          <q-btn no-caps outline color="primary" class="q-mt-sm full-width" :label="$t('button.resetApp')" @click="resetApplication"/>
 
         </q-tab-panel>
 
@@ -48,8 +48,8 @@
           <q-field outlined :label="$t('input.selectSourceFile')" stack-label>
             <template v-slot:control>
               <div class="self-center full-width no-outline" tabindex="0">
-                <label for="files" class="btn">{{ $t('input.chooseSourceFile') }}</label>
-                <input id="files" style="visibility: hidden; display: none;" type="file" @change="onImportNotesClick"/>
+                <label for="fileImport" class="btn">{{ $t('input.chooseSourceFile') }}</label>
+                <input id="fileImport" style="visibility: hidden; display: none;" type="file" @change="onImportNotesClick"/>
                 <label class="q-ml-md">{{ filePath != null ? filePath : $t('placeholder.noFileChosen') }}</label>
               </div>
             </template>
