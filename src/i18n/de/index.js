@@ -32,7 +32,8 @@ export default {
     description: 'Beschreibung',
     listEntry: 'Listeneintrag',
     dots: '...',
-    noFileChosen: 'Keine Datei ausgewählt'
+    noFileChosen: 'Keine Datei ausgewählt',
+    writeNote: 'Notiz schreiben...'
   },
 
   input: {

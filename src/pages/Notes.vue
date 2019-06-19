@@ -1,8 +1,8 @@
 <template>
-  <q-pull-to-refresh :disable="dragged" icon="img:assets/three_post_its_752x752.png" @refresh="refresh">
+  <q-pull-to-refresh :disable="dragged">
     <q-page>
       <q-list class="masonry">
-        <draggable v-model="notes" @start="dragged=true" @end="dragged=false">
+        <draggable :disabled="!!noteSelected" v-model="notes" @start="onStart" @end="onEnd" :options="{delay:50}">
           <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
                   @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
                   @click="onNoteClick(note)"
@@ -43,9 +43,9 @@
         </draggable>
       </q-list>
 
-      <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
-      </q-page-sticky>
+<!--      <q-page-sticky position="bottom-right" :offset="[18, 18]">-->
+<!--        <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>-->
+<!--      </q-page-sticky>-->
 
       <div class="fixed-center text-center" v-if="notes.length === 0" style="width: 10rem">
         <q-img src="assets/three_post_its_752x752.png" style="height: 10rem"/>
@@ -93,14 +93,22 @@ export default {
   },
   data () {
     return {
-      touchDuration: 100,
+      touchDuration: 150,
       longTouchDuration: 300,
       timer: undefined,
       afterHighlightedTimer: undefined,
       afterHighlighted: false,
+      scrolling: false,
+      scrollingEndTimer: undefined,
       dragged: false,
       noteTypes: this.$noteTypes
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScrolling)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScrolling)
   },
   computed: {
     notes: {
@@ -113,11 +121,28 @@ export default {
           notes: aNotes
         })
       }
+    },
+    noteSelected () {
+      return this.notes.find(function (oNote) {
+        return oNote.highlighted === true
+      })
     }
   },
   methods: {
+    handleScrolling () {
+      // this.scrolling = true
+      // console.log(this.scrolling)
+      //
+      // this.scrollingEndTimer = setTimeout(function () {
+      //   this.scrolling = false
+      // }.bind(this), 100)
+      //
+      // console.log(this.scrolling)
+    },
     startTouchEvent (oNote) {
-      this.timer = setTimeout(this.onLongTouch.bind(this, oNote), this.touchDuration)
+      if (!this.scrolling) {
+        this.timer = setTimeout(this.onLongTouch.bind(this, oNote), this.touchDuration)
+      }
     },
     stopTouchEvent () {
       if (this.timer) {
@@ -125,7 +150,7 @@ export default {
       }
     },
     onLongTouch (oNote) {
-      if (!this.dragged) {
+      if (!this.dragged && !this.scrolling) {
         if (oNote.highlighted) {
           this.revertAfterHighlighted()
           this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.longTouchDuration)
@@ -137,7 +162,7 @@ export default {
       this.afterHighlighted = !this.afterHighlighted
     },
     onNoteClick (oNote) {
-      if (!this.dragged && !oNote.highlighted && !this.afterHighlighted) {
+      if (!this.noteSelected && !oNote.highlighted && !this.afterHighlighted) {
         this.$router.push('/notes/detail/' + oNote.id)
       }
     },
@@ -151,6 +176,12 @@ export default {
         // TODO: send state commit and trigger cloud storage upload
         done()
       }, 1000)
+    },
+    onStart () {
+      this.dragged = true
+    },
+    onEnd () {
+      this.dragged = false
     }
   }
 }

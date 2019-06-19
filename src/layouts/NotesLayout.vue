@@ -8,10 +8,22 @@
           round
           @click="leftDrawerOpen = !leftDrawerOpen"
           icon="menu"
+          v-if="selectedNoteIds.length <= 0"
         />
-        <q-toolbar-title>
+        <q-toolbar-title v-if="selectedNoteIds.length <= 0">
           {{ $t('appTitle') }}
         </q-toolbar-title>
+
+        <q-btn
+          flat
+          dense
+          round
+          icon="close"
+          @click="resetHighlighted"
+          v-if="selectedNoteIds.length > 0"
+        />
+
+        <q-space />
 
         <q-btn
           flat
@@ -86,6 +98,12 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer bordered class="background-color: bg-grey-2">
+      <q-toolbar class="justify-content: center">
+        <q-input borderless :placeholder="$t('placeholder.writeNote')" @click="onAddNoteClick"/>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -102,6 +120,10 @@ export default {
   },
   methods: {
     openURL,
+    onAddNoteClick () {
+      const uuidv1 = require('uuid/v1')
+      this.$router.push('/notes/detail/' + uuidv1())
+    },
     onCopySelectedClick () {
       this.$store.commit({
         type: 'copyNotes',
@@ -112,6 +134,13 @@ export default {
       this.$store.commit({
         type: 'removeNotes',
         aNoteIds: this.selectedNoteIds
+      })
+    },
+    resetHighlighted () {
+      this.notes.forEach(function (oNote) {
+        if (oNote.highlighted) {
+          oNote.highlighted = false
+        }
       })
     }
   },

@@ -5,7 +5,7 @@
                type="textarea"/>
 
       <div class="textAreaInput" v-if="note.type === noteTypes.Default">
-        <q-input autogrow outlined class="bg-white" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
+        <q-input autogrow outlined class="bg-white" :input-style="{ 'min-height': '200px' }" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
                  type="textarea"/>
       </div>
 
