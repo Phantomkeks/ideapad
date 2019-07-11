@@ -2,7 +2,7 @@
   <q-pull-to-refresh :disable="dragged">
     <q-page>
       <q-list class="masonry">
-        <draggable :disabled="!!noteSelected" v-model="notes" @start="onStart" @end="onEnd" :options="{delay:50}">
+        <draggable :disabled="!!noteSelected" v-model="notes" @start="onStart" @end="onEnd" :options="{delay:50, supportPointer: false}">
           <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
                   @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
                   @click="onNoteClick(note)"
@@ -93,15 +93,17 @@ export default {
   },
   data () {
     return {
-      touchDuration: 150,
-      longTouchDuration: 300,
+      touchDuration: 250,
+      longTouchDuration: 400,
+      afterScrollingDuration: 1000,
       timer: undefined,
       afterHighlightedTimer: undefined,
       afterHighlighted: false,
       scrolling: false,
       scrollingEndTimer: undefined,
       dragged: false,
-      noteTypes: this.$noteTypes
+      noteTypes: this.$noteTypes,
+      sortable: undefined
     }
   },
   created () {
@@ -130,14 +132,17 @@ export default {
   },
   methods: {
     handleScrolling () {
-      // this.scrolling = true
-      // console.log(this.scrolling)
-      //
-      // this.scrollingEndTimer = setTimeout(function () {
-      //   this.scrolling = false
-      // }.bind(this), 100)
-      //
-      // console.log(this.scrolling)
+      if (this.scrolling) {
+        return
+      }
+
+      this.scrolling = true
+      this.sortable.disabled = true
+
+      this.scrollingEndTimer = setTimeout(function () {
+        this.scrolling = false
+        this.sortable.disabled = false
+      }.bind(this), this.afterScrollingDuration)
     },
     startTouchEvent (oNote) {
       if (!this.scrolling) {

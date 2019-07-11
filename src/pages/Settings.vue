@@ -10,10 +10,10 @@
         align="justify"
         narrow-indicator
       >
-        <q-tab name="general" :label="$t('tab.general')" />
-        <q-tab name="import" :label="$t('tab.import')" />
-        <q-tab name="export" :label="$t('tab.export')" />
-        <q-tab name="cloud" :label="$t('tab.cloud')" />
+        <q-tab name="general" no-caps :label="$t('tab.general')" />
+        <q-tab name="import" no-caps :label="$t('tab.import')" />
+        <q-tab name="export" no-caps :label="$t('tab.export')" />
+        <q-tab name="cloud" no-caps :label="$t('tab.cloud')" />
       </q-tabs>
 
       <q-separator />

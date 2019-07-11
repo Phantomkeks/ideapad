@@ -20,7 +20,7 @@ export default {
   },
 
   select: {
-    language: 'Wähle deine bevorzugte Sprache:'
+    language: 'Wähle deine bevorzugte Anzeigesprache:'
   },
 
   link: {
@@ -40,17 +40,17 @@ export default {
     importPassphrase: 'Passphrase für Entschlüsselung',
     exportPassphrase: 'Passphrase für Verschlüsselung',
     selectSourceFile: 'Quelldatei auswählen',
-    chooseSourceFile: 'Datei auswählen'
+    chooseSourceFile: 'Quelldatei auswählen'
   },
 
   button: {
     upload: 'Hochladen',
     download: 'Herunterladen',
-    deleteCSP: 'Cloud-Speicheranbieter löschen',
-    deleteAllSettings: 'Alle Einstellungen löschen',
-    resetApp: 'Applikation zurücksetzen',
+    deleteCSP: 'Cloud Anbindung löschen',
+    deleteAllSettings: 'Einstellungen zurücksetzen',
+    resetApp: 'Anwendung zurücksetzen',
     export: 'Export',
-    continue: 'Fortsetzen',
+    continue: 'Weiter',
     back: 'Zurück',
     backToSelect: 'Zurück zur Auswahl'
   },
@@ -76,7 +76,7 @@ export default {
     },
     authenticate: {
       title: 'Authentifizierung',
-      description: 'Mit Dropbox authentifizieren und der App erlauben deine Notizen im Cloudspeicher zu speichern.'
+      description: 'Authentifiziere dich mit Dropbox und erlaube der App, deine Notizen verschlüsselt im Cloud-Speicher zu sichern.'
     },
     synchronise: {
       title: 'Synchronisation',
@@ -87,9 +87,9 @@ export default {
   setting: {
     title: {
       general: 'Allgemeine Einstellungen',
-      importNotes: 'Notizen Importieren',
-      exportNotes: 'Notizen Exportieren',
-      cloudStorageIntegration: 'Cloudspeicher-Integration'
+      importNotes: 'Notizen importieren',
+      exportNotes: 'Notizen exportieren',
+      cloudStorageIntegration: 'Anbindung an Cloud-Speicher'
     }
   },
 
@@ -125,11 +125,11 @@ export default {
     emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
     deleteListEntryTitle: 'Bestätigen',
     deleteListEntryMessage: 'Den ausgewählten Listeneintrag dauerhaft löschen?',
-    deleteCloudStorageProviderTitle: 'Bestätigen',
-    deleteCloudStorageProviderMessage: 'Die Cloudspeicher-Verbindung löschen?',
-    deleteAllSettingsTitle: 'Bestätigen',
-    deleteAllSettingsMessage: 'Alle Einstellungen löschen?',
-    resetApplicationTitle: 'Bestätigen',
-    resetApplicationMessage: 'Die Anwendung zurücksetzen?'
+    deleteCloudStorageProviderTitle: 'Cloud Anbindung löschen',
+    deleteCloudStorageProviderMessage: 'Deine Daten werden nicht mehr in der Cloud gesichert, sondern nur noch auf deinem Gerät.',
+    deleteAllSettingsTitle: 'Einstellung zurücksetzen',
+    deleteAllSettingsMessage: 'Setzt deine Einstellungen und die Anbindung an den Cloud-Speicheranbieter zurück.',
+    resetApplicationTitle: 'Anwendung zurücksetzen',
+    resetApplicationMessage: 'Setzt alle Einstellungen zurück und löscht deine gespeicherten Notizen.'
   }
 }
