@@ -1,5 +1,6 @@
 <template>
-  <q-pull-to-refresh :disable="dragged">
+  <q-pull-to-refresh :disable="true">
+<!--  <q-pull-to-refresh :disable="dragged">-->
     <q-page>
       <q-list class="masonry">
         <draggable :disabled="!!noteSelected" v-model="notes" @start="onStart" @end="onEnd" :options="{delay:50, supportPointer: false}">
