@@ -1,27 +1,24 @@
 <template>
-  <q-page>
+  <q-page class="background">
     <div class="q-pa-md">
-      <q-input outlined autogrow class="bg-white" v-model="textAreaTitle" :placeholder="$t('placeholder.title')"
-               type="textarea"/>
+      <q-input autogrow borderless v-model="textAreaTitle" :placeholder="$t('placeholder.title')"/>
 
       <div class="textAreaInput" v-if="note.type === noteTypes.Default">
-        <q-input autogrow outlined class="bg-white" :input-style="{ 'min-height': '200px' }" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
+        <q-input autogrow borderless :input-style="{ 'min-height': '200px' }" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
                  type="textarea"/>
       </div>
 
       <q-list class="list" v-if="note.type === noteTypes.Checkbox">
-        <q-slide-item @action="onSwipe($event, note.id, index)" right-color="red" v-for="(detail,index) in note.details"
-                      v-bind:key="index" v-ripple>
-          <template v-slot:right>
-            <q-icon name="delete"/>
-          </template>
 
-          <div class="row items-start divPadding">
-            <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
-            <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
-                     :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
+        <div class="row items-start divPadding" v-for="(detail,index) in note.details"
+             v-bind:key="index">
+          <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+          <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
+                   :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
+          <div class="listEntryDelete checkBoxMargin">
+            <q-icon name="clear" color="primary" @click="onDelete(note.id, index)"/>
           </div>
-        </q-slide-item>
+        </div>
 
         <div class="row justify-center">
           <q-btn fab icon="add" text-color="white" class="add-button" @click="addNewListEntry"/>
@@ -33,7 +30,7 @@
 
 <style lang="stylus" scoped>
   .textAreaInput
-    margin-top: 1rem;
+    margin-top: 0rem;
 
   .list
     margin-top: 1rem;
@@ -58,6 +55,12 @@
   .add-button
     headerGradient();
     margin: 5px 0 5px 0;
+
+  .background
+    background-color: white;
+
+  .listEntryDelete
+    font-size: 1.5rem;
 </style>
 
 <script>
@@ -126,7 +129,7 @@ export default {
     addNewListEntry: function () {
       this.note.details.push({ text: '', ticked: false })
     },
-    onSwipe (oDetails, sNoteId, iListEntryIndex) {
+    onDelete: function (sNoteId, iListEntryIndex) {
       this.$q.dialog({
         title: this.$t('confirmDialog.deleteListEntryTitle'),
         message: this.$t('confirmDialog.deleteListEntryMessage'),
@@ -140,7 +143,6 @@ export default {
         })
       }).onCancel(() => {
       }).onDismiss(() => {
-        oDetails.reset()
       })
     }
   },

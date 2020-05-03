@@ -1,5 +1,5 @@
 # Ideapad
-![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Ideapad Logo")  
+![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Ideapad Logo")
 
 Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 
@@ -32,7 +32,11 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - After long touch on one note -> long touch not needed for others (short touch)
 - Add enhancements to Trash view
 - Refresh pull highlights note
-- Delete CLoud Storage Provider Button -> Put it into Cloud Tab
+- Delete Cloud Storage Provider Button -> Put it into Cloud Tab
+- Clean Read Me
+- Adapt UI
+- Remove not needed functions and clean everything to a simple setup
+- Revert functionality
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -49,11 +53,11 @@ Undo Commits:
 
 Local:
 - git config user.name <NAME>
-- git config user.email <EMAIL> 
+- git config user.email <EMAIL>
 
 Global:
 - git config --global user.name <NAME>
-- git config --global user.email <EMAIL> 
+- git config --global user.email <EMAIL>
 
 ### Further Links
 
