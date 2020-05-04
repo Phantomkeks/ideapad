@@ -81,7 +81,7 @@ export default {
         }.bind(this))
         .catch(function (oError) {
           this.openAlertDialog(this.$t('alertDialog.cloudUploadSyncFailedTitle'), this.$t('alertDialog.cloudUploadSyncFailedMessage'))
-          console.log(oError)
+          // console.log(oError)
         }.bind(this))
         .then(function () {
           // always executed
@@ -119,7 +119,7 @@ export default {
         }.bind(this))
         .catch(function (oError) {
           this.openAlertDialog(this.$t('alertDialog.cloudDownloadSyncFailedTitle'), this.$t('alertDialog.cloudDownloadSyncFailedMessage'))
-          console.log(oError)
+          // console.log(oError)
         }.bind(this))
         .then(function () {
           // always executed

@@ -178,7 +178,6 @@ export default {
     },
     refresh (done) {
       setTimeout(() => {
-        console.log('Refresh')
         // TODO: send state commit and trigger cloud storage upload
         done()
       }, 1000)

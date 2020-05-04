@@ -40,6 +40,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Add GitHub Actions for Build Steps?
 - Adapt coding guidelines
 - Remove duplicate code
+- Mobile tests -> bigger font
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
