@@ -2,21 +2,24 @@
   <q-page class="background">
     <div class="q-pa-md">
       <q-input autogrow borderless v-model="textAreaTitle" :placeholder="$t('placeholder.title')"/>
-
       <div class="textAreaInput" v-if="note.type === noteTypes.Default">
-        <q-input autogrow borderless :input-style="{ 'min-height': '200px' }" v-model="textAreaInput" :placeholder="$t('placeholder.description')"
+        <q-input autogrow borderless :input-style="{ 'min-height': '200px' }" v-model="textAreaInput"
+                 :placeholder="$t('placeholder.description')"
                  type="textarea"/>
       </div>
 
-      <q-list class="list" v-if="note.type === noteTypes.Checkbox">
-
-        <div class="row items-start divPadding" v-for="(detail,index) in note.details"
+      <q-list v-if="note.type === noteTypes.Checkbox">
+        <div class="row items-start" v-for="(detail,index) in note.details"
              v-bind:key="index">
-          <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked" @input="updateListEntryTicked($event, index)"/>
+          <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked"
+                      @input="updateListEntryTicked($event, index)"/>
           <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
-                   :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"/>
-          <div class="listEntryDelete checkBoxMargin">
-            <q-icon name="clear" color="primary" @click="onDelete(note.id, index)"/>
+                   :class="{lineThrough:detail.ticked}" v-on:input="updateListEntryText($event, index)"
+                   @focus="detail.deleteVisible = true"
+                   @blur="detail.deleteVisible = false"
+          />
+          <div class="listEntryDelete checkBoxMargin" v-if="detail.deleteVisible">
+            <q-icon name="clear" color="grey" @click="onDelete(note.id, index)"/>
           </div>
         </div>
 

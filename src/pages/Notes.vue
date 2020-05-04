@@ -44,7 +44,7 @@
         </draggable>
       </q-list>
 
-<!--      <q-page-sticky position="bottom-right" :offset="[18, 18]">-->
+<!--      <q-page-sticky position="bottom" :offset="[18, 18]">-->
 <!--        <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>-->
 <!--      </q-page-sticky>-->
 
