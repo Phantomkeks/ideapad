@@ -1,38 +1,38 @@
-export const updateImportPassphrase = (state, oPayload) => {
-  state.settings.importPassphrase = oPayload.importPassphrase
+export const updateImportPassphrase = (state, payload) => {
+  state.settings.importPassphrase = payload.importPassphrase
 }
 
-export const updateExportPassphrase = (state, oPayload) => {
-  state.settings.exportPassphrase = oPayload.exportPassphrase
+export const updateExportPassphrase = (state, payload) => {
+  state.settings.exportPassphrase = payload.exportPassphrase
 }
 
-export const updateCloudPassphrase = (state, oPayload) => {
-  state.settings.cloudPassphrase = oPayload.cloudPassphrase
+export const updateCloudPassphrase = (state, payload) => {
+  state.settings.cloudPassphrase = payload.cloudPassphrase
 }
 
-export const updateDropboxToken = (state, oPayload) => {
-  state.settings.dropboxToken = oPayload.dropboxToken
+export const updateDropboxToken = (state, payload) => {
+  state.settings.dropboxToken = payload.dropboxToken
 }
 
-export const updateGoogleDriveToken = (state, oPayload) => {
-  state.settings.googleDriveToken = oPayload.googleDriveToken
+export const updateGoogleDriveToken = (state, payload) => {
+  state.settings.googleDriveToken = payload.googleDriveToken
 }
 
-export const updateCloudIntegrationStep = (state, oPayload) => {
-  state.settings.cloudIntegrationStep = oPayload.cloudIntegrationStep
+export const updateCloudIntegrationStep = (state, payload) => {
+  state.settings.cloudIntegrationStep = payload.cloudIntegrationStep
 }
 
-export const updateSelectedLanguage = (state, oPayload) => {
-  state.settings.selectedLanguage = oPayload.selectedLanguage
+export const updateSelectedLanguage = (state, payload) => {
+  state.settings.selectedLanguage = payload.selectedLanguage
 }
 
-export const resetCloudSettings = (state, oPayload) => {
+export const resetCloudSettings = (state, payload) => {
   state.settings.dropboxToken = ''
   state.settings.googleDriveToken = ''
   state.settings.cloudIntegrationStep = 1
 }
 
-export const resetSettings = (state, oPayload) => {
+export const resetSettings = (state, payload) => {
   let oSettings = {
     importPassphrase: 'ImportPassphrase',
     exportPassphrase: 'ExportPassphrase',

@@ -129,13 +129,13 @@ export default {
     onRestoreSelectedClick () {
       this.$store.commit({
         type: 'restoreNotes',
-        aNoteIds: this.selectedNoteIds
+        noteIds: this.selectedNoteIds
       })
     },
     onDeleteSelectedClick () {
       this.$store.commit({
         type: 'deleteNotes',
-        aNoteIds: this.selectedNoteIds
+        noteIds: this.selectedNoteIds
       })
     },
     openDeleteSelectedConfirmDialog () {
@@ -165,15 +165,15 @@ export default {
   },
   computed: {
     selectedNoteIds: function () {
-      let aSelectedNoteIds = []
+      let selectedNoteIds = []
 
-      this.deletedNotes.forEach(function (oNote) {
-        if (oNote.highlighted) {
-          aSelectedNoteIds.push(oNote.id)
+      this.deletedNotes.forEach(note => {
+        if (note.highlighted) {
+          selectedNoteIds.push(note.id)
         }
       })
 
-      return aSelectedNoteIds
+      return selectedNoteIds
     }
   }
 }

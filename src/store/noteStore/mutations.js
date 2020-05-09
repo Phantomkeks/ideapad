@@ -1,4 +1,5 @@
 import NoteHelper from '../../helper/NoteHelper'
+import { v4 as uuidv4 } from 'uuid'
 
 export function initialiseStore (state) {
   if (localStorage.getItem('store')) {
@@ -8,150 +9,143 @@ export function initialiseStore (state) {
   }
 }
 
-function _removeNote (state, sNoteId) {
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === sNoteId)
-  if (iNoteIndex < 0) {
+function _removeNote (state, noteId) {
+  const noteIndex = state.notes.findIndex(note => note.id === noteId)
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    let currentDate = new Date(Date.now())
-    let oNote = state.notes[iNoteIndex]
-    oNote.highlighted = false
-    oNote.lastModified = currentDate.toJSON()
-    state.deletedNotes.push(oNote)
-    state.notes.splice(iNoteIndex, 1)
+    const currentDate = new Date(Date.now())
+    const note = state.notes[noteIndex]
+    note.highlighted = false
+    note.lastModified = currentDate.toJSON()
+    state.deletedNotes.push(note)
+    state.notes.splice(noteIndex, 1)
   }
 }
 
-export const removeNote = (state, oPayload) => {
-  _removeNote(state, oPayload.sNoteId)
+export const removeNote = (state, payload) => {
+  _removeNote(state, payload.noteId)
 }
 
-export const removeNotes = (state, oPayload) => {
-  const aNoteIds = oPayload.aNoteIds
+export const removeNotes = (state, payload) => {
+  const noteIds = payload.noteIds
 
-  aNoteIds.forEach(function (sNoteId) {
-    _removeNote(state, sNoteId)
+  noteIds.forEach(function (noteId) {
+    _removeNote(state, noteId)
   })
 }
 
-function _restoreNote (state, sNoteId) {
-  const iNoteIndex = state.deletedNotes.findIndex(oNote => oNote.id === sNoteId)
-  if (iNoteIndex < 0) {
+function _restoreNote (state, noteId) {
+  const noteIndex = state.deletedNotes.findIndex(note => note.id === noteId)
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    let currentDate = new Date(Date.now())
-    let oNote = state.deletedNotes[iNoteIndex]
-    oNote.highlighted = false
-    oNote.lastModified = currentDate.toJSON()
-    state.notes.push(oNote)
-    state.deletedNotes.splice(iNoteIndex, 1)
+    const currentDate = new Date(Date.now())
+    const note = state.deletedNotes[noteIndex]
+    note.highlighted = false
+    note.lastModified = currentDate.toJSON()
+    state.notes.push(note)
+    state.deletedNotes.splice(noteIndex, 1)
   }
 }
 
-export const restoreNote = (state, oPayload) => {
-  _restoreNote(state, oPayload.sNoteId)
+export const restoreNote = (state, payload) => {
+  _restoreNote(state, payload.noteId)
 }
 
-export const restoreNotes = (state, oPayload) => {
-  const aNoteIds = oPayload.aNoteIds
-
-  aNoteIds.forEach(function (sNoteId) {
-    _restoreNote(state, sNoteId)
+export const restoreNotes = (state, payload) => {
+  payload.noteIds.forEach(noteId => {
+    _restoreNote(state, noteId)
   })
 }
 
-function _deleteNote (state, sNoteId) {
-  const iNoteIndex = state.deletedNotes.findIndex(oNote => oNote.id === sNoteId)
-  if (iNoteIndex < 0) {
+function _deleteNote (state, noteId) {
+  const noteIndex = state.deletedNotes.findIndex(note => note.id === noteId)
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    state.deletedNotes.splice(iNoteIndex, 1)
+    state.deletedNotes.splice(noteIndex, 1)
   }
 }
 
-export const deleteNote = (state, oPayload) => {
-  _deleteNote(state, oPayload.sNoteId)
+export const deleteNote = (state, payload) => {
+  _deleteNote(state, payload.noteId)
 }
 
-export const deleteNotes = (state, oPayload) => {
-  const aNoteIds = oPayload.aNoteIds
-
-  aNoteIds.forEach(function (sNoteId) {
-    _deleteNote(state, sNoteId)
+export const deleteNotes = (state, payload) => {
+  payload.noteIds.forEach(function (noteId) {
+    _deleteNote(state, noteId)
   })
 }
 
-function _copyNote (state, sNoteId) {
-  const uuidv1 = require('uuid/v1')
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === sNoteId)
-  if (iNoteIndex < 0) {
+function _copyNote (state, noteId) {
+  const noteIndex = state.notes.findIndex(note => note.id === noteId)
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    let oOldNote = state.notes[iNoteIndex]
-    oOldNote.highlighted = false
+    const oldNote = state.notes[noteIndex]
+    oldNote.highlighted = false
 
-    let oNewNote = NoteHelper.noteConstructor(
-      uuidv1(),
+    const newNote = NoteHelper.noteConstructor(
+      uuidv4(),
       false,
-      oOldNote.type,
+      oldNote.type,
       null,
       null,
-      oOldNote.title,
-      oOldNote.details
+      oldNote.title,
+      oldNote.details
     )
-    state.notes.push(oNewNote)
+    state.notes.push(newNote)
   }
 }
 
-export const copyNote = (state, oPayload) => {
-  _copyNote(state, oPayload.sNoteId)
+export const copyNote = (state, payload) => {
+  _copyNote(state, payload.noteId)
 }
 
-export const copyNotes = (state, oPayload) => {
-  const aNoteIds = oPayload.aNoteIds
-
-  aNoteIds.forEach(function (sNoteId) {
-    _copyNote(state, sNoteId)
+export const copyNotes = (state, payload) => {
+  payload.noteIds.forEach(function (noteId) {
+    _copyNote(state, noteId)
   })
 }
 
-export const updateNote = (state, oPayload) => {
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.oNote.id)
-  if (iNoteIndex < 0) {
-    state.notes.push(oPayload.oNote)
+export const updateNote = (state, payload) => {
+  const noteIndex = state.notes.findIndex(note => note.id === payload.note.id)
+  if (noteIndex < 0) {
+    state.notes.push(payload.note)
   } else {
-    state.notes[iNoteIndex] = oPayload.oNote
+    state.notes[noteIndex] = payload.note
   }
 }
 
-export const deleteNoteEntry = (state, oPayload) => {
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.sNoteId)
+export const deleteNoteEntry = (state, payload) => {
+  const noteIndex = state.notes.findIndex(note => note.id === payload.noteId)
 
-  if (iNoteIndex < 0) {
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    let currentDate = new Date(Date.now())
-    let oNote = state.notes[iNoteIndex]
-    oNote.lastModified = currentDate.toJSON()
-    oNote.details.splice(oPayload.iListEntryIndex, 1)
+    const currentDate = new Date(Date.now())
+    const note = state.notes[noteIndex]
+    note.lastModified = currentDate.toJSON()
+    note.details.splice(payload.listEntryIndex, 1)
   }
 }
 
-export const changeNoteType = (state, oPayload) => {
-  const iNoteIndex = state.notes.findIndex(oNote => oNote.id === oPayload.sNoteId)
+export const changeNoteType = (state, payload) => {
+  const noteIndex = state.notes.findIndex(note => note.id === payload.noteId)
 
-  if (iNoteIndex < 0) {
+  if (noteIndex < 0) {
     throw new Error('Note not found.')
   } else {
-    let currentDate = new Date(Date.now())
-    let oNote = state.notes[iNoteIndex]
-    oNote.lastModified = currentDate.toJSON()
-    oNote.type = oPayload.sNoteType
+    const currentDate = new Date(Date.now())
+    const note = state.notes[noteIndex]
+    note.lastModified = currentDate.toJSON()
+    note.type = payload.noteType
   }
 }
 
-export const overwriteNotes = (state, oPayload) => {
-  state.notes = oPayload.notes
+export const overwriteNotes = (state, payload) => {
+  state.notes = payload.notes
 }
 
 export const emptyTrash = (state) => {

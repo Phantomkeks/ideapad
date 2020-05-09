@@ -5,7 +5,6 @@ module.exports = function (ctx) {
     boot: [
       'axios.js',
       'i18n.js',
-      'constants.js',
       'helper.js'
     ],
 

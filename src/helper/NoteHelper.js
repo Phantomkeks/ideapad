@@ -1,17 +1,17 @@
-import NoteTypes from '../constants/NoteTypes'
+import { NoteTypes } from './constants'
+import { v4 as uuidv4 } from 'uuid'
 
 export default {
-  noteConstructor: (sId, bHighlighted, sType, createdAt, lastModified, sTitle, aDetails) => {
-    const uuidv1 = require('uuid/v1')
+  noteConstructor: (id, highlighted, type, createdAt, lastModified, title, details) => {
     let currentDate = new Date(Date.now())
     return {
-      id: sId || uuidv1(),
-      highlighted: bHighlighted || false,
-      type: sType || NoteTypes.Default,
+      id: id || uuidv4(),
+      highlighted: highlighted || false,
+      type: type || NoteTypes.Default,
       createdAt: createdAt || currentDate.toJSON(),
       lastModified: lastModified || currentDate.toJSON(),
-      title: sTitle || '',
-      details: aDetails || []
+      title: title || '',
+      details: details || []
     }
   }
 }

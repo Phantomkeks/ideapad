@@ -1,4 +1,4 @@
-import NoteTypes from '../../constants/NoteTypes'
+import { NoteTypes } from '../../helper/constants'
 
 export default {
   notes: [

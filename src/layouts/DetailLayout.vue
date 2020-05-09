@@ -20,7 +20,7 @@
           round
           :icon="noteType === noteTypes.Default ? 'format_list_bulleted' : 'notes'"
           @click="changeNoteType(noteType === noteTypes.Default ? noteTypes.Checkbox : noteTypes.Default)"
-          v-if="bOverviewMoreButtons"
+          v-if="overviewMoreButtons"
         />
 
         <q-btn
@@ -28,10 +28,10 @@
           dense
           round
           icon="more_vert"
-          v-if="bOverviewMoreButtons || bTrashMoreButtons"
+          v-if="overviewMoreButtons || trashMoreButtons"
         >
           <q-menu auto-close>
-            <q-list style="min-width: 100px" v-if="bOverviewMoreButtons">
+            <q-list style="min-width: 100px" v-if="overviewMoreButtons">
               <q-item clickable @click="onCopyNoteCLick">
                 <q-item-section avatar>
                   <q-icon name="file_copy"/>
@@ -50,7 +50,7 @@
               </q-item>
             </q-list>
 
-            <q-list style="min-width: 100px" v-if="bTrashMoreButtons">
+            <q-list style="min-width: 100px" v-if="trashMoreButtons">
               <q-item clickable @click="onRestoreClick">
                 <q-item-section avatar>
                   <q-icon name="restore"/>
@@ -79,24 +79,26 @@
 </template>
 
 <script>
+import { NoteTypes } from '../helper/constants'
+
 export default {
   name: 'DetailLayout',
   data () {
     return {
-      bOverviewMoreButtons: false,
-      bTrashMoreButtons: false,
-      noteTypes: this.$noteTypes
+      overviewMoreButtons: false,
+      trashMoreButtons: false,
+      noteTypes: NoteTypes
     }
   },
   watch: {
     '$route': {
-      handler: function (oRoute) {
-        const sId = oRoute.params.id
+      handler: function (route) {
+        const id = route.params.id
 
-        if (oRoute.fullPath.indexOf('/notes/') !== -1) {
-          this.$store.getters.getSingleNote(sId) ? this.bOverviewMoreButtons = true : this.bOverviewMoreButtons = false
-        } else if (oRoute.fullPath.indexOf('/deletedNotes/') !== -1) {
-          this.$store.getters.getSingleDeletedNote(sId) ? this.bTrashMoreButtons = true : this.bTrashMoreButtons = false
+        if (route.fullPath.indexOf('/notes/') !== -1) {
+          this.$store.getters.getSingleNote(id) ? this.overviewMoreButtons = true : this.overviewMoreButtons = false
+        } else if (route.fullPath.indexOf('/deletedNotes/') !== -1) {
+          this.$store.getters.getSingleDeletedNote(id) ? this.trashMoreButtons = true : this.trashMoreButtons = false
         }
       },
       deep: true,
@@ -110,7 +112,7 @@ export default {
     onCopyNoteCLick () {
       this.$store.commit({
         type: 'copyNote',
-        sNoteId: this.$route.params.id
+        noteId: this.$route.params.id
       })
 
       this.$router.push('/notes')
@@ -118,7 +120,7 @@ export default {
     onDeleteNoteCLick () {
       this.$store.commit({
         type: 'removeNote',
-        sNoteId: this.$route.params.id
+        noteId: this.$route.params.id
       })
 
       this.$router.push('/notes')
@@ -126,7 +128,7 @@ export default {
     onRestoreClick () {
       this.$store.commit({
         type: 'restoreNote',
-        sNoteId: this.$route.params.id
+        noteId: this.$route.params.id
       })
 
       this.$router.push('/trash')
@@ -134,7 +136,7 @@ export default {
     onPermanentlyDelete () {
       this.$store.commit({
         type: 'deleteNote',
-        sNoteId: this.$route.params.id
+        noteId: this.$route.params.id
       })
 
       this.$router.push('/trash')
@@ -151,17 +153,17 @@ export default {
       }).onDismiss(() => {
       })
     },
-    changeNoteType (sNoteType) {
+    changeNoteType (noteType) {
       this.$store.commit({
         type: 'changeNoteType',
-        sNoteId: this.$route.params.id,
-        sNoteType: sNoteType
+        noteId: this.$route.params.id,
+        noteType: noteType
       })
     }
   },
   computed: {
     noteType: function () {
-      return this.bOverviewMoreButtons ? this.$store.getters.getSingleNote(this.$route.params.id).type : undefined
+      return this.overviewMoreButtons ? this.$store.getters.getSingleNote(this.$route.params.id).type : undefined
     }
   }
 }

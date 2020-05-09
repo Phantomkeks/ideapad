@@ -6,11 +6,11 @@ Vue.use(VueRouter)
 
 /*
  * If not building with SSR mode, you can
- * directly export the Router instantiation
+ * directly export the router instantiation
  */
 
 export default function (/* { store, ssrContext } */) {
-  const Router = new VueRouter({
+  const router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
 
@@ -21,5 +21,5 @@ export default function (/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   })
 
-  return Router
+  return router
 }

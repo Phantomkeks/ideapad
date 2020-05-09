@@ -185,62 +185,58 @@ export default {
   },
   watch: {
     '$route.params.tab': {
-      handler: function (sTab) {
-        if (sTab) {
-          this.startTab = sTab
-        } else {
-          this.startTab = 'general'
-        }
+      handler: function (tab) {
+        this.startTab = tab || 'general'
       },
       deep: true,
       immediate: true
     }
   },
   methods: {
-    onImportNotesClick (oEvent) {
-      if (oEvent) {
-        let oFile = oEvent.target.files[0]
-        this.filePath = oEvent.target.files[0].name
-        if (!oFile) {
+    onImportNotesClick (event) {
+      if (event) {
+        const file = event.target.files[0]
+        this.filePath = event.target.files[0].name
+        if (!file) {
           return
         }
-        let oFileReader = new FileReader()
-        oFileReader.onload = function (oEvent) {
-          const oCryptoJS = window.CryptoJS
-          let oContents = oEvent.target.result
-          let sDecrypted = oCryptoJS.AES.decrypt(oContents, this.importPassphrase).toString(oCryptoJS.enc.Utf8)
+        const fileReader = new FileReader()
+        fileReader.onload = function (event) {
+          const cryptoJS = window.CryptoJS
+          const contents = event.target.result
+          const decrypted = cryptoJS.AES.decrypt(contents, this.importPassphrase).toString(cryptoJS.enc.Utf8)
           this.$store.commit({
             type: 'overwriteNotes',
-            notes: JSON.parse(sDecrypted)
+            notes: JSON.parse(decrypted)
           })
         }.bind(this)
         this.showLoadingIndicator = true
 
-        let oPromise = new Promise(function (resolve, reject) {
+        const promise = new Promise(function (resolve, reject) {
           setTimeout(function () {
-            resolve(oFileReader.readAsText(oFile))
+            resolve(fileReader.readAsText(file))
           }, 700)
         })
 
-        oPromise.then(function () {
+        promise.then(function () {
           this.showLoadingIndicator = false
           this.openAlertDialog()
         }.bind(this))
       }
     },
     onExportNotesClick () {
-      const aNotes = this.$store.getters.getAllNotes
-      const oCryptoJS = window.CryptoJS
+      const notes = this.$store.getters.getAllNotes
+      const cryptoJS = window.CryptoJS
 
-      let sEncrypted = oCryptoJS.AES.encrypt(JSON.stringify(aNotes), this.exportPassphrase).toString()
-      let sEncodedUri = encodeURI('data:application/json;charset=utf-8,' + sEncrypted)
+      let encrypted = cryptoJS.AES.encrypt(JSON.stringify(notes), this.exportPassphrase).toString()
+      let encodedUri = encodeURI('data:application/json;charset=utf-8,' + encrypted)
 
-      let oLink = document.createElement('a')
-      oLink.setAttribute('href', sEncodedUri)
-      oLink.setAttribute('download', this.fileName)
-      document.body.appendChild(oLink)
-      oLink.click()
-      document.body.removeChild(oLink)
+      const link = document.createElement('a')
+      link.setAttribute('href', encodedUri)
+      link.setAttribute('download', this.fileName)
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     },
     openAlertDialog () {
       this.$q.dialog({
@@ -305,22 +301,22 @@ export default {
   computed: {
     locale: {
       get: function () {
-        return this.languageOptions.find(function (oLanguageOption) {
-          return oLanguageOption.value === this.settings.selectedLanguage
+        return this.languageOptions.find(function (languageOption) {
+          return languageOption.value === this.settings.selectedLanguage
         }.bind(this))
       },
-      set: function (oLocale) {
-        import(`quasar/lang/${oLocale.value}`).then(({ default: messages }) => {
+      set: function (locale) {
+        import(`quasar/lang/${locale.value}`).then(({ default: messages }) => {
           this.$q.lang.set(messages)
         })
-        import(`src/i18n/${oLocale.value}`).then(({ default: messages }) => {
-          this.$i18n.locale = oLocale.value
-          this.$i18n.setLocaleMessage(oLocale.value, messages)
+        import(`src/i18n/${locale.value}`).then(({ default: messages }) => {
+          this.$i18n.locale = locale.value
+          this.$i18n.setLocaleMessage(locale.value, messages)
         })
 
         this.$store.commit({
           type: 'updateSelectedLanguage',
-          selectedLanguage: oLocale.value
+          selectedLanguage: locale.value
         })
       }
     },
@@ -328,11 +324,11 @@ export default {
       get: function () {
         return this.settings ? this.settings.importPassphrase : ''
       },
-      set: function (sPassphrase) {
-        this.settings.importPassphrase = sPassphrase
+      set: function (passphrase) {
+        this.settings.importPassphrase = passphrase
         this.$store.commit({
           type: 'updateImportPassphrase',
-          importPassphrase: sPassphrase
+          importPassphrase: passphrase
         })
       }
     },
@@ -340,11 +336,11 @@ export default {
       get: function () {
         return this.settings ? this.settings.exportPassphrase : ''
       },
-      set: function (sPassphrase) {
-        this.settings.exportPassphrase = sPassphrase
+      set: function (passphrase) {
+        this.settings.exportPassphrase = passphrase
         this.$store.commit({
           type: 'updateExportPassphrase',
-          exportPassphrase: sPassphrase
+          exportPassphrase: passphrase
         })
       }
     },
@@ -352,11 +348,11 @@ export default {
       get: function () {
         return this.settings ? this.settings.cloudIntegrationStep : 1
       },
-      set: function (iCloudIntegrationStep) {
-        this.settings.cloudIntegrationStep = iCloudIntegrationStep
+      set: function (cloudIntegrationStep) {
+        this.settings.cloudIntegrationStep = cloudIntegrationStep
         this.$store.commit({
           type: 'updateCloudIntegrationStep',
-          cloudIntegrationStep: iCloudIntegrationStep
+          cloudIntegrationStep: cloudIntegrationStep
         })
       }
     },

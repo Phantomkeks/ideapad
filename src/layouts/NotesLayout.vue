@@ -99,16 +99,17 @@
       <router-view />
     </q-page-container>
 
-    <q-footer bordered class="background-color: bg-grey-2">
-      <q-toolbar class="justify-content: center">
-        <q-input borderless :placeholder="$t('placeholder.writeNote')" @click="onAddNoteClick"/>
-      </q-toolbar>
-    </q-footer>
+<!--    <q-footer bordered class="background-color: bg-grey-2">-->
+<!--      <q-toolbar class="justify-content: center">-->
+<!--        <q-input borderless :placeholder="$t('placeholder.writeNote')" @click="onAddNoteClick"/>-->
+<!--      </q-toolbar>-->
+<!--    </q-footer>-->
   </q-layout>
 </template>
 
 <script>
 import { openURL } from 'quasar'
+import { v4 as uuidv4 } from 'uuid'
 
 export default {
   name: 'Layout',
@@ -121,40 +122,39 @@ export default {
   methods: {
     openURL,
     onAddNoteClick () {
-      const uuidv1 = require('uuid/v1')
-      this.$router.push('/notes/detail/' + uuidv1())
+      this.$router.push('/notes/detail/' + uuidv4())
     },
     onCopySelectedClick () {
       this.$store.commit({
         type: 'copyNotes',
-        aNoteIds: this.selectedNoteIds
+        noteIds: this.selectedNoteIds
       })
     },
     onDeleteSelectedClick () {
       this.$store.commit({
         type: 'removeNotes',
-        aNoteIds: this.selectedNoteIds
+        noteIds: this.selectedNoteIds
       })
     },
     resetHighlighted () {
-      this.notes.forEach(function (oNote) {
-        if (oNote.highlighted) {
-          oNote.highlighted = false
+      this.notes.forEach(note => {
+        if (note.highlighted) {
+          note.highlighted = false
         }
       })
     }
   },
   computed: {
     selectedNoteIds: function () {
-      let aSelectedNoteIds = []
+      let selectedNoteIds = []
 
-      this.notes.forEach(function (oNote) {
-        if (oNote.highlighted) {
-          aSelectedNoteIds.push(oNote.id)
+      this.notes.forEach(note => {
+        if (note.highlighted) {
+          selectedNoteIds.push(note.id)
         }
       })
 
-      return aSelectedNoteIds
+      return selectedNoteIds
     }
   }
 }

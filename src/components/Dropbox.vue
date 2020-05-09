@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 <template>
   <div>
     <q-input outlined v-model="cloudPassphrase" :type="isPassword ? 'password' : 'text'" label="Passphrase">
@@ -60,28 +61,28 @@ export default {
         return
       }
 
-      const aNotes = this.$store.getters.getAllNotes
-      const oCryptoJS = window.CryptoJS
-      const sEncrypted = oCryptoJS.AES.encrypt(JSON.stringify(aNotes), this.cloudPassphrase).toString()
+      const notes = this.$store.getters.getAllNotes
+      const cryptoJS = window.CryptoJS
+      const encrypted = cryptoJS.AES.encrypt(JSON.stringify(notes), this.cloudPassphrase).toString()
 
-      let oFile = new File([sEncrypted], this.fileName, {
+      const file = new File([encrypted], this.fileName, {
         type: 'text/plain'
       })
 
-      if (!oFile) {
+      if (!file) {
         return
       }
 
       this.loadingIndicator()
       let dbx = new Dropbox.Dropbox({ fetch: Fetch, accessToken: this.dropboxToken })
 
-      dbx.filesUpload({ path: '/' + oFile.name, contents: oFile, mode: 'overwrite' })
-        .then(function (oResponse) {
+      dbx.filesUpload({ path: '/' + file.name, contents: file, mode: 'overwrite' })
+        .then(function (response) {
           this.openAlertDialog(this.$t('alertDialog.cloudUploadSyncSuccessfulTitle'), this.$t('alertDialog.cloudUploadSyncSuccessfulMessage'))
         }.bind(this))
-        .catch(function (oError) {
+        .catch(function (error) {
           this.openAlertDialog(this.$t('alertDialog.cloudUploadSyncFailedTitle'), this.$t('alertDialog.cloudUploadSyncFailedMessage'))
-          // console.log(oError)
+          console.error(error)
         }.bind(this))
         .then(function () {
           // always executed
@@ -99,27 +100,25 @@ export default {
       let dbx = new Dropbox.Dropbox({ fetch: Fetch, accessToken: this.dropboxToken })
 
       dbx.filesDownload({ path: '/' + this.fileName })
-        .then(function (oResponse) {
-          const oCryptoJS = window.CryptoJS
-          let oBlob = oResponse.fileBlob
-          let oFileReader = new FileReader()
+        .then(function (response) {
+          const cryptoJS = window.CryptoJS
+          const blob = response.fileBlob
+          const fileReader = new FileReader()
 
-          oFileReader.addEventListener('load', function () {
-            let sDecrypted = oCryptoJS.AES.decrypt(oFileReader.result, this.cloudPassphrase).toString(oCryptoJS.enc.Utf8)
-
+          fileReader.addEventListener('load', function () {
+            const decrypted = cryptoJS.AES.decrypt(fileReader.result, this.cloudPassphrase).toString(cryptoJS.enc.Utf8)
             this.$store.commit({
               type: 'overwriteNotes',
-              notes: JSON.parse(sDecrypted)
+              notes: JSON.parse(decrypted)
             })
           }.bind(this))
 
-          oFileReader.readAsText(oBlob)
-
+          fileReader.readAsText(blob)
           this.openAlertDialog(this.$t('alertDialog.cloudDownloadSyncSuccessfulTitle'), this.$t('alertDialog.cloudDownloadSyncSuccessfulMessage'))
         }.bind(this))
-        .catch(function (oError) {
+        .catch(function (error) {
           this.openAlertDialog(this.$t('alertDialog.cloudDownloadSyncFailedTitle'), this.$t('alertDialog.cloudDownloadSyncFailedMessage'))
-          // console.log(oError)
+          console.error(error)
         }.bind(this))
         .then(function () {
           // always executed
@@ -129,10 +128,10 @@ export default {
     loadingIndicator () {
       this.showLoadingIndicator = !this.showLoadingIndicator
     },
-    openAlertDialog (sTitle, sMessage) {
+    openAlertDialog (title, message) {
       this.$q.dialog({
-        title: sTitle,
-        message: sMessage
+        title: title,
+        message: message
       }).onOk(() => {
       }).onCancel(() => {
       }).onDismiss(() => {
