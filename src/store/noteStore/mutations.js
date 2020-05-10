@@ -18,7 +18,7 @@ function _removeNote (state, noteId) {
     const note = state.notes[noteIndex]
     note.highlighted = false
     note.lastModified = currentDate.toJSON()
-    state.deletedNotes.push(note)
+    state.deletedNotes.unshift(note)
     state.notes.splice(noteIndex, 1)
   }
 }
@@ -44,7 +44,7 @@ function _restoreNote (state, noteId) {
     const note = state.deletedNotes[noteIndex]
     note.highlighted = false
     note.lastModified = currentDate.toJSON()
-    state.notes.push(note)
+    state.notes.unshift(note)
     state.deletedNotes.splice(noteIndex, 1)
   }
 }
@@ -95,7 +95,7 @@ function _copyNote (state, noteId) {
       oldNote.title,
       oldNote.details
     )
-    state.notes.push(newNote)
+    state.notes.unshift(newNote)
   }
 }
 
@@ -112,7 +112,7 @@ export const copyNotes = (state, payload) => {
 export const updateNote = (state, payload) => {
   const noteIndex = state.notes.findIndex(note => note.id === payload.note.id)
   if (noteIndex < 0) {
-    state.notes.push(payload.note)
+    state.notes.unshift(payload.note)
   } else {
     state.notes[noteIndex] = payload.note
   }
