@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <NoteList v-model="componentNotes"/>
+    <NoteList v-bind:notes="notes" v-bind:status="status"/>
     <q-page-sticky position="bottom" :offset="[18, 18]">
       <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
     </q-page-sticky>
@@ -29,10 +29,12 @@ import { NoteStatus } from '../helper/constants'
 export default {
   name: 'Notes',
   components: { NoteList },
+  data () {
+    return {
+      status: NoteStatus.Created
+    }
+  },
   computed: {
-    componentNotes () {
-      return { notes: this.notes, status: NoteStatus.Created }
-    },
     notes: {
       get: function () {
         return this.$store.getters.getAllNotes

@@ -1,6 +1,6 @@
 <template>
   <q-page class="background">
-    <Note v-model="componentNote"/>
+    <Note v-bind:note="note" v-bind:status="status"/>
   </q-page>
 </template>
 
@@ -16,10 +16,12 @@ import { NoteStatus } from '../helper/constants'
 export default {
   name: 'TrashDetail',
   components: { Note },
+  data () {
+    return {
+      status: NoteStatus.Deleted
+    }
+  },
   computed: {
-    componentNote () {
-      return { note: this.note, status: NoteStatus.Deleted }
-    },
     note () {
       return this.$store.getters.getSingleDeletedNote(this.$route.params.id)
     }

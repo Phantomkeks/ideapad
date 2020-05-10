@@ -38,7 +38,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Mobile tests -> bigger font
 - Package.json versions update
 - Built own draggable?
-- Bug with new components (model does not update correctly -> see Trash view -> delete all)
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

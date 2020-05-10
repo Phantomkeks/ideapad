@@ -2,35 +2,35 @@
   <div class="q-pa-md">
     <q-input autogrow borderless v-model="textAreaTitle"
              :placeholder="$t('placeholder.title')"
-             :class="{ disabled:status === noteStatus.Deleted }"
-             :disable="status === noteStatus.Deleted"/>
-    <div class="textAreaInput" v-if="note.type === noteTypes.Default">
+             :class="{ disabled:status === NoteStatus.Deleted }"
+             :disable="status === NoteStatus.Deleted"/>
+    <div class="textAreaInput" v-if="note.type === NoteTypes.Default">
       <q-input autogrow borderless :input-style="{ 'min-height': '200px' }" v-model="textAreaInput"
-               :class="{ disabled:status === noteStatus.Deleted }"
+               :class="{ disabled:status === NoteStatus.Deleted }"
                :placeholder="$t('placeholder.description')"
                type="textarea"
-               :disable="status === noteStatus.Deleted"/>
+               :disable="status === NoteStatus.Deleted"/>
     </div>
 
-    <q-list v-if="note.type === noteTypes.Checkbox">
+    <q-list v-if="note.type === NoteTypes.Checkbox">
       <div class="row items-start" v-for="(detail,index) in note.details"
            v-bind:key="index">
         <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked"
-                    :disable="status === noteStatus.Deleted"
+                    :disable="status === NoteStatus.Deleted"
                     @input="updateListEntryTicked($event, index)"/>
         <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
-                 :class="{ lineThrough:detail.ticked, disabled:status === noteStatus.Deleted }"
+                 :class="{ lineThrough:detail.ticked, disabled:status === NoteStatus.Deleted }"
                  v-on:input="updateListEntryText($event, index)"
                  @focus="detail.deleteVisible = true"
                  @blur="detail.deleteVisible = false"
-                 :disable="status === noteStatus.Deleted"
+                 :disable="status === NoteStatus.Deleted"
         />
-        <div class="listEntryDelete checkBoxMargin" v-if="detail.deleteVisible && status !== noteStatus.Deleted">
+        <div class="listEntryDelete checkBoxMargin" v-if="detail.deleteVisible && status !== NoteStatus.Deleted">
           <q-icon name="clear" color="grey" @click="onDelete(note.id, index)"/>
         </div>
       </div>
 
-      <div class="row justify-center" v-if="status !== noteStatus.Deleted">
+      <div class="row justify-center" v-if="status !== NoteStatus.Deleted">
         <q-btn fab icon="add" text-color="white" class="add-button" @click="addNewListEntry"/>
       </div>
     </q-list>
@@ -74,13 +74,11 @@ import { NoteTypes, NoteStatus } from '../helper/constants'
 
 export default {
   name: 'Note',
-  props: ['value'],
+  props: ['note', 'status'],
   data () {
     return {
-      note: this.value.note,
-      status: this.value.status,
-      noteTypes: NoteTypes,
-      noteStatus: NoteStatus
+      NoteTypes,
+      NoteStatus
     }
   },
   methods: {

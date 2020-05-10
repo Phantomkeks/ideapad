@@ -1,6 +1,6 @@
 <template>
   <q-page class="background">
-    <Note v-model="componentNote"/>
+    <Note v-bind:note="note" v-bind:status="status"/>
   </q-page>
 </template>
 
@@ -16,10 +16,12 @@ import { NoteStatus, NoteTypes } from '../helper/constants'
 export default {
   name: 'NoteDetail',
   components: { Note },
+  data () {
+    return {
+      status: NoteStatus.Created
+    }
+  },
   computed: {
-    componentNote () {
-      return { note: this.note, status: NoteStatus.Created }
-    },
     note () {
       const note = this.$store.getters.getSingleNote(this.$route.params.id)
       if (!note) {

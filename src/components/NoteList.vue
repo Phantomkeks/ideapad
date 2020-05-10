@@ -2,8 +2,8 @@
   <q-list class="masonry" v-model="notes">
     <q-card @mousedown="startTouchEvent(note)" @mouseleave="stopTouchEvent" @mouseup="stopTouchEvent"
             @touchstart="startTouchEvent(note)" @touchend="stopTouchEvent" @touchcancel="stopTouchEvent"
-            @click="onNoteClick(note, notesStatus)"
-            :class="{highlight:note.highlighted, disabled:notesStatus === noteStatus.Deleted}"
+            @click="onNoteClick(note, status)"
+            :class="{highlight:note.highlighted, disabled:status === NoteStatus.Deleted}"
             class="note-card" bordered flat v-for="(note,id) in notes"
             v-bind:key="id">
       <q-card-section v-if="note.title">
@@ -12,7 +12,7 @@
         </div>
       </q-card-section>
 
-      <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Default">
+      <q-card-section v-if="note.details.length > 0 && note.type === NoteTypes.Default">
         <div v-for="(detail,index) in note.details" v-bind:key="index">
           <div v-if="index < 7">
             {{ detail.text }}
@@ -24,7 +24,7 @@
         </div>
       </q-card-section>
 
-      <q-card-section v-if="note.details.length > 0 && note.type === noteTypes.Checkbox">
+      <q-card-section v-if="note.details.length > 0 && note.type === NoteTypes.Checkbox">
         <div v-for="(detail,index) in note.details" v-bind:key="index">
           <div class="row items-start" v-if="index < 3">
             <q-checkbox disable color="primary" v-model="detail.ticked"/>
@@ -83,11 +83,9 @@ import { NoteTypes, NoteStatus } from '../helper/constants'
 import { v4 as uuidv4 } from 'uuid'
 export default {
   name: 'NoteList',
-  props: ['value'],
+  props: ['notes', 'status'],
   data () {
     return {
-      notes: this.value.notes,
-      notesStatus: this.value.status,
       touchDuration: 250,
       longTouchDuration: 400,
       afterScrollingDuration: 1000,
@@ -96,8 +94,8 @@ export default {
       afterHighlighted: false,
       scrolling: false,
       scrollingEndTimer: undefined,
-      noteTypes: NoteTypes,
-      noteStatus: NoteStatus
+      NoteTypes,
+      NoteStatus
     }
   },
   created () {
@@ -138,9 +136,9 @@ export default {
     revertAfterHighlighted () {
       this.afterHighlighted = !this.afterHighlighted
     },
-    onNoteClick (note, notesStatus) {
+    onNoteClick (note, status) {
       let routerPath
-      if (notesStatus === NoteStatus.Created) {
+      if (status === NoteStatus.Created) {
         routerPath = '/notes/detail/'
       } else {
         routerPath = '/deletedNotes/detail/'
