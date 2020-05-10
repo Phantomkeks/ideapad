@@ -1,15 +1,16 @@
 <template>
   <div class="q-pa-md">
-    <q-input autogrow borderless v-model="textAreaTitle"
+    <q-input autogrow borderless v-model="textAreaTitle" class="titleFontSize"
              :placeholder="$t('placeholder.title')"
              :class="{ disabled:status === NoteStatus.Deleted }"
              :disable="status === NoteStatus.Deleted"/>
     <div class="textAreaInput" v-if="note.type === NoteTypes.Default">
-      <q-input autogrow borderless :input-style="{ 'min-height': '200px' }" v-model="textAreaInput"
+      <q-input autogrow borderless v-model="textAreaInput" type="textarea"
+               class="textFontSize"
                :class="{ disabled:status === NoteStatus.Deleted }"
                :placeholder="$t('placeholder.description')"
-               type="textarea"
-               :disable="status === NoteStatus.Deleted"/>
+               :disable="status === NoteStatus.Deleted"
+      />
     </div>
 
     <q-list v-if="note.type === NoteTypes.Checkbox">
@@ -18,7 +19,7 @@
         <q-checkbox class="checkBoxMargin" color="primary" v-model="detail.ticked"
                     :disable="status === NoteStatus.Deleted"
                     @input="updateListEntryTicked($event, index)"/>
-        <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
+        <q-input class="col textFontSize" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
                  :class="{ lineThrough:detail.ticked, disabled:status === NoteStatus.Deleted }"
                  @input="updateListEntryText($event, index)"
                  @focus="updateShowDelete(detail)"
@@ -38,6 +39,12 @@
 </template>
 
 <style lang="stylus" scoped>
+  .titleFontSize
+    font-size: $titleFontSize
+
+  .textFontSize
+    font-size: $textFontSize
+
   .textAreaInput
     margin-top: 0rem;
 
