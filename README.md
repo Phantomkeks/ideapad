@@ -29,7 +29,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - After long touch on one note -> long touch not needed for others (short touch)
 - Delete Cloud Storage Provider Button -> Put it into Cloud Tab
 - Clean Read Me
-- Adapt UI
+- Adapt UI / clean CSS and bundle it
 - Remove not needed functions and clean everything to a simple setup
 - Revert functionality
 - Add GitHub Actions for Build Steps?

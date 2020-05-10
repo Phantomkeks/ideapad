@@ -18,8 +18,8 @@
           flat
           dense
           round
-          :icon="noteType === NoteTypes.Default ? 'format_list_bulleted' : 'notes'"
-          @click="changeNoteType(noteType === NoteTypes.Default ? NoteTypes.Checkbox : NoteTypes.Default)"
+          :icon="note.type === NoteTypes.Default ? 'format_list_bulleted' : 'notes'"
+          @click="changeNoteType()"
           v-if="!trashMoreButtons && note"
         />
 
@@ -153,11 +153,13 @@ export default {
       }).onDismiss(() => {
       })
     },
-    changeNoteType (noteType) {
+    changeNoteType () {
+      const note = this.$store.getters.getSingleNote(this.$route.params.id)
+      const newNoteType = note.type === NoteTypes.Default ? NoteTypes.Checkbox : NoteTypes.Default
       this.$store.commit({
         type: 'changeNoteType',
         noteId: this.$route.params.id,
-        noteType: noteType
+        noteType: newNoteType
       })
     }
   },
@@ -165,10 +167,6 @@ export default {
     note: function () {
       const id = this.$route.params.id
       return this.$store.getters.getSingleNote(id)
-    },
-    noteType: function () {
-      const note = this.$store.getters.getSingleNote(this.$route.params.id)
-      return note ? note.type : NoteTypes.Default
     }
   }
 }
