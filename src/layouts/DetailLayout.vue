@@ -18,9 +18,9 @@
           flat
           dense
           round
-          :icon="noteType === noteTypes.Default ? 'format_list_bulleted' : 'notes'"
-          @click="changeNoteType(noteType === noteTypes.Default ? noteTypes.Checkbox : noteTypes.Default)"
-          v-if="overviewMoreButtons"
+          :icon="noteType === NoteTypes.Default ? 'format_list_bulleted' : 'notes'"
+          @click="changeNoteType(noteType === NoteTypes.Default ? NoteTypes.Checkbox : NoteTypes.Default)"
+          v-if="!trashMoreButtons && note"
         />
 
         <q-btn
@@ -73,7 +73,7 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
@@ -87,7 +87,7 @@ export default {
     return {
       overviewMoreButtons: false,
       trashMoreButtons: false,
-      noteTypes: NoteTypes
+      NoteTypes
     }
   },
   watch: {
@@ -162,8 +162,13 @@ export default {
     }
   },
   computed: {
+    note: function () {
+      const id = this.$route.params.id
+      return this.$store.getters.getSingleNote(id)
+    },
     noteType: function () {
-      return this.overviewMoreButtons ? this.$store.getters.getSingleNote(this.$route.params.id).type : undefined
+      const note = this.$store.getters.getSingleNote(this.$route.params.id)
+      return note ? note.type : NoteTypes.Default
     }
   }
 }

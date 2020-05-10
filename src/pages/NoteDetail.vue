@@ -11,6 +11,7 @@
 
 <script>
 import Note from '../components/Note'
+import NoteHelper from '../helper/NoteHelper'
 import { NoteStatus, NoteTypes } from '../helper/constants'
 
 export default {
@@ -25,7 +26,7 @@ export default {
     note () {
       const note = this.$store.getters.getSingleNote(this.$route.params.id)
       if (!note) {
-        return this.$noteHelper.noteConstructor(
+        return NoteHelper.noteConstructor(
           this.$route.params.id,
           false,
           NoteTypes.Default,

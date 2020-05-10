@@ -4,8 +4,7 @@ module.exports = function (ctx) {
   return {
     boot: [
       'axios.js',
-      'i18n.js',
-      'helper.js'
+      'i18n.js'
     ],
 
     css: [

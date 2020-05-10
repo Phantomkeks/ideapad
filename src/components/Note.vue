@@ -24,7 +24,6 @@
                  @focus="updateShowDelete(detail)"
                  @blur="updateShowDelete(detail)"
                  :disable="status === NoteStatus.Deleted"
-                 :clearable="detail.deleteIconVisible"
         />
         <div class="listEntryDelete checkBoxMargin" v-if="detail.showDelete && status !== NoteStatus.Deleted">
           <q-icon name="clear" color="grey" @click="onDelete(note.id, index)"/>
@@ -72,6 +71,7 @@
 
 <script>
 import { NoteTypes, NoteStatus } from '../helper/constants'
+import NoteHelper from '../helper/NoteHelper'
 
 export default {
   name: 'Note',
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     commitChangesToStore (noteTitle, noteDetails, type, createdAt) {
-      this.note = this.$noteHelper.noteConstructor(
+      this.note = NoteHelper.noteConstructor(
         this.$route.params.id,
         false,
         type,
