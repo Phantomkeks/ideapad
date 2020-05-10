@@ -23,7 +23,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Check import of duplicate ids
 - Dropbox redirects to browser
 - Add splash screen icons
-- Fix app icon
+- Think about another app logo icon
 - Export does not work on mobile
 - QA over i18n texts (en) / align with German texts
 - After long touch on one note -> long touch not needed for others (short touch)
@@ -37,6 +37,8 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Add GitHub Actions for Build Steps?
 - Mobile tests -> bigger font
 - Built own draggable?
+- Clean Quasar components
+- Remove black font color and set it to grey
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

@@ -5,7 +5,7 @@
       <q-btn fab icon="add" text-color="white" class="add-button" @click="onAddNoteClick"/>
     </q-page-sticky>
     <div class="fixed-center text-center" v-if="notes.length === 0" style="width: 10rem">
-      <q-img src="assets/three_post_its_752x752.png" style="height: 10rem"/>
+      <q-img src="~assets/three_post_its_752x752.png" style="height: 10rem"/>
     </div>
   </q-page>
 </template>

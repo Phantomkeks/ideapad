@@ -56,9 +56,7 @@ module.exports = function (ctx) {
         'QImg',
         'QBadge',
         'QSelect',
-        'QPullToRefresh',
         'QCheckbox',
-        'QSlideItem',
         'QField',
         'QFooter',
         'QSpace'

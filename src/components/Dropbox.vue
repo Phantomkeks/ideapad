@@ -1,4 +1,3 @@
-/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 <template>
   <div>
     <q-input outlined v-model="cloudPassphrase" :type="isPassword ? 'password' : 'text'" label="Passphrase">
@@ -23,6 +22,7 @@
 </style>
 
 <script>
+/* eslint no-console: off */
 import Dropbox from 'dropbox'
 import Fetch from 'isomorphic-fetch'
 export default {
