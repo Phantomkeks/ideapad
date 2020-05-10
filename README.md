@@ -26,7 +26,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Think about another app logo icon
 - Export does not work on mobile
 - QA over i18n texts (en) / align with German texts
-- After long touch on one note -> long touch not needed for others (short touch)
 - Delete Cloud Storage Provider Button -> Put it into Cloud Tab
 - Clean Read Me
 - Adapt UI / clean CSS and bundle it

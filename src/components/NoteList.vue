@@ -87,11 +87,9 @@ export default {
   data () {
     return {
       touchDuration: 250,
-      longTouchDuration: 400,
+      longTouchDuration: 250,
       afterScrollingDuration: 1000,
       timer: undefined,
-      afterHighlightedTimer: undefined,
-      afterHighlighted: false,
       scrolling: false,
       scrollingEndTimer: undefined,
       NoteTypes,
@@ -127,29 +125,30 @@ export default {
     onLongTouch (note) {
       if (!this.scrolling) {
         if (note.highlighted) {
-          this.revertAfterHighlighted()
-          this.afterHighlightedTimer = setTimeout(this.revertAfterHighlighted, this.longTouchDuration)
         }
         note.highlighted = !note.highlighted
       }
     },
-    revertAfterHighlighted () {
-      this.afterHighlighted = !this.afterHighlighted
-    },
     onNoteClick (note, status) {
+      if (this.selecting) {
+        note.highlighted = true
+        return
+      }
       let routerPath
       if (status === NoteStatus.Created) {
         routerPath = '/notes/detail/'
       } else {
         routerPath = '/deletedNotes/detail/'
       }
-
-      if (!note.highlighted && !this.afterHighlighted) {
-        this.$router.push(routerPath + note.id)
-      }
+      this.$router.push(routerPath + note.id)
     },
     onAddNoteClick () {
       this.$router.push('/notes/detail/' + uuidv4())
+    }
+  },
+  computed: {
+    selecting: function () {
+      return this.notes.findIndex(note => note.highlighted) !== -1
     }
   }
 }
