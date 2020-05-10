@@ -74,9 +74,10 @@ import { NoteTypes, NoteStatus } from '../helper/constants'
 
 export default {
   name: 'Note',
-  props: ['note', 'status'],
+  props: ['componentNote', 'status'],
   data () {
     return {
+      note: this.componentNote,
       NoteTypes,
       NoteStatus
     }

@@ -1,6 +1,6 @@
 <template>
   <q-page class="background">
-    <Note v-bind:note="note" v-bind:status="status"/>
+    <Note v-bind:componentNote="note" v-bind:status="status"/>
   </q-page>
 </template>
 
