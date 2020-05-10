@@ -36,7 +36,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Revert functionality
 - Add GitHub Actions for Build Steps?
 - Mobile tests -> bigger font
-- Package.json versions update
 - Built own draggable?
 
 ### Local Setup
