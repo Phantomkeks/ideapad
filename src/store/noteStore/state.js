@@ -12,15 +12,18 @@ export default {
       details: [
         {
           text: 'Go Grocery Shopping',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Play Hollow Knight',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Learn Vue.js',
-          ticked: false
+          ticked: false,
+          showDelete: false
         }
       ]
     },
@@ -34,15 +37,18 @@ export default {
       details: [
         {
           text: 'Enjoy the Sun',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Pay the Bills',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Plan your Vacation Time',
-          ticked: false
+          ticked: false,
+          showDelete: false
         }
       ]
     },
@@ -56,15 +62,18 @@ export default {
       details: [
         {
           text: 'Use Vuex for Storage',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Play Switch on TV',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Write better Vue.js Code',
-          ticked: false
+          ticked: false,
+          showDelete: false
         }
       ]
     },
@@ -78,18 +87,21 @@ export default {
       details: [
         {
           text: 'Drink Coffee while Coding',
-          ticked: true
+          ticked: true,
+          showDelete: false
         },
         {
           text: 'Eat Pizza Test Functionality before Pushing ' +
             'Eat Pizza Test Functionality before Pushing ' +
             'Eat Pizza Test Functionality before Pushing ' +
             'Eat Pizza Pizza Test Functionality before Pushing',
-          ticked: false
+          ticked: false,
+          showDelete: false
         },
         {
           text: 'Test Functionality before Pushing',
-          ticked: true
+          ticked: true,
+          showDelete: false
         }
       ]
     }

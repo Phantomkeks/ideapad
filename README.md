@@ -37,6 +37,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Add GitHub Actions for Build Steps?
 - Mobile tests -> bigger font
 - Built own draggable?
+- Create pages does not have a button for list type
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)

@@ -20,12 +20,13 @@
                     @input="updateListEntryTicked($event, index)"/>
         <q-input class="col" autogrow borderless :value="detail.text" :placeholder="$t('placeholder.listEntry')"
                  :class="{ lineThrough:detail.ticked, disabled:status === NoteStatus.Deleted }"
-                 v-on:input="updateListEntryText($event, index)"
-                 @focus="detail.deleteVisible = true"
-                 @blur="detail.deleteVisible = false"
+                 @input="updateListEntryText($event, index)"
+                 @focus="updateShowDelete(detail)"
+                 @blur="updateShowDelete(detail)"
                  :disable="status === NoteStatus.Deleted"
+                 :clearable="detail.deleteIconVisible"
         />
-        <div class="listEntryDelete checkBoxMargin" v-if="detail.deleteVisible && status !== NoteStatus.Deleted">
+        <div class="listEntryDelete checkBoxMargin" v-if="detail.showDelete && status !== NoteStatus.Deleted">
           <q-icon name="clear" color="grey" @click="onDelete(note.id, index)"/>
         </div>
       </div>
@@ -104,7 +105,7 @@ export default {
       if (textValue && textValue.length > 0) {
         const detailTexts = textValue.split(/\r\n|\r|\n/)
         detailTexts.forEach(text => {
-          noteDetails.push({ text: text, ticked: false })
+          noteDetails.push({ text: text, ticked: false, showDelete: false })
         })
       }
       return noteDetails
@@ -120,7 +121,7 @@ export default {
       this.commitChangesToStore(this.textAreaTitle, details, this.note.type, this.note.createdAt)
     },
     addNewListEntry: function () {
-      this.note.details.push({ text: '', ticked: false })
+      this.note.details.push({ text: '', ticked: false, showDelete: false })
     },
     onDelete: function (noteId, listEntryIndex) {
       this.$q.dialog({
@@ -137,6 +138,9 @@ export default {
       }).onCancel(() => {
       }).onDismiss(() => {
       })
+    },
+    updateShowDelete (detail) {
+      detail.showDelete = !detail.showDelete
     }
   },
   computed: {
