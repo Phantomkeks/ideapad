@@ -98,12 +98,6 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
-<!--    <q-footer bordered class="background-color: bg-grey-2">-->
-<!--      <q-toolbar class="justify-content: center">-->
-<!--        <q-input borderless :placeholder="$t('placeholder.writeNote')" @click="onAddNoteClick"/>-->
-<!--      </q-toolbar>-->
-<!--    </q-footer>-->
   </q-layout>
 </template>
 

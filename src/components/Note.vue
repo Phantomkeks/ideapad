@@ -90,6 +90,19 @@ export default {
       NoteStatus
     }
   },
+  created () {
+    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'undoRedoNote') {
+        const note = mutation.payload.note
+        if (note) {
+          this.note = note
+        }
+      }
+    })
+  },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     commitChangesToStore (noteTitle, noteDetails, type, createdAt) {
       this.note = NoteHelper.noteConstructor(

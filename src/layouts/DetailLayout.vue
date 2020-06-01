@@ -75,8 +75,20 @@
     <q-page-container>
       <router-view/>
     </q-page-container>
+
+    <q-footer bordered class="background-color: bg-grey-2" v-if="noteHistory.length > 1">
+      <q-toolbar class="footerButtons">
+        <q-btn flat dense round color="black" icon="undo" @click="undo" :disabled="historyPointer === 0" :disable="historyPointer === 0"/>
+        <q-btn flat dense round color="black" icon="redo" @click="redo" :disabled="historyPointer + 1 === noteHistory.length" :disable="historyPointer + 1 === noteHistory.length"/>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
+
+<style lang="stylus" scoped>
+  .footerButtons
+    justify-content: center
+</style>
 
 <script>
 import { NoteTypes } from '../helper/constants'
@@ -87,8 +99,22 @@ export default {
     return {
       overviewMoreButtons: false,
       trashMoreButtons: false,
-      NoteTypes
+      NoteTypes,
+      noteHistory: [],
+      historyPointer: 0
     }
+  },
+  created () {
+    this.noteHistory.push(Object.assign({}, this.note))
+    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === 'updateNote' || mutation.type === 'changeNoteType') {
+        this.noteHistory.push(Object.assign({}, mutation.payload.note))
+        this.historyPointer = this.noteHistory.length - 1
+      }
+    })
+  },
+  beforeDestroy () {
+    this.unsubscribe()
   },
   watch: {
     '$route': {
@@ -158,23 +184,43 @@ export default {
       const newNoteType = note.type === NoteTypes.Default ? NoteTypes.Checkbox : NoteTypes.Default
       this.$store.commit({
         type: 'changeNoteType',
-        noteId: this.$route.params.id,
+        note: note,
         noteType: newNoteType
       })
+    },
+    undo () {
+      console.log(this.noteHistory)
+      if (this.historyPointer > 0) {
+        this.historyPointer--
+        this.note = this.noteHistory[this.historyPointer]
+      }
+    },
+    redo () {
+      if (this.historyPointer < this.noteHistory.length - 1) {
+        this.historyPointer++
+        this.note = this.noteHistory[this.historyPointer]
+      }
     }
   },
   computed: {
-    note: function () {
-      const id = this.$route.params.id
-      return this.$store.getters.getSingleNote(id)
+    note: {
+      get: function () {
+        const id = this.$route.params.id
+        return this.$store.getters.getSingleNote(id)
+      },
+      set: function (note) {
+        return this.$store.commit({
+          type: 'undoRedoNote',
+          note: note
+        })
+      }
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  // $
-
+  // $ -> Needed to enable Quasar to load the variables from quasar.variables.styl
   .gradient {
     headerGradient();
   }

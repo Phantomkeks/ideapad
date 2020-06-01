@@ -14,12 +14,16 @@
 
       <q-card-section v-if="note.details.length > 0 && note.type === NoteTypes.Default">
         <div v-for="(detail,index) in note.details" v-bind:key="index">
-          <div v-if="index < 7">
+          <div v-if="index < 7 && detail.text.length < 10">
             {{ detail.text }}
           </div>
 
           <div v-if="index == 7">
             <p>{{ $t('placeholder.dots') }}</p>
+          </div>
+
+          <div v-if="detail.text.length > 10">
+            <p>{{ detail.text.substring(0, 15) }} {{ $t('placeholder.dots') }}</p>
           </div>
         </div>
       </q-card-section>

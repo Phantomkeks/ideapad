@@ -11,13 +11,9 @@
 </template>
 
 <style lang="stylus" scoped>
+  //  $ -> Needed to enable Quasar to load the variables from quasar.variables.styl
   .add-button {
     headerGradient();
-  }
-
-  //  Needed to enable Quasar to use the variables from quasar.variables.styl
-  .highlight {
-    border: 2px solid $primary;
   }
 </style>
 

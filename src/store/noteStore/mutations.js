@@ -118,6 +118,10 @@ export const updateNote = (state, payload) => {
   }
 }
 
+export const undoRedoNote = (state, payload) => {
+  updateNote(state, payload)
+}
+
 export const deleteNoteEntry = (state, payload) => {
   const noteIndex = state.notes.findIndex(note => note.id === payload.noteId)
 
@@ -132,7 +136,7 @@ export const deleteNoteEntry = (state, payload) => {
 }
 
 export const changeNoteType = (state, payload) => {
-  const noteIndex = state.notes.findIndex(note => note.id === payload.noteId)
+  const noteIndex = state.notes.findIndex(note => note.id === payload.note.id)
 
   if (noteIndex < 0) {
     throw new Error('Note not found.')

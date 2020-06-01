@@ -1,7 +1,7 @@
 # Ideapad
 ![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true "Ideapad Logo")
 
-Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
+Ideapad is a small idea and note app with Vue.js and Quasar framework.
 
 ### Features
 - Only client app without need of a backend
@@ -10,8 +10,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 ### To Do
 ##### Nice To Have
 - Hybrid application for iOS and Android
-- Refactor code and designs (avoid duplicate code)
-- Layout button in create new note view
 - Add images to notes
 
 ##### Important Till Play Store Release
@@ -23,18 +21,24 @@ Ideapad is a small idea and note app with Vue.js and Quasar as a basis.
 - Check import of duplicate ids
 - Dropbox redirects to browser
 - Add splash screen icons
-- Think about another app logo icon
+- Think about another app logo icon (Inkscape?)
 - Export does not work on mobile
 - QA over i18n texts (en) / align with German texts
 - Delete Cloud Storage Provider Button -> Put it into Cloud Tab
 - Clean Read Me
-- Adapt UI / clean CSS and bundle it
+- Adapt UI / clean CSS and bundle it // Remove black font color and set it to grey
 - Remove not needed functions and clean everything to a simple setup
 - Revert functionality
-- Add GitHub Actions for Build Steps?
+- Add GitHub Actions for Build Steps? // https://travis-ci.org/
 - Built own draggable?
 - Clean Quasar components
-- Remove black font color and set it to grey
+- Undo Redo function issue with check and uncheck in note detail
+
+- https://support.google.com/googleplay/android-developer/answer/113469?hl=de
+- https://quasar.dev/style/spacing
+- https://coolors.co/f1dede-bbacc1-80727b-909580-545643
+- https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
+- https://www.w3schools.com/html/html5_draganddrop.asp
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
