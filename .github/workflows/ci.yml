@@ -17,10 +17,21 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - name: NPM Install
-      run: npm install
-    - name: Quasar Install
+        node-version: '12.4.0'
+    - name: Install Quasar
       run: npm install -g @quasar/cli
     - name: Quasar Version
       run: quasar -v
+    - name: Install Cordova
+      run: npm install -g cordova
+    - name: Cordova Version
+      run: cordova -v
+    - name: Quasar Build for Cordova
+      run: quasar build -m cordova -T android
+    - name: Build Cordova
+      run: |
+        cordova platform remove android
+        cordova platform add android
+        cordova build android
+      working-directory: ./src-cordova
+    
