@@ -18,4 +18,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm install
+    - name: NPM Install
+      run: npm install
+    - name: Quasar Install
+      run: npm install -g @quasar/cli
+    - name: Quasar Version
+      run: quasar -v
