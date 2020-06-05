@@ -189,7 +189,7 @@ export default {
       })
     },
     undo () {
-      console.log(this.noteHistory)
+      // console.log(this.noteHistory)
       if (this.historyPointer > 0) {
         this.historyPointer--
         this.note = this.noteHistory[this.historyPointer]

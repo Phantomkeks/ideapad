@@ -33,6 +33,8 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - Built own draggable?
 - Clean Quasar components
 - Undo Redo function issue with check and uncheck in note detail
+- GitHub Actions Billing (500 Pushes? 2000 mins?)
+- GitHub Actions Workflow tests
 
 - https://support.google.com/googleplay/android-developer/answer/113469?hl=de
 - https://quasar.dev/style/spacing
