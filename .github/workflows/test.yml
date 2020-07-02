@@ -1,0 +1,18 @@
+name: Generate Cordova APK
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: 'Create a file'
+      run: echo ${{ github.workspace }} > my_file.txt
