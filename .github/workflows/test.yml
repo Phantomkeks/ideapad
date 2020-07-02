@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: 'Create a file'
-      run: echo 'Add value2' >> testfile.txt
+      run: echo 'Add value2' > testfile.txt
     - name: 'Move to directory'
       run: |
         mkdir -p output
