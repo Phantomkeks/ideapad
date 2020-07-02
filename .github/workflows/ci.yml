@@ -36,4 +36,8 @@ jobs:
         cordova platform add android
         cordova build android
       working-directory: ./src-cordova
+    - uses: actions/upload-artifact@v2
+      with:
+        name: app.apk
+        path: /Users/runner/runners/**/work/ideapad/ideapad/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
     
