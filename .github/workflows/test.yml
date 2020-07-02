@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: 'Create a file'
-      run: echo ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/ > app-debug.txt
+      run: echo ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/ > ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.txt
     - name: 'Move to directory'
       run: |
         mkdir -p output
