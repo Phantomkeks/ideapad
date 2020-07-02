@@ -18,8 +18,8 @@ jobs:
       run: echo ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/ > app-debug.txt
     - name: 'Move to directory'
       run: |
-          mkdir -p output
-          yes| cp -rf ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.txt ./output/
+        mkdir -p output
+        yes| cp -rf ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.txt ./output/
     - name: Commit files # commit the output folder
       run: |
         git config --local user.email "test@github.com"
