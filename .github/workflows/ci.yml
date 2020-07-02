@@ -38,6 +38,7 @@ jobs:
       working-directory: ./src-cordova
       
   push-artifact:
+    needs: build-artifact
     runs-on: ubuntu-latest
     strategy:
       matrix:
