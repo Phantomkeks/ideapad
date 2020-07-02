@@ -41,6 +41,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - https://coolors.co/f1dede-bbacc1-80727b-909580-545643
 - https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
 - https://www.w3schools.com/html/html5_draganddrop.asp
+- https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
