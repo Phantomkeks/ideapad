@@ -6,7 +6,7 @@ on:
     branches: [ master ]
     
 jobs:
-  build:
+  build-artifact:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -36,8 +36,26 @@ jobs:
         cordova platform add android
         cordova build android
       working-directory: ./src-cordova
-    - uses: actions/upload-artifact@v2
+      
+  push-artifact:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: Move to Output Directory
+      run: |
+        mkdir -p output
+        yes| cp -rf ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk ./output/
+    - name: Commit Files
+      run: |
+        git config --local user.email "bahr.emanuel@gmail.com"
+        git config --local user.name "Phantomkeks"
+        git add ./output
+        git commit -m "Create APK File"
+    - name: Push changes # push the output folder to your repo
+      uses: ad-m/github-push-action@master
       with:
-        name: app.apk
-        path: /Users/runner/runners/**/work/ideapad/ideapad/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
-    
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
