@@ -6,12 +6,12 @@ on:
     branches: [ master ]
     
 jobs:
-  build-artifact:
+  buildArtifact:
+    name: Build Artifact
     runs-on: macos-latest
     strategy:
       matrix:
         node-version: [12.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
@@ -36,27 +36,33 @@ jobs:
         cordova platform add android
         cordova build android
       working-directory: ./src-cordova
-      
-  push-artifact:
-    needs: build-artifact
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-    - name: Move to Output Directory
-      run: |
-        mkdir -p output
-        yes| cp -rf ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk ./output/
-    - name: Commit Files
-      run: |
-        git config --local user.email "bahr.emanuel@gmail.com"
-        git config --local user.name "Phantomkeks"
-        git add ./output
-        git commit -m "Create APK File"
-    - name: Push changes # push the output folder to your repo
-      uses: ad-m/github-push-action@master
+    - name: Upload Artifact for Job Push Artifact
+      uses: actions/upload-artifact@v1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+        name: artifact
+        path: ${{ github.workspace }}/src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+      
+  pushArtifact:
+    name: Push Artifact
+    needs: buildArtifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact for Job Push Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - name: Move to Output Directory
+        run: |
+          mkdir -p output
+          yes| cp -rf artifact/app-debug.apk ./output/
+      - name: Commit Files
+        run: |
+          git config --local user.email "bahr.emanuel@gmail.com"
+          git config --local user.name "Phantomkeks"
+          git add ./output
+          git commit -m "Create APK File"
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
