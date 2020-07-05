@@ -20,8 +20,6 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - Add file input to cloud storage setting -> so, the user can say where to put or where get the note file from the cloud storage
 - Check import of duplicate ids
 - Dropbox redirects to browser
-- Add splash screen icons
-- Think about another app logo icon (Inkscape?)
 - Export does not work on mobile
 - QA over i18n texts (en) / align with German texts
 - Delete Cloud Storage Provider Button -> Put it into Cloud Tab
@@ -29,7 +27,7 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - Adapt UI / clean CSS and bundle it // Remove black font color and set it to grey
 - Remove not needed functions and clean everything to a simple setup
 - Revert functionality
-- Built own draggable? HTML5 Draggalbe?
+- Built own draggable? HTML5 Draggable?
 - Clean Quasar components
 - Undo Redo function issue with check and uncheck in note detail
 
@@ -40,7 +38,8 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - Open a terminal and run 'quasar dev'
 
 ### Build APK
-- run "bash build_cordova_apk.sh" in src-cordova
+- Run "bash build_cordova_apk.sh" in ./bin folder
+- Or push to the master branch
 
 ### Git Commands
 Undo Commits:
