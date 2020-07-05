@@ -29,19 +29,9 @@ Ideapad is a small idea and note app with Vue.js and Quasar framework.
 - Adapt UI / clean CSS and bundle it // Remove black font color and set it to grey
 - Remove not needed functions and clean everything to a simple setup
 - Revert functionality
-- Add GitHub Actions for Build Steps? // https://travis-ci.org/
-- Built own draggable?
+- Built own draggable? HTML5 Draggalbe?
 - Clean Quasar components
 - Undo Redo function issue with check and uncheck in note detail
-- GitHub Actions Billing (500 Pushes? 2000 mins?)
-- GitHub Actions Workflow tests
-
-- https://support.google.com/googleplay/android-developer/answer/113469?hl=de
-- https://quasar.dev/style/spacing
-- https://coolors.co/f1dede-bbacc1-80727b-909580-545643
-- https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
-- https://www.w3schools.com/html/html5_draganddrop.asp
-- https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions
 
 ### Local Setup
 - Install [Quasar Framework](https://v1.quasar-framework.org/quasar-cli/installation)
@@ -69,25 +59,30 @@ Global:
 ##### Quasar Framework
 - https://v1.quasar-framework.org/vue-components/tabs
 - https://quasar-framework.org/guide/quasar-cli.html
+- https://quasar.dev/style/spacing
 
 ##### Vue.js
 - https://vuetifyjs.com/en/
 - https://laracasts.com/series/learn-vue-2-step-by-step/episodes/3
 - https://vuejs.org/v2/guide/components.html
 - https://github.com/vuejs/awesome-vue
-- https://github.com/axios/axios
 
-##### Icon Libraries
+##### Icon Libraries / Colors
 - https://material.io/tools/icons/?style=baseline
 - https://ionicframework.com/docs/v3/ionicons/
 - https://materialdesignicons.com/
 - https://fontawesome.com/
+- https://coolors.co/f1dede-bbacc1-80727b-909580-545643
 
 ##### Cloud Integration
 - https://www.dropbox.com/developers/documentation/javascript#tutorial
 - https://dropbox.github.io/dropbox-sdk-js/Dropbox.html#filesDownload__anchor
 - https://developers.google.com/api-client-library/javascript/start/start-js
+- https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
 
 ##### Play Store
 - https://support.google.com/googleplay/android-developer/answer/113469
 - https://stackoverflow.com/questions/27435068/how-do-i-put-my-cordova-application-on-the-android-play-store
+
+##### GitHub
+- https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions
