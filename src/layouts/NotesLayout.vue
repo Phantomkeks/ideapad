@@ -99,7 +99,7 @@
 
 <script>
 // import { openURL } from 'quasar';
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useNoteStore } from '../stores/note';
 const noteStore = useNoteStore();
@@ -115,7 +115,7 @@ export default {
   methods: {
     openURL,
     onAddNoteClick() {
-      // this.$router.push('/notes/detail/' + uuidv4());
+      this.$router.push('/notes/detail/' + uuidv4());
     },
     onCopySelectedClick() {
       this.$store.commit({
@@ -157,6 +157,6 @@ export default {
 <!--// $-->
 <!---->
 <!--.gradient {-->
-<!--  headerGradient();-->
+<!--  @extend headerGradient-->
 <!--}-->
 <!--</style>-->

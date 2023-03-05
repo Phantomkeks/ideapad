@@ -252,6 +252,6 @@ export default {
 <style lang="scss" scoped>
 // $ -> Needed to enable Quasar to load the variables from quasar.variables.styl
 .gradient {
-  headerGradient();
+  @extend headerGradient
 }
 </style>

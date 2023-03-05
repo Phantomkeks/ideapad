@@ -82,10 +82,6 @@
   padding: 0.5rem;
 }
 
-.add-button {
-  headerGradient();
-}
-
 .highlight {
   border: 2px solid $primary;
 }
@@ -123,12 +119,12 @@ export default {
       NoteStatus,
     };
   },
-  created() {
-    window.addEventListener('scroll', this.handleScrolling);
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScrolling);
-  },
+  // created() {
+  //   window.addEventListener('scroll', this.handleScrolling);
+  // },
+  // destroyed() {
+  //   window.removeEventListener('scroll', this.handleScrolling);
+  // },
   methods: {
     handleScrolling() {
       if (this.scrolling) {

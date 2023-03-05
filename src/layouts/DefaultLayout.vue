@@ -70,6 +70,6 @@ export default {
 
 <style lang="scss" scoped>
 .gradient {
-  headerGradient();
+  @extend headerGradient
 }
 </style>

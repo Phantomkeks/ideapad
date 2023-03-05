@@ -62,7 +62,7 @@
         <q-btn
           fab
           icon="add"
-          text-color="white"
+          text-color="red"
           class="add-button"
           @click="addNewListEntry"
         />
@@ -71,43 +71,38 @@
   </div>
 </template>
 
-<!--<style lang="scss" scoped>-->
-<!--.titleFontSize-->
-<!--  font-size: $titleFontSize-->
-
-<!--.textFontSize-->
-<!--  font-size: $textFontSize-->
-
-<!--.textAreaInput-->
-<!--  margin-top: 0rem;-->
-
-<!--.list-->
-<!--  margin-top: 1rem;-->
-<!--  background-color: white;-->
-<!--  border: 1px solid rgba(0, 0, 0, 0.24);-->
-<!--  border-radius: 4px;-->
-
-<!--.listInput-->
-<!--  padding: 0;-->
-<!--  padding-top: 5px;-->
-
-<!--.lineThrough-->
-<!--  text-decoration: line-through;-->
-<!--  text-decoration-color: $primary;-->
-
-<!--.divPadding-->
-<!--  padding: 0 5px 0 5px;-->
-
-<!--.checkBoxMargin-->
-<!--  margin-top: 10px;-->
-
-<!--.add-button-->
-<!--  headerGradient();-->
-<!--  margin: 5px 0 5px 0;-->
-
-<!--.listEntryDelete-->
-<!--  font-size: 1.5rem;-->
-<!--</style>-->
+<style lang="scss" scoped>
+/*//<!--.titleFontSize-->*/
+/*//<!--  font-size: $titleFontSize-->*/
+/*//*/
+/*//<!--.textFontSize-->*/
+/*//<!--  font-size: $textFontSize-->*/
+/*//*/
+/*//<!--.textAreaInput-->*/
+/*//<!--  margin-top: 0rem;-->*/
+/*//*/
+/*//<!--.list-->*/
+/*//<!--  margin-top: 1rem;-->*/
+/*//<!--  background-color: white;-->*/
+/*//<!--  border: 1px solid rgba(0, 0, 0, 0.24);-->*/
+/*//<!--  border-radius: 4px;-->*/
+/*//*/
+/*//<!--.listInput-->*/
+/*//<!--  padding: 0;-->*/
+/*//<!--  padding-top: 5px;-->*/
+/*//*/
+/*//<!--.lineThrough-->*/
+/*//<!--  text-decoration: line-through;-->*/
+/*//<!--  text-decoration-color: $primary;-->*/
+/*//*/
+/*//<!--.divPadding-->*/
+/*//<!--  padding: 0 5px 0 5px;-->*/
+/*//*/
+/*//<!--.checkBoxMargin-->*/
+/*//<!--  margin-top: 10px;-->*/
+/*//<!--.listEntryDelete-->*/
+/*//<!--  font-size: 1.5rem;-->*/
+</style>
 
 <script>
 import { NoteTypes, NoteStatus } from '../helper/constants';

@@ -20,11 +20,6 @@
   </q-page>
 </template>
 
-<!--<style lang="scss" scoped>-->
-/*// $ -> Needed to enable Quasar to load the variables from
-quasar.variables.styl*/ /*.add-button {*/ /* headerGradient();*/ /*}*/
-<!--</style>-->
-
 <script>
 // import NoteList from '../components/NoteList';
 import { v4 as uuidv4 } from 'uuid';

@@ -183,6 +183,6 @@ export default {
 // $
 
 .gradient {
-  headerGradient();
+  @extend headerGradient
 }
 </style>

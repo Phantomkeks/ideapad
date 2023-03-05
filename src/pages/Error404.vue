@@ -9,7 +9,7 @@
 
 <style lang="scss" scoped>
 .back-button {
-  headerGradient();
+  @extend headerGradient
 }
 </style>
 
