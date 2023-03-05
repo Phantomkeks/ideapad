@@ -138,15 +138,6 @@
                 <p>{{ $t('step.select.description') }}</p>
 
                 <q-list dense>
-                  <q-item tag="label">
-                    <q-item-section avatar>
-                      <q-radio v-model="cloudProvider" val="dropbox" />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ $t('name.dropbox') }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-
                   <q-item tag="label" disable>
                     <q-item-section avatar>
                       <q-radio v-model="cloudProvider" val="drive" disable />
@@ -177,10 +168,6 @@
               >
                 <p>{{ $t('step.authenticate.description') }}</p>
 
-                <a v-bind:href="dropboxAppId">
-                  {{ $t('link.dropboxAuth') }}
-                </a>
-
                 <q-stepper-navigation>
                   <q-btn
                     outline
@@ -209,8 +196,6 @@
               >
                 <p>{{ $t('step.synchronise.description') }}</p>
 
-                <Dropbox />
-
                 <q-stepper-navigation>
                   <q-btn
                     flat
@@ -235,18 +220,15 @@
   </q-page>
 </template>
 
-<style lang="stylus" scoped></style>
+<style lang="scss" scoped></style>
 
 <script>
-import Dropbox from '../components/Dropbox';
 export default {
   name: 'Settings',
-  components: { Dropbox },
   data() {
     return {
       startTab: undefined,
       fileName: 'notes.txt',
-      cloudProvider: 'dropbox',
       settings: {},
       filePath: null,
       isPasswordImport: true,
@@ -452,14 +434,7 @@ export default {
           cloudIntegrationStep: cloudIntegrationStep,
         });
       },
-    },
-    dropboxAppId() {
-      return this.settings
-        ? 'https://www.dropbox.com/oauth2/authorize?response_type=token&client_id=' +
-            this.settings.dropboxAppId +
-            '&redirect_uri=http://localhost:8080'
-        : '';
-    },
+    }
   },
 };
 </script>

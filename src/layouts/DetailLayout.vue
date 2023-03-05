@@ -103,7 +103,7 @@
   </q-layout>
 </template>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .footerButtons
   justify-content: center
 </style>
@@ -249,7 +249,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 // $ -> Needed to enable Quasar to load the variables from quasar.variables.styl
 .gradient {
   headerGradient();

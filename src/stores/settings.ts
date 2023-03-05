@@ -3,11 +3,6 @@ import { defineStore } from 'pinia';
 interface Setting {
   importPassphrase: string;
   exportPassphrase: string;
-  cloudPassphrase: string;
-  dropboxToken: string;
-  dropboxAppId: string;
-  googleDriveToken: string;
-  cloudIntegrationStep: number;
   selectedLanguage: string;
 }
 
@@ -16,11 +11,6 @@ export const useCounterStore = defineStore('counter', {
     settings: {
       importPassphrase: 'ImportPassphrase',
       exportPassphrase: 'ExportPassphrase',
-      cloudPassphrase: 'CloudPassphrase',
-      dropboxToken: '',
-      dropboxAppId: 'dhok9s70o02egga',
-      googleDriveToken: '',
-      cloudIntegrationStep: 1,
       selectedLanguage: 'en-us',
     } as Setting,
   }),

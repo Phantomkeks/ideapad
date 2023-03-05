@@ -1,5 +1,7 @@
 # To Do
+
 ## Issues
+
 - Cleanup the files and repo
 - Update all files to new versions
 - Bring notes back to life and ensure that everything is running again
@@ -10,12 +12,14 @@
 - Rewrite code with TypeScript
 
 ## Features
+
 - Build MVP for notes and checkbox list (similar to Keep and Standard Notes)
 - Make use of local storage and Firebase as a sync mechanism
 - Dark theme support // Blue and white theme // Orange theme
 - Enable the app to be used via PWA
 
------------------------------
+---
+
 # Notes
 
 ![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true 'Notes Logo')
@@ -42,7 +46,6 @@ Notes is a small idea and note app with Vue.js and Quasar framework.
 - Use sync component of Quasar and cloud sync when on notes screen (also sync on start of app) (Pull-To-Refresh)
 - Add file input to cloud storage setting -> so, the user can say where to put or where get the note file from the cloud storage
 - Check import of duplicate ids
-- Dropbox redirects to browser
 - Export does not work on mobile
 - QA over i18n texts (en) / align with German texts
 - Delete Cloud Storage Provider Button -> Put it into Cloud Tab
@@ -105,13 +108,6 @@ Global:
 - https://fontawesome.com/
 - https://coolors.co/f1dede-bbacc1-80727b-909580-545643
 
-##### Cloud Integration
-
-- https://www.dropbox.com/developers/documentation/javascript#tutorial
-- https://dropbox.github.io/dropbox-sdk-js/Dropbox.html#filesDownload__anchor
-- https://developers.google.com/api-client-library/javascript/start/start-js
-- https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
-
 ##### Play Store
 
 - https://support.google.com/googleplay/android-developer/answer/113469
@@ -120,51 +116,3 @@ Global:
 ##### GitHub
 
 - https://help.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions
-
----
-
----
-
-# Notes (notes)
-
-Small app for writing notes
-
-## Install the dependencies
-
-```bash
-yarn
-# or
-npm install
-```
-
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-
-```bash
-quasar dev
-```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-npm run format
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

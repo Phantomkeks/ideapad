@@ -13,7 +13,7 @@
 <!--  // },-->
 <!--};-->
 <!--</script>-->
-<!--&lt;!&ndash;<style lang="stylus">&ndash;&gt;-->
+<!--&lt;!&ndash;<style lang="scss">&ndash;&gt;-->
 <!--&lt;!&ndash;  body&ndash;&gt;-->
 <!--&lt;!&ndash;    background-color: $grey-2&ndash;&gt;-->
 <!--&lt;!&ndash;</style>&ndash;&gt;-->

@@ -85,7 +85,7 @@
 //     oldNote.highlighted = false;
 //
 //     const newNote = NoteHelper.noteConstructor(
-//       uuidv4(),
+//       uuid(),
 //       false,
 //       oldNote.type,
 //       null,

@@ -4,7 +4,7 @@
   </q-page>
 </template>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .background
   background-color: white;
 </style>

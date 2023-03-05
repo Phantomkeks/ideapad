@@ -1,14 +1,9 @@
 // Code examples:
 // :label="$t('button.upload')"
-// this.$t('alertDialog.missingDropboxTokenTitle')
+// this.$t('alertDialog.token')
 // {{ $t('appTitle') }}
 export default {
   appTitle: 'Notes',
-
-  name: {
-    dropbox: 'Dropbox',
-    googleDrive: 'Google Drive',
-  },
 
   error: {
     404: 'Entschuldige, nichts gefunden...(404)',
@@ -21,10 +16,6 @@ export default {
 
   select: {
     language: 'Wähle deine bevorzugte Anzeigesprache:',
-  },
-
-  link: {
-    dropboxAuth: 'Mit Dropbox authentifizieren',
   },
 
   placeholder: {
@@ -75,15 +66,6 @@ export default {
       description:
         'Wähle den Cloud-Speicheranbieter, der deinen Bedürfnissen am besten entspricht, um deine verschlüsselten Notizen zu speichern.',
     },
-    authenticate: {
-      title: 'Authentifizierung',
-      description:
-        'Authentifiziere dich mit Dropbox und erlaube der App, deine Notizen verschlüsselt im Cloud-Speicher zu sichern.',
-    },
-    synchronise: {
-      title: 'Synchronisation',
-      description: 'Synchronisiere deine aktuellen Notizen mit Dropbox.',
-    },
   },
 
   setting: {
@@ -106,9 +88,6 @@ export default {
   alertDialog: {
     noteImportSuccessfulTitle: 'Notiz Import',
     noteImportSuccessfulMessage: 'Der Notiz-Import was erfolgreich.',
-    missingDropboxTokenTitle: 'Fehlender Dropbox Token',
-    missingDropboxTokenMessage:
-      'Du musst dich zuerst mit Dropbox authentifizieren.',
     cloudUploadSyncSuccessfulTitle: 'Cloud-Upload',
     cloudUploadSyncSuccessfulMessage: 'Der Cloud-Upload war erfolgreich.',
     cloudUploadSyncFailedTitle: 'Cloud-Upload Gescheitert',

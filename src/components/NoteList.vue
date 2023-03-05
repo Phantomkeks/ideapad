@@ -68,45 +68,46 @@
   </q-list>
 </template>
 
-<!--<style lang="stylus" scoped>-->
-<!--.note-card {-->
-<!--  break-inside avoid-column-->
-<!--  margin: 0 0 1rem;-->
-<!--  width: 100%;-->
-<!--  transition: border 0.2s ease-in-out;-->
-<!--}-->
+<style lang="scss" scoped>
+.note-card {
+  break-inside avoid-column
+  margin: 0 0 1rem;
+  width: 100%;
+  transition: border 0.2s ease-in-out;
+}
 
-<!--.masonry {-->
-<!--  column-count: 2;-->
-<!--  column-gap: 0.5rem;-->
-<!--  padding: 0.5rem;-->
-<!--}-->
+.masonry {
+  column-count: 2;
+  column-gap: 0.5rem;
+  padding: 0.5rem;
+}
 
-<!--.add-button {-->
-<!--  headerGradient();-->
-<!--}-->
+.add-button {
+  headerGradient();
+}
 
-<!--.highlight {-->
-<!--  border: 2px solid $primary;-->
-<!--}-->
+.highlight {
+  border: 2px solid $primary;
+}
 
-<!--.lineThrough {-->
-<!--  text-decoration: line-through;-->
-<!--  text-decoration-color: $primary;-->
-<!--}-->
+.lineThrough {
+  text-decoration: line-through;
+  text-decoration-color: $primary;
+}
 
-<!--.label {-->
-<!--  padding-top: 10px;-->
-<!--}-->
+.label {
+  padding-top: 10px;
+}
 
-<!--.dots {-->
-<!--  padding-left: 11px;-->
-<!--}-->
-<!--</style>-->
+.dots {
+  padding-left: 11px;
+}
+</style>
 
 <script>
 import { NoteTypes, NoteStatus } from '../helper/constants';
 import { v4 as uuidv4 } from 'uuid';
+
 export default {
   name: 'NoteList',
   props: ['notes', 'status'],
@@ -175,7 +176,7 @@ export default {
       this.$router.push(routerPath + note.id);
     },
     onAddNoteClick() {
-      this.$router.push('/notes/detail/' + uuidv4());
+      this.$router.push('/notes/detail/' + uuid());
     },
   },
   computed: {
