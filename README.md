@@ -1,3 +1,21 @@
+# To Do
+## Issues
+- Cleanup the files and repo
+- Update all files to new versions
+- Bring notes back to life and ensure that everything is running again
+- Enable Cordova run
+- Cleanup README.md
+- Disable Drag & Drop for now // Make it optional or hide it via settings tab
+- Make use of Quasar 1.2.X and Vue 3.X
+- Rewrite code with TypeScript
+
+## Features
+- Build MVP for notes and checkbox list (similar to Keep and Standard Notes)
+- Make use of local storage and Firebase as a sync mechanism
+- Dark theme support // Blue and white theme // Orange theme
+- Enable the app to be used via PWA
+
+-----------------------------
 # Notes
 
 ![Alt text](/src/statics/logo_three_post_its/three_post_its_128x128.png?raw=true 'Notes Logo')
