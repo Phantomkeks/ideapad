@@ -1,9 +1,9 @@
 name: Generate Cordova APK
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   buildArtifact:
@@ -11,13 +11,13 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '12.4.0'
+          node-version: '16.19.0'
       - name: Install NPM
         run: npm install
       - name: Install Quasar

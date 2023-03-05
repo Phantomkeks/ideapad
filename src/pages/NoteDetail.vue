@@ -1,30 +1,30 @@
 <template>
   <q-page class="background">
-    <Note v-bind:componentNote="note" v-bind:status="status"/>
+    <Note v-bind:componentNote="note" v-bind:status="status" />
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
-  .background
-    background-color: white;
+.background
+  background-color: white;
 </style>
 
 <script>
-import Note from '../components/Note'
-import NoteHelper from '../helper/NoteHelper'
-import { NoteStatus, NoteTypes } from '../helper/constants'
+import Note from '../components/Note';
+import NoteHelper from '../helper/NoteHelper';
+import { NoteStatus, NoteTypes } from '../helper/constants';
 
 export default {
   name: 'NoteDetail',
   components: { Note },
-  data () {
+  data() {
     return {
-      status: NoteStatus.Created
-    }
+      status: NoteStatus.Created,
+    };
   },
   computed: {
-    note () {
-      const note = this.$store.getters.getSingleNote(this.$route.params.id)
+    note() {
+      const note = this.$store.getters.getSingleNote(this.$route.params.id);
       if (!note) {
         return NoteHelper.noteConstructor(
           this.$route.params.id,
@@ -34,10 +34,10 @@ export default {
           null,
           '',
           []
-        )
+        );
       }
-      return note
-    }
-  }
-}
+      return note;
+    },
+  },
+};
 </script>

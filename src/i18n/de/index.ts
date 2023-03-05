@@ -3,28 +3,28 @@
 // this.$t('alertDialog.missingDropboxTokenTitle')
 // {{ $t('appTitle') }}
 export default {
-  appTitle: 'Ideapad',
+  appTitle: 'Notes',
 
   name: {
     dropbox: 'Dropbox',
-    googleDrive: 'Google Drive'
+    googleDrive: 'Google Drive',
   },
 
   error: {
-    404: 'Entschuldige, nichts gefunden...(404)'
+    404: 'Entschuldige, nichts gefunden...(404)',
   },
 
   languageLabel: {
     enUs: 'Englisch (US)',
-    de: 'Deutsch'
+    de: 'Deutsch',
   },
 
   select: {
-    language: 'Wähle deine bevorzugte Anzeigesprache:'
+    language: 'Wähle deine bevorzugte Anzeigesprache:',
   },
 
   link: {
-    dropboxAuth: 'Mit Dropbox authentifizieren'
+    dropboxAuth: 'Mit Dropbox authentifizieren',
   },
 
   placeholder: {
@@ -33,14 +33,14 @@ export default {
     listEntry: 'Listeneintrag',
     dots: '...',
     noFileChosen: 'Keine Datei ausgewählt',
-    writeNote: 'Notiz schreiben...'
+    writeNote: 'Notiz schreiben...',
   },
 
   input: {
     importPassphrase: 'Passphrase für Entschlüsselung',
     exportPassphrase: 'Passphrase für Verschlüsselung',
     selectSourceFile: 'Quelldatei auswählen',
-    chooseSourceFile: 'Quelldatei auswählen'
+    chooseSourceFile: 'Quelldatei auswählen',
   },
 
   button: {
@@ -52,36 +52,38 @@ export default {
     export: 'Export',
     continue: 'Weiter',
     back: 'Zurück',
-    backToSelect: 'Zurück zur Auswahl'
+    backToSelect: 'Zurück zur Auswahl',
   },
 
   navigation: {
     title: 'Navigation',
     notes: 'Notizen',
     trash: 'Papierkorb',
-    settings: 'Einstellungen'
+    settings: 'Einstellungen',
   },
 
   tab: {
     general: 'Allgemein',
     import: 'Import',
     export: 'Export',
-    cloud: 'Cloud'
+    cloud: 'Cloud',
   },
 
   step: {
     select: {
       title: 'Auswahl',
-      description: 'Wähle den Cloud-Speicheranbieter, der deinen Bedürfnissen am besten entspricht, um deine verschlüsselten Notizen zu speichern.'
+      description:
+        'Wähle den Cloud-Speicheranbieter, der deinen Bedürfnissen am besten entspricht, um deine verschlüsselten Notizen zu speichern.',
     },
     authenticate: {
       title: 'Authentifizierung',
-      description: 'Authentifiziere dich mit Dropbox und erlaube der App, deine Notizen verschlüsselt im Cloud-Speicher zu sichern.'
+      description:
+        'Authentifiziere dich mit Dropbox und erlaube der App, deine Notizen verschlüsselt im Cloud-Speicher zu sichern.',
     },
     synchronise: {
       title: 'Synchronisation',
-      description: 'Synchronisiere deine aktuellen Notizen mit Dropbox.'
-    }
+      description: 'Synchronisiere deine aktuellen Notizen mit Dropbox.',
+    },
   },
 
   setting: {
@@ -89,8 +91,8 @@ export default {
       general: 'Allgemeine Einstellungen',
       importNotes: 'Notizen importieren',
       exportNotes: 'Notizen exportieren',
-      cloudStorageIntegration: 'Anbindung an Cloud-Speicher'
-    }
+      cloudStorageIntegration: 'Anbindung an Cloud-Speicher',
+    },
   },
 
   menuItem: {
@@ -98,38 +100,45 @@ export default {
     permDelete: 'Permanent löschen',
     restore: 'Wiederherstellen',
     copy: 'Kopieren',
-    emptyTrash: 'Papierkorb leeren'
+    emptyTrash: 'Papierkorb leeren',
   },
 
   alertDialog: {
     noteImportSuccessfulTitle: 'Notiz Import',
     noteImportSuccessfulMessage: 'Der Notiz-Import was erfolgreich.',
     missingDropboxTokenTitle: 'Fehlender Dropbox Token',
-    missingDropboxTokenMessage: 'Du musst dich zuerst mit Dropbox authentifizieren.',
+    missingDropboxTokenMessage:
+      'Du musst dich zuerst mit Dropbox authentifizieren.',
     cloudUploadSyncSuccessfulTitle: 'Cloud-Upload',
     cloudUploadSyncSuccessfulMessage: 'Der Cloud-Upload war erfolgreich.',
     cloudUploadSyncFailedTitle: 'Cloud-Upload Gescheitert',
-    cloudUploadSyncFailedMessage: 'Es ist nicht möglich, eine Notizdatei hochzuladen oder zu finden. Bitte versuche es erneut.',
+    cloudUploadSyncFailedMessage:
+      'Es ist nicht möglich, eine Notizdatei hochzuladen oder zu finden. Bitte versuche es erneut.',
     cloudDownloadSyncSuccessfulTitle: 'Cloud-Download',
     cloudDownloadSyncSuccessfulMessage: 'Der Cloud-Download war erfolgreich.',
     cloudDownloadSyncFailedTitle: 'Cloud-Download Gescheitert',
-    cloudDownloadSyncFailedMessage: 'Es ist nicht möglich, eine Notizdatei herunterzuladen oder zu finden. Bitte versuche es erneut.'
+    cloudDownloadSyncFailedMessage:
+      'Es ist nicht möglich, eine Notizdatei herunterzuladen oder zu finden. Bitte versuche es erneut.',
   },
 
   confirmDialog: {
     permanentDeleteTitle: 'Bestätigen',
     permanentDeleteMessage: 'Diese Notiz dauerhaft löschen?',
     permanentDeleteSelectedTitle: 'Bestätigen',
-    permanentDeleteSelectedMessage: 'Die ausgewählten Notizen dauerhaft löschen?',
+    permanentDeleteSelectedMessage:
+      'Die ausgewählten Notizen dauerhaft löschen?',
     emptyTrashTitle: 'Papierkorb Leeren',
     emptyTrashMessage: 'Alle Notizen im Papierkorb werden endgültig gelöscht.',
     deleteListEntryTitle: 'Bestätigen',
     deleteListEntryMessage: 'Den ausgewählten Listeneintrag dauerhaft löschen?',
     deleteCloudStorageProviderTitle: 'Cloud Anbindung löschen',
-    deleteCloudStorageProviderMessage: 'Deine Daten werden nicht mehr in der Cloud gesichert, sondern nur noch auf deinem Gerät.',
+    deleteCloudStorageProviderMessage:
+      'Deine Daten werden nicht mehr in der Cloud gesichert, sondern nur noch auf deinem Gerät.',
     deleteAllSettingsTitle: 'Einstellung zurücksetzen',
-    deleteAllSettingsMessage: 'Setzt deine Einstellungen und die Anbindung an den Cloud-Speicheranbieter zurück.',
+    deleteAllSettingsMessage:
+      'Setzt deine Einstellungen und die Anbindung an den Cloud-Speicheranbieter zurück.',
     resetApplicationTitle: 'Anwendung zurücksetzen',
-    resetApplicationMessage: 'Setzt alle Einstellungen zurück und löscht deine gespeicherten Notizen.'
-  }
-}
+    resetApplicationMessage:
+      'Setzt alle Einstellungen zurück und löscht deine gespeicherten Notizen.',
+  },
+};

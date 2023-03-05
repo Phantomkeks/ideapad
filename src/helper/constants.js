@@ -1,14 +1,11 @@
 const NoteTypes = {
   Default: 'DEFAULT',
-  Checkbox: 'CHECKBOX'
-}
+  Checkbox: 'CHECKBOX',
+};
 
 const NoteStatus = {
   Created: 'CREATED',
-  Deleted: 'DELETED'
-}
+  Deleted: 'DELETED',
+};
 
-export {
-  NoteTypes,
-  NoteStatus
-}
+export { NoteTypes, NoteStatus };

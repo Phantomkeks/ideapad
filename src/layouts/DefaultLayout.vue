@@ -15,11 +15,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>
           {{ $t('navigation.title') }}
@@ -57,25 +53,25 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { openURL } from 'quasar';
 
 export default {
   name: 'Layout',
-  data () {
+  data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
-    }
+      leftDrawerOpen: this.$q.platform.is.desktop,
+    };
   },
   methods: {
-    openURL
-  }
-}
+    openURL,
+  },
+};
 </script>
 
 <style lang="stylus" scoped>
-  // $
+// $
 
-  .gradient {
-    headerGradient();
-  }
+.gradient {
+  headerGradient();
+}
 </style>

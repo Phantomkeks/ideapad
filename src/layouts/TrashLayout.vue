@@ -24,7 +24,7 @@
             <q-list style="min-width: 100px">
               <q-item clickable @click="openEmptyTrashConfirmDialog">
                 <q-item-section avatar>
-                  <q-icon name="delete"/>
+                  <q-icon name="delete" />
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.emptyTrash') }}
@@ -49,7 +49,7 @@
             <q-list style="min-width: 100px">
               <q-item clickable @click="onRestoreSelectedClick">
                 <q-item-section avatar>
-                  <q-icon name="restore"/>
+                  <q-icon name="restore" />
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.restore') }}
@@ -57,7 +57,7 @@
               </q-item>
               <q-item clickable @click="openDeleteSelectedConfirmDialog">
                 <q-item-section avatar>
-                  <q-icon name="delete"/>
+                  <q-icon name="delete" />
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.permDelete') }}
@@ -69,11 +69,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>
           {{ $t('navigation.title') }}
@@ -111,78 +107,82 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { openURL } from 'quasar';
 
 export default {
   name: 'Layout',
-  data () {
+  data() {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
-      deletedNotes: this.$store.getters.getAllDeletedNotes
-    }
+      deletedNotes: this.$store.getters.getAllDeletedNotes,
+    };
   },
   methods: {
     openURL,
-    onEmptyTrashClick () {
-      this.$store.commit({ type: 'emptyTrash' })
+    onEmptyTrashClick() {
+      this.$store.commit({ type: 'emptyTrash' });
     },
-    onRestoreSelectedClick () {
+    onRestoreSelectedClick() {
       this.$store.commit({
         type: 'restoreNotes',
-        noteIds: this.selectedNoteIds
-      })
+        noteIds: this.selectedNoteIds,
+      });
     },
-    onDeleteSelectedClick () {
+    onDeleteSelectedClick() {
       this.$store.commit({
         type: 'deleteNotes',
-        noteIds: this.selectedNoteIds
-      })
+        noteIds: this.selectedNoteIds,
+      });
     },
-    openDeleteSelectedConfirmDialog () {
-      this.$q.dialog({
-        title: this.$t('confirmDialog.permanentDeleteSelectedTitle'),
-        message: this.$t('confirmDialog.permanentDeleteSelectedMessage'),
-        cancel: true,
-        persistent: true
-      }).onOk(() => {
-        this.onDeleteSelectedClick()
-      }).onCancel(() => {
-      }).onDismiss(() => {
-      })
+    openDeleteSelectedConfirmDialog() {
+      this.$q
+        .dialog({
+          title: this.$t('confirmDialog.permanentDeleteSelectedTitle'),
+          message: this.$t('confirmDialog.permanentDeleteSelectedMessage'),
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.onDeleteSelectedClick();
+        })
+        .onCancel(() => {})
+        .onDismiss(() => {});
     },
-    openEmptyTrashConfirmDialog () {
-      this.$q.dialog({
-        title: this.$t('confirmDialog.emptyTrashTitle'),
-        message: this.$t('confirmDialog.emptyTrashMessage'),
-        cancel: true,
-        persistent: true
-      }).onOk(() => {
-        this.onEmptyTrashClick()
-      }).onCancel(() => {
-      }).onDismiss(() => {
-      })
-    }
+    openEmptyTrashConfirmDialog() {
+      this.$q
+        .dialog({
+          title: this.$t('confirmDialog.emptyTrashTitle'),
+          message: this.$t('confirmDialog.emptyTrashMessage'),
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(() => {
+          this.onEmptyTrashClick();
+        })
+        .onCancel(() => {})
+        .onDismiss(() => {});
+    },
   },
   computed: {
     selectedNoteIds: function () {
-      let selectedNoteIds = []
+      let selectedNoteIds = [];
 
-      this.deletedNotes.forEach(note => {
+      this.deletedNotes.forEach((note) => {
         if (note.highlighted) {
-          selectedNoteIds.push(note.id)
+          selectedNoteIds.push(note.id);
         }
-      })
+      });
 
-      return selectedNoteIds
-    }
-  }
-}
+      return selectedNoteIds;
+    },
+  },
+};
 </script>
 
 <style lang="stylus" scoped>
-  // $
+// $
 
-  .gradient {
-    headerGradient();
-  }
+.gradient {
+  headerGradient();
+}
 </style>

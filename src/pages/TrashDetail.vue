@@ -1,30 +1,30 @@
 <template>
   <q-page class="background">
-    <Note v-bind:componentNote="note" v-bind:status="status"/>
+    <Note v-bind:componentNote="note" v-bind:status="status" />
   </q-page>
 </template>
 
 <style lang="stylus" scoped>
-  .background
-    background-color: white;
+.background
+  background-color: white;
 </style>
 
 <script>
-import Note from '../components/Note'
-import { NoteStatus } from '../helper/constants'
+import Note from '../components/Note';
+import { NoteStatus } from '../helper/constants';
 
 export default {
   name: 'TrashDetail',
   components: { Note },
-  data () {
+  data() {
     return {
-      status: NoteStatus.Deleted
-    }
+      status: NoteStatus.Deleted,
+    };
   },
   computed: {
-    note () {
-      return this.$store.getters.getSingleDeletedNote(this.$route.params.id)
-    }
-  }
-}
+    note() {
+      return this.$store.getters.getSingleDeletedNote(this.$route.params.id);
+    },
+  },
+};
 </script>

@@ -40,7 +40,7 @@
             <q-list style="min-width: 100px">
               <q-item clickable @click="onCopySelectedClick">
                 <q-item-section avatar>
-                  <q-icon name="file_copy"/>
+                  <q-icon name="file_copy" />
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.copy') }}
@@ -48,7 +48,7 @@
               </q-item>
               <q-item clickable @click="onDeleteSelectedClick">
                 <q-item-section avatar>
-                  <q-icon name="delete"/>
+                  <q-icon name="delete" />
                 </q-item-section>
                 <q-item-section>
                   {{ $t('menuItem.delete') }}
@@ -60,11 +60,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      bordered
-      content-class="bg-grey-2"
-    >
+    <q-drawer v-model="leftDrawerOpen" bordered content-class="bg-grey-2">
       <q-list>
         <q-item-label header>
           {{ $t('navigation.title') }}
@@ -102,62 +98,65 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
-import { v4 as uuidv4 } from 'uuid'
+// import { openURL } from 'quasar';
+// import { v4 as uuidv4 } from 'uuid';
+
+import { useNoteStore } from '../stores/note';
+const noteStore = useNoteStore();
 
 export default {
-  name: 'Layout',
-  data () {
+  name: 'NotesLayout',
+  data() {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop,
-      notes: this.$store.getters.getAllNotes
-    }
+      notes: noteStore.getAllNotes,
+    };
   },
   methods: {
     openURL,
-    onAddNoteClick () {
-      this.$router.push('/notes/detail/' + uuidv4())
+    onAddNoteClick() {
+      // this.$router.push('/notes/detail/' + uuidv4());
     },
-    onCopySelectedClick () {
+    onCopySelectedClick() {
       this.$store.commit({
         type: 'copyNotes',
-        noteIds: this.selectedNoteIds
-      })
+        noteIds: this.selectedNoteIds,
+      });
     },
-    onDeleteSelectedClick () {
+    onDeleteSelectedClick() {
       this.$store.commit({
         type: 'removeNotes',
-        noteIds: this.selectedNoteIds
-      })
+        noteIds: this.selectedNoteIds,
+      });
     },
-    resetHighlighted () {
-      this.notes.forEach(note => {
+    resetHighlighted() {
+      this.notes.forEach((note) => {
         if (note.highlighted) {
-          note.highlighted = false
+          note.highlighted = false;
         }
-      })
-    }
+      });
+    },
   },
   computed: {
     selectedNoteIds: function () {
-      let selectedNoteIds = []
+      let selectedNoteIds = [];
 
-      this.notes.forEach(note => {
+      this.notes.forEach((note) => {
         if (note.highlighted) {
-          selectedNoteIds.push(note.id)
+          selectedNoteIds.push(note.id);
         }
-      })
+      });
 
-      return selectedNoteIds
-    }
-  }
-}
+      return selectedNoteIds;
+    },
+  },
+};
 </script>
 
-<style lang="stylus" scoped>
-  // $
-
-  .gradient {
-    headerGradient();
-  }
-</style>
+<!--<style lang="stylus" scoped>-->
+<!--// $-->
+<!---->
+<!--.gradient {-->
+<!--  headerGradient();-->
+<!--}-->
+<!--</style>-->

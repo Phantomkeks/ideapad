@@ -1,20 +1,31 @@
+<!--<template>-->
+<!--  <div id="q-app">-->
+<!--    <router-view />-->
+<!--  </div>-->
+<!--</template>-->
+
+<!--<script lang="ts">-->
+<!--export default {-->
+<!--  name: 'App'-->
+<!--  // beforeCreate() {-->
+<!--  //   this.$store.commit('initialiseStore');-->
+<!--  //   this.$i18n.locale = this.$store.getters.getLanguageSetting;-->
+<!--  // },-->
+<!--};-->
+<!--</script>-->
+<!--&lt;!&ndash;<style lang="stylus">&ndash;&gt;-->
+<!--&lt;!&ndash;  body&ndash;&gt;-->
+<!--&lt;!&ndash;    background-color: $grey-2&ndash;&gt;-->
+<!--&lt;!&ndash;</style>&ndash;&gt;-->
+
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
-export default {
-  name: 'App',
-  beforeCreate () {
-    this.$store.commit('initialiseStore')
-    this.$i18n.locale = this.$store.getters.getLanguageSetting
-  }
-}
-</script>
+import { defineComponent } from 'vue';
 
-<style lang="stylus">
-  body
-    background-color: $grey-2
-</style>
+export default defineComponent({
+  name: 'App',
+});
+</script>
