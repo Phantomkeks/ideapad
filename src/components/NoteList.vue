@@ -1,5 +1,5 @@
 <template>
-  <q-list class="masonry" v-model="notes">
+  <q-list class="masonry" v-bind="notes">
     <q-card
       @mousedown="startTouchEvent(note)"
       @mouseleave="stopTouchEvent"
@@ -70,7 +70,8 @@
 
 <style lang="scss" scoped>
 .note-card {
-  break-inside avoid-column
+  //break-inside
+  //avoid-column
   margin: 0 0 1rem;
   width: 100%;
   transition: border 0.2s ease-in-out;
@@ -100,13 +101,13 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import { NoteTypes, NoteStatus } from '../helper/constants';
 import { v4 as uuidv4 } from 'uuid';
 
 export default {
   name: 'NoteList',
-  props: ['notes', 'status'],
+  // props: ['notes', 'status'],
   data() {
     return {
       touchDuration: 250,
@@ -126,38 +127,38 @@ export default {
   //   window.removeEventListener('scroll', this.handleScrolling);
   // },
   methods: {
-    handleScrolling() {
-      if (this.scrolling) {
-        return;
-      }
-      this.scrolling = true;
-      this.scrollingEndTimer = setTimeout(
-        function () {
-          this.scrolling = false;
-        }.bind(this),
-        this.afterScrollingDuration
-      );
-    },
-    startTouchEvent(note) {
-      if (!this.scrolling) {
-        this.timer = setTimeout(
-          this.onLongTouch.bind(this, note),
-          this.touchDuration
-        );
-      }
-    },
-    stopTouchEvent() {
-      if (this.timer) {
-        clearTimeout(this.timer);
-      }
-    },
-    onLongTouch(note) {
-      if (!this.scrolling) {
-        if (note.highlighted) {
-        }
-        note.highlighted = !note.highlighted;
-      }
-    },
+    // handleScrolling() {
+    //   if (this.scrolling) {
+    //     return;
+    //   }
+    //   this.scrolling = true;
+    //   this.scrollingEndTimer = setTimeout(
+    //     function () {
+    //       this.scrolling = false;
+    //     }.bind(this),
+    //     this.afterScrollingDuration
+    //   );
+    // },
+    // startTouchEvent(note) {
+    //   if (!this.scrolling) {
+    //     this.timer = setTimeout(
+    //       this.onLongTouch.bind(this, note),
+    //       this.touchDuration
+    //     );
+    //   }
+    // },
+    // stopTouchEvent() {
+    //   if (this.timer) {
+    //     clearTimeout(this.timer);
+    //   }
+    // },
+    // onLongTouch(note) {
+    //   if (!this.scrolling) {
+    //     if (note.highlighted) {
+    //     }
+    //     note.highlighted = !note.highlighted;
+    //   }
+    // },
     onNoteClick(note, status) {
       if (this.selecting) {
         note.highlighted = true;
@@ -172,10 +173,11 @@ export default {
       this.$router.push(routerPath + note.id);
     },
     onAddNoteClick() {
-      this.$router.push('/notes/detail/' + uuid());
+      this.$router.push('/notes/detail/' + uuidv4());
     },
   },
   computed: {
+    notes: [{id: "Test", title: "Titel"}],
     selecting: function () {
       return this.notes.findIndex((note) => note.highlighted) !== -1;
     },

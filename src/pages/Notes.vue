@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import NoteList from '../components/NoteList';
+// import { NoteList } from '../components/NoteList';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteStatus } from '../helper/constants';
 import { useNoteStore } from '../stores/note';

@@ -62,7 +62,7 @@
         <q-btn
           fab
           icon="add"
-          text-color="red"
+          text-color="white"
           class="add-button"
           @click="addNewListEntry"
         />
